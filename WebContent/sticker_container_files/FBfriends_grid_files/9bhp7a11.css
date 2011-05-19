@@ -1,0 +1,266 @@
+/*    HTTP Host:  static.ak.fbcdn.net                                          */
+/*    Generated:  October 21st 2009 7:37:05 PM PDT                             */
+/*      Machine:  10.16.140.103                                                */
+/*       Source:  Backing Store                                                */
+/*     Location:  css/57bq1tn6yu0woc0k.pkg.css h:9bhp7a11                      */
+/*       Locale:  nu_ll                                                        */
+/*         Path:  css/57bq1tn6yu0woc0k.pkg.css                                 */
+
+.editor{margin:3px auto 7px}
+.editor_panel{background:#f7f7f7;padding:10px 0}
+.editor td{border:none;margin:0;padding:5px 1px 1px}
+.editor td.label{color:#666;font-weight:bold;padding-right:10px}
+.editor td.label small{color:#999}
+.editor .suboption_group{border-bottom:1px solid #c0c0c0;border-top:1px solid #c0c0c0;margin-left:20px}
+.editor .suboption_group td{padding:0}
+.editor tr.tallrow{vertical-align:top}
+.editor tr.tallrow td.label{padding-top:7px}
+.editor tr.subrow{vertical-align:top}
+.editor tr.subrow td{margin-top:0;padding-top:0}
+.editor .buttons{padding:10px 0 0;text-align:center}
+.editor .buttons_left{padding-left:0;text-align:left}
+.editor .buttons .inputsubmit,
+.editor .buttons .inputbutton{margin:2px 4px}
+.editor .buttons_left .inputsubmit,
+.editor .buttons_left .inputbutton{margin-left:0}
+.editor label{color:#000;font-weight:normal;width:200px}
+.editor label.row_description{color:inherit;font-weight:inherit;width:inherit}
+.editor table.option_field td{margin:0;padding:0 2px 0 0}
+.editor .option_caption{color:#777;font-weight:normal;padding-bottom:2px;width:260px}
+.editor .inputtext,
+.editor .inputpassword{margin-left:0;width:300px}
+.editor textarea{margin-left:0;width:300px}
+.editor select{margin-left:0;margin-right:5px}
+.editor .checkbox_array{margin:0;padding:5px 0 0}
+.editor .checkbox_array td{margin:0;padding:0 0 0}
+.editor .checkbox_array label{padding-right:15px}
+.editor .relationship .inputtext{width:200px}
+.editor .highschool input{margin-right:5px;width:235px}
+.editor .school input{margin-right:5px;width:235px}
+.editor .school .inputtext{width:200px}
+.editor_panel .editor .school table.nopadding td{padding:0 0 0 0}
+.editor .school .school_typeahead{width:210px}
+.editor .select xselect{width:200px}
+.editor .two_level_select select{width:145px}
+.editor .text_with_privacy input{margin-right:5px;width:105px}
+.editor .text_with_privacy select{margin-left:5px;width:auto}
+.editor .text_with_privacy td{color:#777}
+.editor .divider{border-bottom:solid 1px #fff;border-top:solid 1px #ccc;height:0;margin:5px 0;overflow:hidden}
+.editor .date_time span, .editor .inline_text{margin:0 4px 0 -2px}
+.editor .note{width:300px}
+.editor .hiddenrow{display:none}
+.editor .calendar_popup{display:inline}
+.editor .calendar_at_time{padding:0 0 0 8px}
+.editor .calicon{padding:0 2px 1px 0}
+.editor .calendars td{padding:0}
+.editor #start_calendar, .editor #end_calendar{background-color:#fff;border-bottom:solid 1px #3b5998;border-left:solid 1px #d8dfea;border-right:solid 1px #d8dfea;margin-left:147px;margin-top:-3px;position:absolute;width:168px;z-index:100}
+.editor #box_separator{padding:0 3px 0 3px}
+.findfriends #content_inner{margin:0}
+.findfriends .tabs{padding-top:20px}
+.findfriends #importer_frame{margin:0 auto}
+.findfriends #importer_frame .instructions{line-height:16px}
+.findfriends #error{margin:4px 42px 20px}
+.findfriends .status{margin:0 0 20px 0}
+.findfriends .status h2{border:none}
+.findfriends #done{margin-bottom:15px}
+.findfriends span.bold{font-weight:bold}
+.findfriends h2{font-size:14px;font-weight:bold;padding-bottom:2px}
+.findfriends h2.icon{background:url(/rsrc.php/z8JCI/hash/88timxhk.gif) no-repeat left top;border-bottom:1px solid #ccc;font-weight:bold;padding:0 0 8px 20px}
+.findfriends h3{font-size:11px;font-weight:bold;padding:5px 0}
+.findfriends h4{color:#000;font-size:13px;margin-left:0}
+.findfriends .instructions p{margin:0;padding:8px 0 0 0;color:#555}
+.findfriends .security_badge{background:url(/rsrc.php/zEMJV/hash/xhcl0wnj.gif) no-repeat left center;padding:2px 25px 2px}
+.findfriends .phonebook_tos{color:#555;padding:10px 10px 2px 2px;line-height:16px}
+.findfriends .phonebook_tos h2{background:url(/rsrc.php/z8JCI/hash/88timxhk.gif) no-repeat left top;border-bottom:1px solid #ccc;font-weight:bold;font-size:14px;padding:0 0 8px 20px}
+.findfriends .phonebook_tos input{float:left;margin:10px 10px 10px 0}
+.findfriends .phonebook_tos .buttons{}
+.findfriends .phonebook_tos .description{padding:10px 5px 10px 0;font-size:13px}
+.findfriends .phonebook_tos .security_badge{background:url(/rsrc.php/zEMJV/hash/xhcl0wnj.gif) no-repeat left center;padding:2px 10px 5px 25px;font-size:12px}
+.findfriends .buttons .inputbutton{float:left;margin-right:10px;padding-bottom:2px;padding-top:1px}
+.findfriends #address_book_login .instructions,
+.findfriends #chat_login .instructions,
+.findfriends #address_book_upload .instructions{line-height:18px}
+.findfriends .panel{border-top:1px solid #ccc}
+.findfriends .panel .header{padding:5px 0 5px 25px;background:no-repeat scroll left center}
+.findfriends #webmail .header{background-image:url(/rsrc.php/z6R3T/hash/b29r4888.gif)}
+.findfriends #email_application .header{background-image:url(/rsrc.php/z4AQS/hash/8rwfrvls.gif)}
+.findfriends #chatfind .header{background-image:url(/rsrc.php/zEVUV/hash/1bey05t2.gif)}
+.findfriends #friend_guesser .header{background-image:url(/rsrc.php/z4WYI/hash/ua0bfdzs.gif)}
+.findfriends #people_search .header{background-image:url(/rsrc.php/z5XU3/hash/cxdqs0g3.gif)}
+.findfriends #people_search .search_query .inputtext{float:left;padding:4px 3px 3px 3px;line-height:14px;margin:0}
+.findfriends #people_search .UISearchQuery_Submit{padding:0 2px 1px 2px}
+.findfriends #people_search #classmates_links{clear:left;padding-top:10px}
+.findfriends #browse_by_name .header{background-image:url(/rsrc.php/zDFNG/hash/19jptkbf.gif)}
+.findfriends .panel .header .title{font-weight:bold}
+.findfriends .panel .header .subtitle{padding-left:5px;color:#555}
+.findfriends .panel.opened .header .title{line-height:21px;text-decoration:none;cursor:text;font-size:13px}
+.findfriends .panel.closed .content{display:none}
+.findfriends #phonebook .header{background-image:url(/rsrc.php/zE2NF/hash/2a02ax4q.gif)}
+.findfriends #address_book_login h4{background:url(/rsrc.php/z6R3T/hash/b29r4888.gif) left center no-repeat;padding:5px 0 0 25px;line-height:21px}
+.findfriends #address_book_upload h4{background:url(/rsrc.php/z4AQS/hash/8rwfrvls.gif) left center no-repeat;padding:5px 0 0 25px;line-height:21px}
+.findfriends #address_book_login .editor,
+.findfriends #address_book_upload .editor{margin:0}
+.findfriends #address_book_login .editor{width:520px}
+.findfriends #address_book_login .editor .address_book_email .label,
+.findfriends #address_book_upload td.label{width:95px}
+.findfriends #address_book_login .editor .address_book_email input{width:145px;margin-right:2px}
+.findfriends #address_book_login .editor .address_book_email select{margin-left:2px;width:115px}
+.findfriends #address_book_login .editor .address_book_email optgroup{font-style:normal;font-weight:bold}
+.findfriends #address_book_login .editor #password{width:260px}
+.findfriends #address_book_login,
+.findfriends #address_book_upload,
+.findfriends #address_book_selector,
+.findfriends #befriend_selector{padding:5px 0 15px 0}
+.findfriends #address_book_login .instructions,
+.findfriends #address_book_upload .instructions{line-height:18px}
+.findfriends #address_book_login .buttons{margin-left:102px;text-align:left}
+.findfriends .editor #captcha{width:260px}
+.security_badge img{float:left;margin-right:7px}
+.findfriends #chat_login h4{background:url(/rsrc.php/z9OLY/hash/1oykxzcz.gif) left center no-repeat;padding:5px 0 0 25px;line-height:21px}
+.findfriends #chat_login{padding:5px 0 15px 0}
+.findfriends #chat_login .editor{margin:10px 0 0 0}
+.findfriends #chat_login .editor #aim_screen_name,
+.findfriends #chat_login .editor #ms_login_name,
+.findfriends #chat_login .editor #aim_password{width:260px}
+.findfriends #chat_login .editor .label{width:95px}
+.findfriends #chat_login .editor .buttons{margin-left:102px;text-align:left}
+.findfriends #chat_login .disclaimer{color:#777;font-size:9px;line-height:13px;padding:5px 0 0 4px;width:270px}
+.findfriends #friend_guesser .friend_guesses.list{padding-left:13px;background:none}
+.findfriends #friend_guesser .friend_guesses.list h2{padding-bottom:0}
+.findfriends #friend_guesser .friend_guesses.list p{padding-top:0}
+.findfriends #friend_guesser .friend_guesses.list .fguess{margin:8px 0 8px 11px}
+.findfriends #people_search .content{padding-left:25px}
+.findfriends #people_search .search_query{margin:10px 0 20px 0}
+.findfriends #people_search .inputsubmit{margin:0 5px;padding:2px 0;width:75px}
+.findfriends #people_search #q_ff{width:180px}
+.findfriends #people_search .content li{padding-bottom:5px}
+div.file_help{padding:10px;display:none;border:1px solid #ccc;background:#fcfcfc;margin-top:6px;margin-bottom:6px}
+.fh_title{font-size:11px}
+div.fh_sect{margin:4px}
+div.fh_instr{display:none;margin:3px 3px 0 0;padding:6px}
+.findfriends #all_or_some_selector{margin:10px 0 10px -15px}
+.findfriends #all_or_some_selector .editor{margin:0}
+.findfriends .new_instructions{color:#555;font-weight:normal;padding-top:10px}
+.findfriends #friend_finder_invite_form{margin:0;padding:0;width:510px}
+.findfriends #befriend_selector h2{line-height:18px;padding-bottom:3px}
+.findfriends #befriend_selector h3{font-weight:normal;line-height:18px;padding-bottom:10px}
+.findfriends #befriend_selector .instructions{padding:0 0 5px 0;line-height:18px}
+.findfriends #befriend_selector .buttons{margin:10px 0 0}
+.findfriends #friends_header{margin:10px 0 0 0;border-top:1px solid #c0c0c0;border-left:1px solid #c0c0c0;border-right:1px solid #c0c0c0;width:500px;background:ededed}
+.findfriends #friends_header a{color:#808080}
+.findfriends #friends_wrapper{position:relative;overflow:auto;margin:0;border:1px solid #c0c0c0;background:#fff;width:500px}
+.findfriends #friends_header td,
+.findfriends #friends_wrapper td{margin-top:0;padding:2px}
+.findfriends #friends_wrapper td{border-bottom:1px solid eeeeee}
+.findfriends #friends_wrapper td.hover:hover,
+.findfriends #friends_wrapper td.hover:hover{cursor:pointer}
+.findfriends #friends_wrapper td.name{color:#555}
+.findfriends #friends_wrapper td.name div.full_name{font-size:11px;font-weight:bold}
+.findfriends #friends_wrapper td.name span.email{border:none;margin:0;padding:0;background:none;color:#555}
+.findfriends #friends_wrapper td.networks{padding-left:10px;width:100%}
+.findfriends #friends_wrapper ul.networks{font-size:11px;color:#808080;padding:3px 0 0 0}
+.findfriends #friends_wrapper td.name li{padding:0}
+.findfriends #friends_wrapper td.checkbox{width:20px}
+.findfriends #friends_wrapper td.pic{padding:4px 10px 4px 4px}
+.findfriends .contacts_header{margin:10px 0 0 0;border-top:1px solid #c0c0c0;border-left:1px solid #c0c0c0;border-right:1px solid #c0c0c0;background:ededed}
+.findfriends .contacts_header a{color:#808080}
+.findfriends #chat_contacts_header{width:350px}
+.findfriends #email_contacts_header{width:100%}
+.findfriends .contacts_wrapper{overflow:auto;margin:0;border:1px solid #c0c0c0;background:#fff}
+.findfriends #chat_contacts_wrapper{width:350px}
+.findfriends #email_contacts_wrapper{width:100%}
+.findfriends #chat_contacts_wrapper td.group_header{background-color:#d3d8e6;font-size:11px;font-weight:bold;padding:4px 0 4px 6px}
+.findfriends .contacts_header td,
+.findfriends .contacts_wrapper td{margin-top:0;padding:2px}
+.findfriends .contacts_wrapper .email_display{color:#777}
+.findfriends #chat_contacts_wrapper table{width:100%}
+.findfriends #email_contacts_wrapper table{width:100%}
+.findfriends .contacts_wrapper tr.row1{background:#f5f5f5 }
+.findfriends .contacts_wrapper td.name,
+.findfriends .contacts_wrapper td.email_display{cursor:pointer}
+.findfriends .contacts_wrapper td.email{display:none}
+.findfriends .contacts_wrapper td.checkbox{width:20px}
+.findfriends #address_book_selector .buttons{margin:20px 0 0 0;width:300px}
+.findfriends #address_book_selector h2{font-weight:normal;line-height:18px}
+.findfriends #address_book_selector .instructions{padding:0 0 5px 0;line-height:18px}
+.findfriends .inputbutton #save{font-weight:bold}
+.findfriends .results{margin-left:100px;padding:20px;width:500px}
+.findfriends .results h3{border-bottom:0 solid #ccc;font-weight:bold;font-size:13px;padding-bottom:2px}
+.findfriends .results ul{margin-bottom:10px;padding-bottom:10px}
+.findfriends .results li{padding-bottom:3px}
+.findfriends .results .buttons{border-top:1px solid #ccc;padding-top:10px}
+.findfriends .results input{margin-right:10px}
+#contacts_file_import_link{margin:18px 0 5px 15px;float:left}
+#fb_multi_friend_selector{margin:0}
+#selector_header{font-weight:bold}
+.ff_results{padding:10px}
+#browse_by_name .alphabet_list a{float:left;font-weight:bold;margin:10px 7px 0 0}
+#contacts_file_import h2{margin-top:30px}
+#new_ff #intro h2{font-size:14px;font-weight:bold}
+#new_ff #intro h3{font-size:14px}
+#new_ff p{color:#555}
+#new_ff #intro p{margin:7px 20px 20px 0;display:block;font-size:11px;line-height:15px;color:#666}
+#new_ff .box_row{margin-bottom:15px}
+#new_ff .box_row .box{width:290px}
+#new_ff .box_row .left{float:left}
+#new_ff .box_row .right{float:right}
+#new_ff .box_row .full{width:603px}
+#new_ff .header{background-position:left 11px;background-repeat:no-repeat;border-top:1px solid #e0e0e0;padding:12px 0 5px 24px}
+#new_ff .header .main_title{float:left;font-size:13px;font-weight:bold}
+#new_ff .header .subtext{float:right;margin-right:10px}
+#new_ff .header .main_subtitle{float:left;clear:left;padding-top:5px;color:#666;line-height:16px}
+#new_ff .box_row #phonebook .header .main_subtitle{width:500px}
+#new_ff .box_row .box .content{padding:0 10px}
+#new_ff .box_row .box .content p{color:#555;margin-bottom:0}
+#new_ff .box_row .box .content .friend_guesses{margin:0 0 0 5px}
+#new_ff .box_row #chatfind p{line-height:16px;margin-top:13px;margin-bottom:15px}
+#new_ff .box_row #people_search .inputsearch{background:none;padding-left:5px}
+#new_ff .box_row #people_search #q{width:150px}
+#new_ff .box_row #people_search .inputsubmit{margin:0 0 1px 5px;width:55px}
+#new_ff .box_row #people_search .search_query{margin:15px 0 15px 15px}
+#new_ff .box_row #people_search #classmates_links{margin:0 0 0 15px}
+#new_ff .box_row #webmail .content #webmail_contact_reason{float:left;padding:3px;line-height:14px;width:163px;margin-top:10px}
+#new_ff .box_row #address_book_upload{margin-left:12px}
+#new_ff .box_row #address_book_upload #upload{margin:2px 0}
+#new_ff .box_row #webmail .content #error{margin:10px 20px 10px 0}
+#new_ff .box_row #chatfind .content #error{margin:10px 0}
+#new_ff .box_row #webmail .content #error h1,
+#new_ff .box_row #chatfind .content #error h1{font-size:12px}
+#new_ff .box_row #webmail .content #error p,
+#new_ff .box_row #chatfind .content #error p{font-size:11px}
+#new_ff .box_row #webmail .content .contact_importer_widget{margin-left:13px;padding:0;width:385px}
+#new_ff .box_row #webmail .content #address_book_upload .instructions{padding-top:10px}
+#new_ff .box_row #webmail .header #webmail_contact_link,
+#new_ff .box_row #webmail .content #address_book_upload{display:none}
+#new_ff .box_row #webmail .content #address_book_upload{float:left}
+#new_ff .box_row #webmail .header #upload_contact_link{display:block}
+#new_ff .box_row #webmail .right_align_span{float:right}
+#new_ff .contact_importer_widget .editor{width:100%}
+#new_ff .contact_importer_widget .editor,
+#new_ff .contact_importer_widget .editor .buttons{padding-left:0;font-size:10px}
+#new_ff #address_book_login_widget{margin-top:0;border-top:none;padding:9px 2px 10px;width:565px}
+#new_ff #address_book_login_widget #login{width:125px;margin-right:2px}
+#new_ff #address_book_login_widget #domain{width:122px;margin-left:2px}
+#new_ff .contact_importer_widget .label{padding-right:10px;text-align:right;width:100px}
+#new_ff .contact_importer_widget .editor .buttons{width:100%}
+#new_ff .box_row #chatfind #aim_screen_name,
+#new_ff .box_row #chatfind #ms_login_name,
+#new_ff .box_row #chatfind #aim_password{width:150px}
+#new_ff .box_row #chatfind .content{margin-left:15px}
+#new_ff .box_row #chatfind #ms_login_name{width:150px;margin-top:12px}
+#new_ff .box_row #chatfind .caption{color:#777;font-size:10px}
+#new_ff #friend_guesser .see_more{display:block;line-height:20px}
+#new_ff #friend_guesser div.see_more{margin:10px 13px 10px 15px;border-top:1px solid #d8dfea}
+#new_ff #friend_guesser a.see_more{background:#f2f2f2 url(/rsrc.php/zTG5P/hash/2kkl8sjl.gif) no-repeat left 2px;border:none;padding-left:21px}
+#new_ff #friend_guesser a.see_more:hover{background-color:#e6edf8}
+#new_ff .box_row #friend_guesser .content a.see_more{font-weight:bold}
+#new_ff .friend_grid .friend_grid_col{margin-left:16px}
+* html #new_ff .friend_grid .friend_grid_col{margin:0 8px}
+#new_ff .box_row #people_search.full .search_query{float:left;padding-right:30px}
+#new_ff .box_row #people_search.full .search_query .inputsubmit{width:75px}
+#new_ff .box_row #people_search.full .search_query #q{width:200px}
+#new_ff .box_row #people_search.full #classmates_links{font-weight:bold;float:left;margin-top:15px}
+#new_ff #chat_expand_links li{padding:2px 0}
+#new_ff #browse_by_name .content{padding:0 10px 0 25px}
+
+#bootloader_css_57bq1tn6yu0woc0k_pkg_css { height: 42px; }

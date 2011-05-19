@@ -1,0 +1,210 @@
+/*    HTTP Host:  static.ak.fbcdn.net                                          */
+/*    Generated:  October 21st 2009 8:51:39 PM PDT                             */
+/*      Machine:  10.16.140.108                                                */
+/*       Source:  Global Cache                                                 */
+/*     Location:  css/1lceeju9lasgkgg0.pkg.css h:5c5rygii                      */
+/*       Locale:  nu_ll                                                        */
+/*         Path:  css/1lceeju9lasgkgg0.pkg.css                                 */
+
+.emu_ad .ad_title{display:block;font-weight:bold;margin-right:20px;padding-bottom:4px}
+.emu_ad .ad_text{color:#333;display:block;line-height:13px}
+.emu_ad .ad_text:hover{text-decoration:none}
+.emu_ad .ad_image{margin-right:5px}
+.emu_ad a.underlined_title{text-decoration:underline}
+.emu_ad .inline_comment{background-color:#eceff5;border-bottom:1px solid #e5eaf1;clear:both;float:none;margin:0 0 2px 0;overflow:hidden;padding:6px 4px 6px 6px}
+.emu_ad .comment_profile_pic{float:left}
+.emu_ad .comment_content{float:left;line-height:13px;padding:0 0 0 6px;width:199px}
+.fbx .emu_ad .comment_content{width:185px}
+.emu_ad .comment_content .comment_actions .comment_meta_data{color:#999;font-size:9px;font-weight:normal}
+.emu_ad .comment_text{padding:2px 0 4px}
+.emu_ad .comment_content .x_to_hide{background:transparent url(/rsrc.php/z574F/hash/38fffwed.gif) no-repeat scroll center;border:medium none;float:right;margin-left:3px;margin-top:-1px;overflow:hidden;padding:1px 5px 2px;width:3px}
+.emu_ad .comment_box .comment_content .x_to_hide:hover{background:#3B5998 url(/rsrc.php/zD93Q/hash/6aqv88j2.gif) no-repeat scroll center}
+a.emu_x{display:block;float:right;height:13px;margin:1px 2px 0 0;width:11px;background:transparent url(3ay18ob4.png) no-repeat -869px -65px;text-indent:-5000px}
+a:hover.emu_x{background-color:#3b5998;background-position:-857px -65px;text-decoration:none}
+.emu_action_bar{padding-top:4px}
+.emu_ad .UIMutableFilterList_Toggle{border-top:none;float:none;font-size:9px;font-weight:bold;padding:0 0 2px 3px;position:relative}
+.emu_ad .toggle_links{clear:both}
+.emu_ad .social_context{padding-top:2px}
+.emu_action_bar .emu_like_social_context{padding-top:1px}
+.emu_preview{border-bottom:1px solid #e6e6e6;padding-bottom:10px;width:250px}
+.emu_ad .invalid_emu_warning{color:#f00}
+#facebook .emu_ad .hidden{display:none}
+.ads_feedback_new .next_ad{background:url(3ay18ob4.png) no-repeat -484px -232px;display:inline-block;height:14px;margin-left:8px;margin-right:-10px;vertical-align:middle;width:14px}
+.ads_feedback_new .next_ad:hover{background-position:-484px -215px;text-decoration:none}
+.ads_feedback_new .hide{background:url(/rsrc.php/z8WRC/hash/2rqaa2im.gif) left top no-repeat;display:inline-block;height:12px;line-height:12px;margin-left:8px;margin-top:1px;text-decoration:none;vertical-align:top;width:11px}
+.ads_feedback_new .hide:hover{background-position:left -12px;text-decoration:none}
+.ads_feedback_new{float:right;padding-top:1px}
+.ff2 .ads_feedback_new .hide,
+.ff2 .ads_feedback_new .next_ad{display:-moz-inline-box}
+.invite_action_frame{margin:10px 0 0 0}
+.invite_action_frame .email_input{margin-right:0;width:95%}
+.invite_action_frame .invite_submit{margin-top:6px}
+.invite_action_frame .invite_success{margin:5px 0 5px 0}
+.invite_action_frame .invite_failure{margin:5px 0 5px 0}
+.friend_guesses.list{background:#f3f7ff;padding:2px 0 4px}
+.friend_guesses.list h2{margin:0;padding:6px 12px 5px}
+.friend_guesses.list p{margin:2px 0 0 0;padding:5px 12px 5px}
+.friend_guesses.list .fguess{background:#fff;border:solid #ccc 1px;margin:8px;padding:8px}
+.friend_guesses.list .fguess img{float:left;margin-right:8px}
+.friend_guesses.list .fguess .fg_name{font-size:11px;font-weight:bold}
+.friend_guesses.list .fguess .fg_mutual{display:block;margin-top:4px}
+.friend_guesses.list .fguess .inactive{color:#666}
+.friend_grid .friend_grid_row{margin:10px 0 5px}
+.friend_grid .friend_grid_col{margin-left:10px;float:left;width:174px;overflow:hidden}
+.friend_grid .friend_grid_col .fg_img{float:left;width:50px;margin:0;padding:0}
+.friend_grid .friend_grid_col .fg_name{font-size:11px;font-weight:bold;padding-bottom:4px}
+.friend_grid .friend_grid_col .fg_explain{line-height:14px;padding:0;margin:2px 0 1px 0;color:#777}
+.friend_grid .friend_grid_col .fg_action_add .inactive{color:#666}
+.friend_grid .friend_grid_col .fg_action_add_icon{width:160px;line-height:14px}
+.friend_grid .friend_grid_col .fg_action_add_icon .UIImageBlock_ICON_Image{margin-top:1px;margin-right:6px}
+.friend_grid .friend_grid_col .fg_action_hide{display:block;width:11px;height:13px;margin:1px 3px 0 6px;text-indent:-5000px;background:transparent url(3ay18ob4.png) no-repeat -869px -65px}
+.friend_grid .friend_grid_col .fg_action_hide:hover{background-position:-857px -65px;background-color:#3b5998;text-decoration:none}
+.pymk_participants_not_expanded .pymk_participants_long,
+.pymk_participants_expanded .pymk_participants_short{display:none}
+#home_left_column{float:left;width:670px}
+#home_stream{float:left;padding-left:14px;width:530px}
+#home_filter_list{clear:left;float:left;width:126px}
+#home_sidebar{float:left;margin:-3px 0 0 20px;width:250px}
+.pymk #pymk .friend_grid_row{border-bottom:1px solid #e5e5e5;margin:0 0 8px;overflow:hidden;padding:0 0 8px;width:250px}
+.pymk #pymk .friend_grid_row.last{border-bottom:none;margin:0;padding:0}
+.pymk #pymk .friend_grid_col{float:none;margin-left:0;width:auto}
+.pymk #pymk .friend_grid_col .fg_action_hide h5 a{background:transparent url(3ay18ob4.png) no-repeat -869px -65px}
+.pymk #pymk .friend_grid_col .fg_action_hide h5 a:hover{background-position:-857px -65px;background-color:#3b5998;text-decoration:none}
+.pymk #pymk .friend_grid_col .fg_name{margin:2px 0 2px 0;font-size:11px;font-weight:bold;padding-bottom:0}
+.pymk .friend_guess{margin:1px 0 6px 0;float:left;width:150px}
+.pymk .friend_guess .fg_img{float:left;width:50px}
+.pymk .friend_guess .fg_links{padding:0 3px 0 7px;width:90px}
+.pymk .friend_guess .fg_links .name{font-size:11px;padding-bottom:2px}
+.pymk .friend_guess .fg_links .add_link .inactive{color:#666}
+.home_reactivation_message{width:669px}
+.hp_connect_box .UIImageBlock{padding-bottom:7px}
+.UITitledBox{overflow:hidden}
+.UITitledBox_Top{border-bottom:1px solid #ccc;overflow:hidden;padding:0 0 3px;vertical-align:bottom}
+.UITitledBox_TitleBar .UITitle{float:left}
+.UITitledBox_SubTitle{float:right}
+div.UIHomeBox{margin-bottom:20px}
+.UIHomeBox .UITitledBox_Top{padding:0 0 4px}
+.UIHomeBox .UITitledBox_Content{margin-top:6px}
+.UIHomeBox_More{float:right}
+.UIHomeBox_Loading{float:right;display:none}
+.UIHomeBox_Next{padding-left:4px}
+.UIHomeBox_Previous{padding-right:4px}
+.UIHomeBox_Initial .UIHomeBox_Previous{display:none}
+.ind_poke{padding-bottom:2px}
+.UIRequestBox_Request{display:block;margin-top:4px}
+.UIRequestBox_RequestFirst{margin-top:-1px}
+.UIRequestBox_Short .UIRequestBox_Request{float:left;width:125px}
+.UIRequestBox_Short .UIRequestBox_RequestOdd{clear:left}
+.UIRequestBox_Short .UIRequestBox_RequestSecond{margin-top:-1px}
+.UIUpcoming_ItemWithIcon{padding-bottom:6px}
+.UIUpcoming_Item{padding-bottom:2px}
+.UIUpcoming_Action{white-space:nowrap}
+.UIUpcoming_Event{margin-top:2px;overflow:hidden}
+.UIUpcoming_Time{color:#808080;font-size:9px;white-space:nowrap}
+.UIUpcoming .UIImageBlock{padding-bottom:7px}
+.UIUpcoming_Limited .UIUpcoming_HiddenSection{display:none}
+.UIUpcoming_SeeMore{font-size:9px}
+.UIHotStory{border-top:1px solid #e6e6e6;margin-top:6px;padding-top:6px;overflow:hidden}
+.UIHotStory_Title{font-size:11px;font-weight:bold}
+.UIHotStory_First{border-top:0;margin-top:0;padding-top:0}
+.UIHotStory_Media{padding:0 9px 0 0}
+.UIHotStory_Media .UIMediaItem_Extra{float:left;padding-left:6px}
+.UIHotStory_MediaExtra{padding-left:6px}
+.UIHotStory_MediaExtra .UIMediaItem{float:none}
+.UIHotStory .UIHotStory_Media .share_media .extra{float:none}
+.UIMediaItem_ImageLink{display:block}
+.UIHotStory .UIMediaItem_ImageBackground{background-position:center center;background-repeat:no-repeat;overflow:hidden}
+.UIHotStory_Copy{font-size:11px;line-height:13px;padding-top:4px}
+.UIHotStory_Copy a.other_people_link:hover{border-bottom:1px dotted #3b5998;text-decoration:none}
+.UIHotStory_Icon{float:right;padding-left:6px}
+.UIHotStory_Bling{padding:2px 0 0 0;width:166px}
+.UIHotStory_Bling_Element{margin-right:6px}
+.UIHotStory_Bling_Element:hover{text-decoration:none}
+.UIHotStory_Bling_Element:hover .UIHotStory_BlingCount{text-decoration:underline}
+.UIHotStory_BlingIcon{margin:2px 2px 0 0;vertical-align:bottom}
+.UIHotStory_Bling .sx_icons_mini_credit{margin:2px 2px 0 0}
+.ie6 .UIHotStory_Small{zoom:1}
+.UIHotStory_Small .UIHotStory_Media{float:left}
+.UIHotStory_Small .UIHotStory_Body{float:left;width:166px}
+.UIHotStory_Medium .video_thumb span.play,
+.UIHotStory_Medium .video_thumb span.thumb,
+.UIHotStory_Small .video_thumb span.play,
+.UIHotStory_Small .video_thumb span.thumb{background-image:url(/rsrc.php/zC0HX/hash/bi3dpeap.png)}
+.ie6 .UIHotStory_Medium .video_thumb span.play,
+.ie6 .UIHotStory_Medium .video_thumb span.thumb,
+.ie6 .UIHotStory_Small .video_thumb span.play,
+.ie6 .UIHotStory_Small .video_thumb span.thumb{background-image:url(/rsrc.php/z991A/hash/6hm34swz.png)}
+.ie6 .UIHotStory_Medium{zoom:1}
+.UIHotStory_Medium .UIHotStory_Media{float:left;padding-top:5px}
+.UIHotStory_Medium .UIHotStory_Body{float:left;width:130px}
+.UIHotStory_Medium .UIHotStory_Copy{padding-top:2px}
+.UIHotStory_Big .UIHotStory_Media{padding:5px 0 0 0}
+.UIHotStory_Big .UIHotStory_Bling{padding-top:5px}
+.UIStory_Open div.UIHotStory_Body{padding-top:4px;width:100%}
+.UIStory_Open div.UIHotStory_Media{padding-left:0;padding-right:0}
+.UIHotStory .swfvideo .extra{padding-bottom:0;padding-right:0}
+.UIHotStory .stream_participants_not_expanded .stream_participants_long,
+.UIHotStory .stream_participants_expanded .stream_participants_short{display:none}
+.UIFilterList_ListTitle{font-weight:bold;padding:0 0 4px 2px}
+.UIFilterList_BottomMargin{padding-bottom:20px}
+.UIFilterList_Footer,
+.UIFilterList_EditLink{border-top:1px solid #d6d9de;display:none;font-size:9px;font-weight:bold;padding:4px 6px 4px 5px;position:relative}
+.UIFilterList_Create{float:right}
+.UIFilterList_Plus, .UIMutableFilterList_Arrow{background:transparent url(/rsrc.php/z9WEN/hash/6w95fo9x.gif) no-repeat;display:inline-block;height:10px;margin:0 3px 0 0;padding-left:7px}
+.UIFilterList_Plus{background-position:-232px -87px}
+.UIFilterList_BlankState{border-top:1px solid #ddd;color:#666;display:none;line-height:16px;padding:5px 3px}
+.UIFilterList_HasBlankState .UIFilterList_BlankState{display:block}
+.UIFilterList_List{display:block;margin:0;padding:0}
+.UIFilterList_HasBlankState .UIFilterList_List{display:none}
+.UIFilterList_Item{display:block;height:26px;margin:0;overflow:hidden;position:relative}
+.UIFilterList_Icon{background-position:top right;background-repeat:no-repeat;display:block;height:16px;width:16px}
+.selected .UIFilterList_Icon{background-position:top left}
+.UIFilterList_EditIcon{display:none}
+.UIFilterList .selected{background-color:#6d84b4;border:1px solid #3b5998;height:24px;padding-left:1px}
+.selected .UIFilterList_EditIcon{background:transparent url(/rsrc.php/zALOO/hash/aw6u5ib5.gif) no-repeat 0 -70px;cursor:pointer;display:block;height:16px;left:auto;position:absolute;right:4px;top:4px;width:16px;z-index:1}
+.selected .UIFilterList_EditIcon:hover{background-position:0 -54px}
+.UIFilterList_ItemLink{border-top:1px solid #d6d9de;color:#333;display:block;height:19px;overflow:hidden;padding:5px 0 1px 5px;text-overflow:ellipsis}
+.UIFilterList_Item .UIFilterList_TitleWithoutIcon{padding-top:6px}
+.UIFilterList_Item .UIFilterList_Title{font-weight:normal;white-space:nowrap}
+.UIFilterList_Item .UIFilterList_ItemLink:hover{background-color:#eceef4;text-decoration:none}
+.selected .UIFilterList_ItemLink:hover{background-color:transparent}
+.selected .UIFilterList_ItemLink{border-top:0 none;padding-left:3px;padding-top:4px}
+.selected .UIFilterList_TitleWithoutIcon{padding-top:5px}
+.selected .UIFilterList_Title{color:#fff}
+.selected .UIFilterList_HasEditIcon{padding-right:19px}
+.selected .UIFilterList_LoadingIndicator{background:transparent url(/rsrc.php/z13JD/hash/16vt4yge.gif) top left no-repeat;display:none;height:11px;position:absolute;right:10px;top:7px;width:16px;z-index:2}
+.UIFilterList_Loading .selected .UIFilterList_LoadingIndicator{display:block}
+.UIFilterList_Loading .selected .UIFilterList_EditIcon{display:none}
+.UIFilterList_Loading .selected{padding-right:31px}
+.safari3 .UIFilterList_Loading .selected .UIFilterList_ItemLink{padding-right:25px}
+.UIFilterList_Button{padding-left:3px;padding-top:5px}
+.UIFilterList_CreateLink{display:block;padding-bottom:5px;padding-top:3px}
+.UIFilterList_DragHandle{background:url(/rsrc.php/zALOO/hash/aw6u5ib5.gif) no-repeat -16px -70px;cursor:move;display:none;height:16px;position:absolute;right:5px;top:7px;width:16px;z-index:1}
+.selected .UIFilterList_DragHandle{background-position:-16px -56px}
+.UIFilterList_EditMode .UIFilterList_DragHandle,
+.UIFilterList_EditLink,
+.UIFilterList_EditMode .UIFilterList_Footer{display:block}
+.UIFilterList_Loading .selected .UIFilterList_DragHandle,
+.UIFilterList_EditMode .UIFilterList_EditLink{display:none}
+.UIFilterList_NoBorder{border:none}
+.UIFilterList_EditMode .UIFilterList_ItemLink{padding-right:25px}
+.UIFilterList_EditMode .UIFilterList_Title{display:block;overflow:hidden;text-overflow:ellipsis}
+.UITabStructure_Container{margin:0;padding:3px 0}
+.UITabStructure_BottomBorder{border-bottom:1px solid #898989}
+.UITabStructure_Left{padding-left:10px;float:left}
+.UITabStructure_Right{padding-right:10px;float:right}
+.UITabStructure_FullBleed{padding:0}
+.UITabStructure_Tabs{text-align:center}
+.UITabStructure_Tabs li{display:inline;padding:2px 0 3px;background:#f1f1f1 url(/rsrc.php/z3HLG/hash/4x24xq7f.gif) top left repeat-x;font-size:13px}
+.UITabStructure_Tabs li a{border:1px solid #898989;border-left:0;color:#333;font-weight:bold;padding:2px 8px 3px 9px}
+.UITabStructure_Tabs li a:focus{outline:0}
+.UITabStructure_Tabs li.UITabStructure_TabFirst a{border:1px solid #898989}
+.UITabStructure_Tabs li a.UITabStructure_TabSelected{margin-left:-1px;background:#6d84b4;border:1px solid #3b5998;border-left:1px solid #5973a9;border-right:1px solid #5973a9;color:#fff}
+.UITabStructure_Tabs li.UITabStructure_TabLast a.UITabStructure_TabSelected{margin-left:-1px;border-left:1px solid #5973a9;border-right:1px solid #36538f}
+.UITabStructure_Tabs li.UITabStructure_TabFirst a.UITabStructure_TabSelected{margin:0;border-left:1px solid #36538f;border-right:1px solid #5973a9}
+.UITabStructure_Tabs li.UITabStructure_TabFirst.UITabStructure_TabLast a.UITabStructure_TabSelected{border:1px solid #36538f}
+.UITabStructure_Tabs li a.UITabStructure_TabSelected:hover{text-decoration:none}
+.UITabStructure_Tabs li a.UITabStructure_TabDisabled{color:#999;cursor:default}
+.UITabStructure_Tabs li a.UITabStructure_TabDisabled:hover{text-decoration:none}
+
+#bootloader_css_1lceeju9lasgkgg0_pkg_css { height: 42px; }

@@ -1,0 +1,1726 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SocialFlows</title>
+<script type="text/javascript" src="jquery/jquery-1.5.1.min.js"></script>
+<script type="text/javascript" src="jquery/jquery.jeditable.js"></script>
+<script type="text/javascript" src="jquery/jquery-ui-1.8.11.custom.min.js"></script>
+<script type="text/javascript" src="jquery/jquery.tabSlideOut.v1.3.js"></script>
+
+<link type="text/css" rel="stylesheet" media="screen" href="facebox/facebox.css"/>
+<link type="text/css" rel="stylesheet" media="screen" href="facebox/faceUI.css"/>
+<link type="text/css" rel="stylesheet" media="screen" href="facebox/faceUIBody.css"/>
+<link type="text/css" rel="stylesheet" media="screen" href="stickers/stickers.css"/>
+<style>
+
+.faceUI .friend_grid_col.fbFriend {
+    margin-bottom:10px;
+}
+
+div.db-div-welcome {
+    padding-bottom:0px;
+    padding-top:60px;
+    text-align:center;
+    padding-left:5px;
+    padding-right:5px;
+    /*
+    -moz-border-radius-bottomleft:4px;
+    -moz-border-radius-bottomright:4px;
+    -moz-border-radius-topleft:4px;
+    -moz-border-radius-topright:4px;
+    background-image:url(images/bluetext.jpg);
+    border:1px solid #C0C0C0;
+    */
+}
+
+.db-div-welcome #waittext {
+    font-size:125%;
+}
+
+
+</style>
+
+<link href="socialflow/socialflow.css" rel="stylesheet" type="text/css" media="screen">
+<!-- <script type="text/javascript" src="socialflow/socialflow.js"></script> -->
+<script type="text/javascript">
+
+// sourced from http://javascript.crockford.com/remedial.html
+String.prototype.trim = function () {
+    return this.replace(/^\s+|\s+$/g, "");
+};
+
+// getPageScroll() by quirksmode.com
+function getPageScroll() {
+  var xScroll, yScroll;
+  if (self.pageYOffset) {
+    yScroll = self.pageYOffset;
+    xScroll = self.pageXOffset;
+  } else if (document.documentElement && document.documentElement.scrollTop) {     // Explorer 6 Strict
+    yScroll = document.documentElement.scrollTop;
+    xScroll = document.documentElement.scrollLeft;
+  } else if (document.body) {// all other Explorers
+    yScroll = document.body.scrollTop;
+    xScroll = document.body.scrollLeft;   
+  }
+  return new Array(xScroll,yScroll) 
+}
+
+// Adapted from getPageSize() by quirksmode.com
+function getPageHeight() {
+  var windowHeight
+  if (self.innerHeight) { // all except Explorer
+    windowHeight = self.innerHeight;
+  } else if (document.documentElement && document.documentElement.clientHeight) { // Explorer 6 Strict Mode
+    windowHeight = document.documentElement.clientHeight;
+  } else if (document.body) { // other Explorers
+    windowHeight = document.body.clientHeight;
+  }   
+  return windowHeight
+}
+
+
+$(document).ready(function() {
+
+    /*
+    var socialtree = $("#socialtree");
+    if (socialtree)
+    {
+        socialtree.find("span.socialflow").each(function() {
+            var parentGroup = $(this).parent("li.socialflow");
+            var subList = $(this).siblings('ul.socialflow');
+
+            $(this).click(function() {
+                if (subList.is(':visible')) {
+                    $(this).removeClass("expanded");
+                    $(this).addClass("collapsed");
+                    subList.slideUp("slow");
+                }
+                else {
+                    $(this).removeClass("collapsed");
+                    $(this).addClass("expanded");
+                    subList.slideDown("slow");
+                }
+            });
+        });
+    }
+    */
+
+    // Enable functionality of expand/contract buttons
+    $("#socialtree span.socialflow").live("click", function() {
+        var parentGroup = $(this).parent("li.socialflow");
+        var subList = $(this).siblings('ul.socialflow');
+
+        if (subList.is(':visible')) {
+            $(this).removeClass("expanded");
+            $(this).addClass("collapsed");
+            subList.slideUp("slow");
+        }
+        else {
+            $(this).removeClass("collapsed");
+            $(this).addClass("expanded");
+            subList.slideDown("slow");
+        }
+    });
+    
+    // Edit-in-place Sticker title      
+    $(".sticker-title").editable(function(value, settings) { 
+        return(value);
+     }, {
+    	width     : '200px',
+    	maxlength : '50',
+    	height    : '12px',
+        onblur    : 'submit',
+        style     : 'display: inline' 
+    });
+
+    
+    /*
+    // Make Sticker selectable by clicking on Sticker [DISABLED FOR NOW]
+    $(".sticker").click(function() {
+    	var suggestedGroupElem = $(this);
+    	if (suggestedGroupElem.hasClass("deleted"))
+        	return;
+
+    	var selectedCheckbox = $(this).find('input.sticker-selected');
+    	if (suggestedGroupElem.hasClass("selected")) {
+    		selectedCheckbox.attr('checked', false);
+    		suggestedGroupElem.removeClass("selected");
+    	}
+    	else {
+    		selectedCheckbox.attr('checked', true);
+    	    suggestedGroupElem.addClass("selected");
+    	}
+    });
+    */
+
+    // Make Sticker selectable by clicking on checkbox
+    $('input.sticker-selected').each(function() {
+        if ($(this).attr('checked'))
+            $(this).attr('checked', false);     
+    });
+
+    $('input.sticker-selected').live("click", function(event) {
+            event.stopPropagation();
+            // event.preventDefault();
+                  
+            var suggestedGroupElem = $(this).closest('.sticker');
+            if (suggestedGroupElem.hasClass("deleted"))
+                return;
+            if (suggestedGroupElem.hasClass("selected"))
+                suggestedGroupElem.removeClass("selected");
+            else
+                suggestedGroupElem.addClass("selected");    
+    });
+
+
+
+
+
+    // Get "Add New Clique Member" to work
+    $(".add_clique_member").live("click", function() {
+        var sticker = $(this).closest('div.sticker');
+        //console.log('addNewCliqueMembers() being called...');
+
+        $('#cliqueSelection input.selectFriend:checked').each(
+            function() {
+              $(this).attr('checked', false);
+         });
+        $('#cliqueSelection').css({
+            top:    getPageScroll()[1] + (getPageHeight() / 10),
+            left:   145.5,
+            // visibility: "visible"
+            // display: block
+          });
+        $('#cliqueSelection .close').click(function() {
+            //$('#cliqueSelection').css({
+            //    visibility: "hidden"
+            //  });
+            $('#cliqueSelection').fadeOut();
+            return false;
+          });
+        $('#cliqueSelection .addToClique').unbind('click').click(function() {
+            // process the adding of new clique members
+            addCliqueMembers(sticker);
+            $('#cliqueSelection').fadeOut();
+            return false;
+          });
+        $('#cliqueSelection').fadeIn('fast');
+        return false;
+    });
+
+    // Get "Delete Clique Member" to work       
+    $(".remove_clique_member").live("click", function() {
+        // console.log('Trying to delete clique member...');
+        var cliqueMemberElem = $(this).closest('li.contact');
+        cliqueMemberElem.fadeOut('slow', function() {
+            $(this).remove();
+        });
+        return false;
+    });
+
+
+
+    // Share Data button
+    $(".share_data").live("click", function(event) {
+        showOverlayCover();
+
+        return false;
+    });
+    
+    // Get Save Group to work
+    $(".save_group").live("click", function(event) {
+    	event.stopPropagation();
+        event.preventDefault();
+        
+        var suggestedGroupElem = $(this).closest('div.sticker');
+        //var suggestedGroupMetadata = suggestedGroupElem.children('.stickerMetadata');
+        //var stickerID = suggestedGroupElem.attr('id');
+        //var stickerName = suggestedGroupElem.find('#sticker_title').text();
+        //var stickerIconSrc = suggestedGroupElem.find('.sticker_icon').attr('src');
+
+        //$(this).removeClass("options");
+        //$(this).addClass("options-display");
+       // suggestedGroupElem.removeClass("suggested");
+       // suggestedGroupElem.addClass("saved");
+
+       if (suggestedGroupElem.hasClass("suggested")) {
+          suggestedGroupElem.switchClass( "suggested", "saved", "slow" );
+       }
+    });
+
+    // Get Delete Group to work
+    $(".delete_group").live("click", function(event) {
+    	event.stopPropagation();
+    	event.preventDefault();
+        
+        var suggestedGroupElem = $(this).closest('div.sticker');
+        //var suggestedGroupMetadata = suggestedGroupElem.children('.stickerMetadata');
+        //var stickerID = suggestedGroupElem.attr('id');
+        //var stickerName = suggestedGroupElem.find('#sticker_title').text();
+        //var stickerIconSrc = suggestedGroupElem.find('.sticker_icon').attr('src');
+        //var stickerURI  = stickerMetadata.children('#stickerResourceURI').val();
+        //if (stickerURI == null || stickerURI == 'null' || stickerURI.trim().length <= 0)
+        //          stickerURI = 'null';
+
+        var selectCheckbox = suggestedGroupElem.find('input.sticker-selected');
+        if (selectCheckbox.attr('checked'))
+            $(this).attr('checked', false);
+
+        suggestedGroupElem.find('ul.clique').sortable('disable');
+        
+        if (suggestedGroupElem.hasClass("suggested")) {
+        	suggestedGroupElem.removeClass("selected");
+        	suggestedGroupElem.switchClass( "suggested", "deleted", "slow" );
+        }
+        if (suggestedGroupElem.hasClass("saved")) {
+        	suggestedGroupElem.removeClass("selected");
+            suggestedGroupElem.switchClass( "saved", "deleted", "slow" );
+        }
+    });
+
+
+    // Get Merge Group to work
+    $('.merge_group').live("click", function() {
+        // console.log('Trying to merge group...');
+        var targetSticker = $(this).closest('div.sticker');
+        var targetStickerID = targetSticker.attr('id');
+        var targetStickerMetadata = targetSticker.children('.stickerMetadata');
+        var mergedStickersList = targetStickerMetadata.children('.merged-stickers-metadata');
+        // console.log('Target is sticker '+targetStickerID);
+        
+        // Ignore merge if this target sticker was not selected
+        // var isSelected = targetSticker.find('li.sticker-options > input.sticker-selected:checked').length;
+        // if (!isSelected)
+        //    return false;
+
+        $('li.sticker-options > input.sticker-selected:checked').each(
+            function() {
+              $(this).attr('checked', false);
+
+              var selectedSticker = $(this).closest('li.sticker');
+              var selectedStickerID = $(this).val();
+              if (selectedStickerID == targetStickerID)
+                 return true; // continue;
+
+              // console.log('Selected sticker '+selectedStickerID);
+              copyAllCliqueMembers(selectedSticker, targetSticker);
+              copyAllCollectionItems(selectedSticker, targetSticker);
+
+              var isSuggestedGroup = false;
+              var selectedStickerMetadata = selectedSticker.children('.stickerMetadata');
+              var selectedStickerURI = selectedStickerMetadata.children('#stickerResourceURI');
+              if (selectedStickerURI) {
+                  if (selectedStickerURI.val() == 'null')
+                      isSuggestedGroup = true;
+              }
+              else
+                  isSuggestedGroup = true;
+
+              // Remove selected suggested groups that were merged together into target sticker
+              if (isSuggestedGroup)
+              {
+                  var mergedSticker = '<input type="hidden" class="stickerToBeMerged" value="'+selectedStickerID+'" /> \n';
+                  mergedStickersList.append(mergedSticker);
+                  selectedSticker.animate({opacity: 'hide', height: 'hide'}, 800, "swing",
+                          function() {
+                            $(this).remove();
+                  });   
+              }
+              
+         });
+        return false;
+    });
+
+
+    // Get Create New Subgroup to work
+    $(".create_new_group").live("click", function(event) {
+        event.stopPropagation();
+        // event.preventDefault();
+
+        // <img class="create_new_group options options-icon options-left" src="stickers/plus.png" title="Create New Subgroup"/>
+        
+        // console.log('Trying to create new subgroup...');
+        var stickerElem = $(this).closest('div.sticker');
+        var stickerElemID = stickerElem.attr('id');
+        //var stickerElemMetadata = stickerElem.children('.stickerMetadata');
+        //var mergedStickersList = stickerElemMetadata.children('.merged-stickers-metadata');
+
+        // <li class="socialflow">
+        var stickerLevel = stickerElem.closest('li.socialflow');
+        // <span class="socialflow socialflow-navi collapsed"/>
+        var socialflowNavi = stickerLevel.children("span.socialflow");
+        if (socialflowNavi.length <= 0) 
+        {
+           // Create the expand-collapse navigation
+           // Create span if it doesn't already exist
+           socialflowNavi = $('<span class="socialflow socialflow-navi collapsed"/>');
+           socialflowNavi.appendTo(stickerLevel);
+           socialflowNavi.click(function() {
+               var parentGroup = $(this).parent("li.socialflow");
+               var subList = $(this).siblings('ul.socialflow');
+               
+               if (subList.is(':visible')) {
+                   $(this).removeClass("expanded");
+                   $(this).addClass("collapsed");
+                   subList.slideUp("slow");
+               }
+               else {
+                   $(this).removeClass("collapsed");
+                   $(this).addClass("expanded");
+                   subList.slideDown("slow");
+               }
+           });
+        }
+
+        // <ul class="socialflow" style="display: none;" ></ul>
+        var subList = stickerLevel.children("ul.socialflow");
+        if (subList.length <= 0) 
+        {
+            // Create the sublist of subgroups
+            var subList = $('<ul class="socialflow" style="display: none;" ></ul>');
+            subList.appendTo(stickerLevel);
+        }
+
+        // Add the newly created subgroup
+        var newSubgroupHTML =
+        '<li class="socialflow" style="display: none;"> \n' +
+        '<div style="padding-left: 23px;"> \n' +
+        '    <div class="sticker suggested" id="null"> \n' +
+        '    <div class="stickerMetadata" style="display: none;"> \n' +
+        '        <input type="hidden" id="stickerResourceURI" name="stickerResourceURI" value="null" /> \n' +
+        '        <input type="hidden" id="stickerIconURI" name="stickerIconURI" value="null" /> \n' +
+        '        <span class="merged-stickers-metadata"></span> \n' +
+        '    </div> \n' +
+        '    <div class="sticker-title" style="float:left;">New Group</div> \n' +
+        '        <img class="delete_group options options-icon options-right options-saved options-selected" src="stickers/cross.gif" title="Delete"/> \n' +
+        '        <img class="save_group   options options-icon options-right options-saved options-selected" src="stickers/disk.gif" title="Save"/> \n' +
+        '        <img class="create_new_group options options-icon options-left" src="stickers/plus.png" title="Create New Subgroup"/> \n' +
+        '        <input title="Merge Cliques" type="button" value="Merge" name="merge-cliques" class="merge_group button-fbstyle options options-button options-right options-selected"/> \n' +
+        '        <input title="Select Clique" type="checkbox" class="sticker-selected options options-right options-selected"/> \n' +
+        '    <br/> \n' +
+        '    <ul id="clique" class="clique"> \n' +
+        '    </ul> \n' +
+        '    </div> \n' +
+        '</div> \n' +
+        '</li>';
+
+        var newSubgroup = $(newSubgroupHTML);
+        newSubgroup.prependTo(subList);
+
+        // Expand if currently collapsed
+        if (!subList.is(':visible')) {
+            socialflowNavi.removeClass("collapsed");
+            socialflowNavi.addClass("expanded");
+        }
+        
+        // Reveal the sublist if it is currently hidden
+        subList.slideDown("slow", function(event) {
+            // Slide down to reveal newly created subgroup
+            newSubgroup.slideDown("slow");
+        });
+
+    });
+
+
+
+    // Enable Drag-and-Drop interaction
+    $("ul.clique").each(
+            function() {
+                $(this).sortable({
+                    connectWith: 'ul.clique',
+                    items: 'li.contact',
+                    //update: function(event, ui) 
+                    //{ //event.stopPropagation();
+                    //  console.log('Sorting has seen an update!');
+                    //},
+                    receive: receiveContact,
+                    remove: removeContact
+                    //stop: function(event, ui) 
+                    //{ event.stopPropagation();
+                    // console.log('Sorting has stopped!');
+                    //},
+                    //delay: 500 // milliseconds
+                });
+                $(this).disableSelection();
+    });
+
+
+    
+    /* ENABLE RERUN OF ALGO */
+    initControlPanel();
+    
+});
+
+
+    /* RERUN ALGO methods */
+    function initControlPanel()
+    {
+        var controlPanel = $('div#control-panel');
+        var controlPanelToggle = controlPanel.find('#toggleControlPanel');
+
+        // Enable reveal/hide control panel
+        controlPanelToggle.click(function() {
+            if ($(this).hasClass('showControlPanel')) {
+                $(this).removeClass('showControlPanel');
+                controlPanel.animate({right:'-198px'}, 300);
+                $('#toggleControlPanel-indicator').html('&#9668;'); //Shows Left-Arrow
+            }
+            else {
+                $(this).addClass('showControlPanel');
+                controlPanel.animate({right:'-3px'}, 300);
+                $('#toggleControlPanel-indicator').html('&#9658;'); //Shows Right-Arrow
+            }
+            return false;
+        });
+        
+        // Hide link
+        controlPanel.find('#hideControlPanel').click(function() {
+            controlPanelToggle.removeClass('showControlPanel');
+            controlPanel.animate({right:'-198px'}, 300);
+            controlPanelToggle.find('#toggleControlPanel-indicator').html('&#9668;'); //Shows Left-Arrow
+            return false;
+        });
+        
+                
+        /*
+        $('div#control-panel').tabSlideOut({
+            tabHandle: '.handle',                     //class of the element that will become your tab
+            pathToTabImage: null, //path to the image for the tab //Optionally can be set using css
+            imageHeight: '30px',                     //height of tab image           //Optionally can be set using css
+            imageWidth: '20px',                       //width of tab image            //Optionally can be set using css
+            tabLocation: 'right',                      //side of screen where tab lives, top, right, bottom, or left
+            speed: 300,                               //speed of animation
+            action: 'click',                          //options: 'click' or 'hover', action to trigger animation
+            topPos: '38px',                          //position from the top/ use if tabLocation is left or right
+            leftPos: '20px',                          //position from left/ use if tabLocation is bottom or top
+            fixedPosition: true,                      //options: true makes it stick(fixed position) on scroll
+            toggleCallback: function(mode) {
+                               if (mode == 'open')
+                                  $('#toggleControlPanel-indicator').html('&#9658;'); //Shows Right-Arrow
+                               else if (mode == 'close')
+                                  $('#toggleControlPanel-indicator').html('&#9668;'); //Shows Left-Arrow
+                            }
+        });
+        */
+        
+        // Initialize feedback/user-study panel
+        initFeedbackPanel();
+
+        // Initialize the multi-options panel
+        initFacetedPanels();
+        
+        // Reveal/Display control panel
+        controlPanel.show();
+        controlPanel.animate({right:'-3px'}, 1500, function() {
+            controlPanel.find('#toggleControlPanel').addClass('showControlPanel');
+        });
+        $('#toggleControlPanel-indicator').html('&#9658;'); //Shows Right-Arrow
+
+    }
+
+    function initFeedbackPanel()
+    {
+        var feedbackPanel = $('#feedback-panel');
+        if (feedbackPanel.length <= 0)
+            return;
+
+        // Slider for ratings
+        var ratingLevels = feedbackPanel.find('select#ratingLevels');
+        ratingLevels.selectToUISlider({
+            labels: 5,
+            tooltip: true, //show tooltips, boolean
+            tooltipSrc: 'value',
+            labelSrc: 'text',
+            sliderOptions: null
+        }).hide();
+        
+        // Submit feedback button
+        feedbackPanel.find('#submitfeedback').click(function(){
+            /*
+            var sfTopologyId = feedbackPanel.find('#sfTopologyId').val();
+            var rating = ratingLevels.find("option:selected");
+            if (rating.length <= 0)
+                return false;
+            var feedbackText = feedbackPanel.find('#feedback').attr('value');
+            */
+            
+            feedbackPanel.slideUp(1000, function(){
+                $('#parameters-panel').slideDown(1000);
+            });
+
+            /*
+            // POST feedback about current social topology run
+            $.ajax({
+                type:           'POST',
+                cache:          false,
+                url:            "saveFeedback.jsp",
+                data:           {sfTopologyId: sfTopologyId, feedback: feedbackText, rating: rating.val() },  //{input: postdata},
+                // processData:    false,
+                dataType:       'text'
+                // success:        function(data, textStatus) { processPOSTSuccess(data, klass, postdata, postcallback) },
+                // error:          function(XMLHttpRequest, textStatus, errorThrown) { processPOSTError(textStatus, errorThrown, klass) }
+            });
+            */
+        });
+        
+        // Skip feedback button
+        feedbackPanel.find('#skipfeedback').click(function(){
+            feedbackPanel.slideUp(1000, function(){
+                $('#parameters-panel').slideDown(1000);
+            });
+        });
+    }
+
+    function initFacetedPanels()
+    {
+        $('#control-panel #resetParams').click(function() {
+            var minFreqDefault            = 5;
+            var maxErrorDefault           = 0.3;
+            var minGroupSizeDefault       = 2;
+            var minGroupSimilarityDefault = 0.35;
+            
+            $('#minCount').val(minFreqDefault);
+            $('#maxError').val(maxErrorDefault);
+            $('#minGroupSize').val(minGroupSizeDefault);
+            $('#minMergeGroupSim').val(minGroupSimilarityDefault);
+
+            return false;
+        });
+        
+        /*
+        $('#control-panel #reanalyze').click(function() {
+            runAlgo();
+        });
+        */
+
+        
+        // Nice bit of accordion code from 
+        // "http://www.stemkoski.com/stupid-simple-jquery-accordion-menu/"
+        // JQueryUI Accordion widget is too heavy/complicated, not lightweight enough
+        $('a.accordionButton').click(function() {
+            // Order of animations added to JQuery's event queue 
+            // ensures accordion panel that is eventually revealed
+            // will run after all previously-opened panels are closed
+        	$('a.accordionButton').removeClass('on');
+        	$('.accordionPanel').slideUp('slow');
+        	
+            // Check if corresponding panel is currently hidden
+            var correspondingPanel = $(this).parent().next();
+        	if(correspondingPanel.is(':hidden')) {
+            	// A currently-hidden element will not have a
+            	// slideUp() animation in its corresponding 'fx' queue
+        		$(this).addClass('on');
+        		correspondingPanel.slideDown('slow');
+        	}
+        	return false;
+        });
+        $('.accordionPanel').hide();
+        $('#parameters-email-panel').show();
+
+        /*
+        $('#parameters-email-panel-button').click(function() {
+            if ($('#parameters-email-panel').is(':hidden'))
+            	$('#parameters-email-panel').slideDown('slow');
+            else
+            	$('#parameters-email-panel').slideUp('slow');
+        	return false;
+        });
+        
+        $('#parameters-photos-panel-button').click(function() {
+            if ($('#parameters-photos-panel').is(':hidden'))
+                $('#parameters-photos-panel').slideDown('slow');
+            else
+                $('#parameters-photos-panel').slideUp('slow');
+            return false;
+        });
+        
+        $('#parameters-email-panel').show();
+        $('#parameters-photos-panel').hide();
+        */
+        
+    }
+
+
+
+
+    // numDroppedIn
+    function receiveContact(event, ui)
+    { 
+        //event.stopPropagation();
+        //event.target  //(the clique that received the contact)
+        //ui.item //(the social contact being manipulated)
+        var destClique = event.target;
+        var stickerElem = destClique.closest('div.sticker');
+        var stickerElemID = stickerElem.attr('id');
+        var stickerElemMetadata = stickerElem.children('.stickerMetadata');
+
+        var numDroppedIn = stickerElemMetadata.children('.numDroppedIn');
+        numDroppedIn.val(numDroppedIn.val()+1);
+
+        //var cliqueMember = new Object();
+        //cliqueMember.resourceURI = 'null';
+        //cliqueMember.fullName = metadata.children('.fullName').val();
+        //cliqueMember.firstName = metadata.children('.firstName').val();
+        //cliqueMember.lastName = metadata.children('.lastName').val();
+        //cliqueMember.socialWeight =  metadata.children('.socialWeight').val();
+        
+        // console.log('Receive: Sorting has seen a receive');
+    }
+
+    // numDraggedOut
+    function removeContact(event, ui)
+    { 
+    	//event.stopPropagation();
+    	//event.target  //(the clique that lost the contact)
+    	//ui.item //(the social contact being manipulated)
+    	var destClique = event.target;
+        var stickerElem = destClique.closest('div.sticker');
+        var stickerElemID = stickerElem.attr('id');
+        var stickerElemMetadata = stickerElem.children('.stickerMetadata');
+
+        var numDraggedOut = stickerElemMetadata.children('.numDraggedOut');
+        numDraggedOut.val(numDraggedOut.val()+1);
+    	
+        // console.log('Remove: Sorting has seen a remove');
+    }
+    
+
+    var placeholderProfilePic = "common/contact_placeholder.gif";
+    function addCliqueMembers(stickerElem)
+    {
+        //console.log('addCliqueMembers(sticker) being called...');
+
+        $('#cliqueSelection input.selectFriend:checked').each(
+          function()
+          {
+            // Check to see if selected friend is already in Clique
+            var fbId = $(this).val();
+            var cliqueMember = stickerElem.find("li.contact div.metadata > span[class='"+fbId+"']");
+            // Don't add person if already exists in current Clique
+            if (cliqueMember.length != 0)
+               return;
+
+            var fbFriend = $(this).closest('div.fbFriend');
+            var fbProfileImg  = fbFriend.find('img.fbProfileImage').attr('src');
+            var fbProfileName = fbFriend.find('img.fbProfileImage').attr('title');
+            var fbProfileUrl  = fbFriend.find('a.fbProfileUrl').attr('href');
+            var fbDisplayName = fbFriend.find('a.fbDisplayName').text();
+
+            // Generate UI rendering for this social contact
+            var contact =
+            '<li class="contact"> \n' +
+            '    <div class="metadata" style="display: none;"> \n' +
+            fbFriend.find("div.metadata").html() +
+            '    </div> \n' +
+            '    <img title="'+fbProfileName+'" src="'+fbProfileImg+'" class="contact" /> \n';
+            if (fbProfileImg == placeholderProfilePic) {
+            	contact += '    <div title="'+fbProfileName+'" class="outer-name-overlay"><div class="inner-name-overlay">'+fbDisplayName+'</div></div> \n'
+            }
+            contact +=
+            '    <a title="Delete" class="delete deletelink remove_clique_member">X</a> \n' +
+            '</li> \n';
+
+            // Insert social contact into the UI rendering of the clique
+            var addContactObj = stickerElem.find('#clique > .addContact');
+            $(contact).hide().insertBefore(addContactObj).fadeIn(1200);
+            
+            // Apply necessary JS abilities and UI interactions
+            //newCliqueMember.find('a.remove_clique_member').click(function() {
+            //    var cliqueMemberElem = $(this).closest('li.contact');
+            //    cliqueMemberElem.fadeOut('slow', function() {
+            //        $(this).remove();
+            //    });
+            //    return false;
+            //});            
+        });
+    }
+
+    function showOverlayCover()
+    {
+        $('#overlayCover').show();
+        $('#access-control-sticker').css({
+            top:    getPageScroll()[1] + (getPageHeight() / 10),
+            left:   145.5
+          });
+        $('#access-control-sticker').fadeIn('fast');
+        
+        return false;
+    }
+    
+    function hideOverlayCover()
+    {
+    	$('#access-control-sticker').hide();
+        $('#overlayCover').hide();
+        return false;
+    }
+
+</script>
+</head>
+<body>
+<div id="container">
+    <div id="header" class="socialflow">
+	   <div class="socialflow-title"><h1>SocialFlows</h1></div>
+	   <div class="buttons socialflow" ><a href="#"><img src="stickers/plus.png" title="Create Group"/> Create Group</a></div>
+	</div>
+	<div id="content">
+		
+		<noscript><p><strong>Requires Javascript for viewing</strong></p></noscript>
+	
+	    <!--- Progress Display --->
+        <div id="db-div-welcome" class="db-div-welcome" style="display: none;" >
+        <img src="facebox/loading.gif">
+        <br/><br/>
+        <span id="waittext">Building Your Unified Contacts List... </span>
+        </div>
+	
+		<ul id="socialtree" class="socialflow"> <!-- style="display: none;" -->		
+			<li class="socialflow">
+			    <div style="padding-left: 23px;">
+			        <div class="sticker suggested">
+			        <div class="sticker-title" style="float:left;">MobiSocial</div>
+			            <img class="delete_group options options-bar options-icon options-right options-saved options-selected" src="stickers/cross.gif" title="Delete"/>
+                        <img class="save_group   options options-bar options-icon options-right options-saved options-selected" src="stickers/disk.gif" title="Save"/>
+                        <img class="create_new_group options options-bar options-icon options-right" src="stickers/plus.png" title="Create New Subgroup"/>
+                        <input title="Merge Cliques" type="button" value="Merge" name="merge-cliques" class="merge_group button-fbstyle options options-bar options-button options-right options-selected"/>
+                        <input title="Select Clique" type="checkbox" class="sticker-selected options options-bar options-right options-selected"/>
+			        <br/>
+			        <ul id="clique" class="clique">
+			        <li class="contact placeholder" style="display:none;"></li>
+                    <li class="contact">
+                        <img title="Monica Lam" src="http://profile.ak.fbcdn.net/v223/1549/33/q562068812_7786.jpg" class="contact" />
+                        <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                    </li>
+                    <li class="contact">
+                        <img title="Sudheendra Hangal" src="http://profile.ak.fbcdn.net/profile2/71/10/q222915_29818.jpg" class="contact" />
+                        <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                    </li>
+                    <li class="contact">
+                        <img title="Seok-Won Seong" src="http://profile.ak.fbcdn.net/hprofile-ak-snc4/hs324.snc4/41426_694132280_7780_q.jpg" class="contact" />
+                        <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                    </li>
+                    <li class="contact">
+                        <img title="Jiwon Seo" src="http://profile.ak.fbcdn.net/hprofile-ak-snc4/hs256.snc3/23182_217778_8278_q.jpg" class="contact" />
+                        <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                    </li>
+                    <li class="contact">
+                        <img title="Diana MacLean" src="http://profile.ak.fbcdn.net/hprofile-ak-snc4/hs167.ash2/41502_24537_2715_q.jpg" class="contact" />
+                        <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                    </li>
+                    <li class="contact">
+                        <img title="Seng Keat Teh" src="http://profile.ak.fbcdn.net/v22942/249/3/q4804827_5646.jpg" class="contact" />
+                        <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                    </li>
+                    <li class="contact">
+                        <img title="Te-Yuan Huang" src="http://profile.ak.fbcdn.net/hprofile-ak-snc4/hs643.snc3/27386_621464089_1430_q.jpg" class="contact" />
+                        <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                    </li>
+                    <li class="contact">
+                        <img title="Ben Dodson" src="http://profile.ak.fbcdn.net/v225/1018/59/q601344_6531.jpg" class="contact" />
+                        <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                    </li>
+                    <li class="contact">
+                        <img title="Debangsu Sengupta" src="http://profile.ak.fbcdn.net/v230/919/72/q9116009_6104.jpg" class="contact" />
+                        <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                    </li>
+                    <li class="contact">
+                        <img title="Chanh Nguyen" src="http://profile.ak.fbcdn.net/hprofile-ak-snc4/hs251.snc3/23068_502643573_1056_q.jpg" class="contact" />
+                        <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                    </li>
+                    <li class="contact">
+                        <img title="Ruven Chu" src="http://profile.ak.fbcdn.net/v222/99/90/q214871_6759.jpg" class="contact" />
+                        <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                    </li>
+                    <li class="contact">
+                        <img title="Bobby Georgescu" src="http://profile.ak.fbcdn.net/hprofile-ak-sf2p/hs301.ash1/23073_220608_9080_q.jpg" class="contact" />
+                        <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                    </li>
+                    <li class="contact">
+                        <img class="contact" src="common/contact_placeholder.gif" title="prpl-devel"/>
+                        <div title="prpl-devel" class="outer-name-overlay"><div class="inner-name-overlay">prpl-devel</div></div>
+                        <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                    </li>
+                    <li title="Add a Social Contact" class="add_clique_member addContact options">
+                        <img title="Add a Social Contact" src="stickers/q_silhouette.gif" class="contact"/>
+                        <div class="outer-image-overlay" title="Add a Social Contact"><div class="inner-image-overlay"><img src="stickers/plus.png"/></div></div>
+                    </li>
+                    </ul>
+                    </div>
+                </div>
+				<ul class="socialflow" style="display: none;" >
+                    <li class="socialflow">
+					<div style="padding-left: 23px;">
+					    <div class="sticker suggested">
+					    <div class="sticker-title" style="float:left;">PrPl</div>
+                            <img class="delete_group options options-bar options-icon options-right options-saved options-selected" src="stickers/cross.gif" title="Delete"/>
+                            <img class="save_group   options options-bar options-icon options-right options-saved options-selected" src="stickers/disk.gif" title="Save"/>
+                            <img class="create_new_group options options-bar options-icon options-right" src="stickers/plus.png" title="Create New Subgroup"/>
+                            <input title="Merge Cliques" type="button" value="Merge" name="merge-cliques" class="merge_group button-fbstyle options options-bar options-button options-right options-selected"/>
+                            <input title="Select Clique" type="checkbox" class="sticker-selected options options-bar options-right options-selected"/>
+					    <br/>
+					    <ul id="clique" class="clique">
+					    <li class="contact placeholder" style="display:none;"></li>
+                        <li class="contact">
+                            <img title="Monica Lam" src="http://profile.ak.fbcdn.net/v223/1549/33/q562068812_7786.jpg" class="contact" />
+                            <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                        </li>
+                        <li class="contact">
+                            <img title="Seok-Won Seong" src="http://profile.ak.fbcdn.net/hprofile-ak-snc4/hs324.snc4/41426_694132280_7780_q.jpg" class="contact" />
+                            <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                        </li>
+                        <li class="contact">
+                            <img title="Jiwon Seo" src="http://profile.ak.fbcdn.net/hprofile-ak-snc4/hs256.snc3/23182_217778_8278_q.jpg" class="contact" />
+                            <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                        </li>
+                        <li title="Add a Social Contact" class="add_clique_member addContact options">
+                            <img title="Add a Social Contact" src="stickers/q_silhouette.gif" class="contact"/>
+                            <div class="outer-image-overlay" title="Add a Social Contact"><div class="inner-image-overlay"><img src="stickers/plus.png"/></div></div>
+                        </li>
+                        </ul>
+                        </div>
+                    </div>
+                    <ul class="socialflow" style="display: none;" >
+                        <li class="socialflow">
+                        <div style="padding-left: 23px;">
+                            <div class="sticker suggested">
+                            <div class="sticker-title" style="float:left;">Monica</div>
+                                <img class="delete_group options options-bar options-icon options-right options-saved options-selected" src="stickers/cross.gif" title="Delete"/>
+                                <img class="save_group   options options-bar options-icon options-right options-saved options-selected" src="stickers/disk.gif" title="Save"/>
+                                <img class="create_new_group options options-bar options-icon options-right" src="stickers/plus.png" title="Create New Subgroup"/>
+                                <input title="Merge Cliques" type="button" value="Merge" name="merge-cliques" class="merge_group button-fbstyle options options-bar options-button options-right options-selected"/>
+                                <input title="Select Clique" type="checkbox" class="sticker-selected options options-bar options-right options-selected"/>
+                            <br/>
+                            <ul id="clique" class="clique">
+                            <li class="contact placeholder" style="display:none;"></li>
+                            <li class="contact">
+                                <img title="Monica Lam" src="http://profile.ak.fbcdn.net/v223/1549/33/q562068812_7786.jpg" class="contact" />
+                                <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                            </li>
+                            <li title="Add a Social Contact" class="add_clique_member addContact options">
+                                <img title="Add a Social Contact" src="stickers/q_silhouette.gif" class="contact"/>
+                                <div class="outer-image-overlay" title="Add a Social Contact"><div class="inner-image-overlay"><img src="stickers/plus.png"/></div></div>
+                            </li>
+                            </ul>
+                            </div>
+                        </div>
+                        </li>
+                    </ul>
+                    <span class="socialflow socialflow-navi collapsed"/>   
+                    </li>
+					<li class="socialflow">
+					<div style="padding-left: 23px;">
+					    <div class="sticker saved">
+					    <div class="sticker-title" style="float:left;">SocialFlows</div>
+					        <img class="delete_group options options-bar options-icon options-right options-saved options-selected" src="stickers/cross.gif" title="Delete"/>
+                            <img class="save_group   options options-bar options-icon options-right options-saved options-selected" src="stickers/disk.gif" title="Save"/>
+                            <img class="create_new_group options options-bar options-icon options-right" src="stickers/plus.png" title="Create New Subgroup"/>
+                            <input title="Merge Cliques" type="button" value="Merge" name="merge-cliques" class="merge_group button-fbstyle options options-bar options-button options-right options-selected"/>
+                            <input title="Select Clique" type="checkbox" class="sticker-selected options options-bar options-right options-selected"/>
+					    <br/>
+					    <ul id="clique" class="clique">
+					    <li class="contact placeholder" style="display:none;"></li>
+                        <li class="contact">
+                            <img title="Monica Lam" src="http://profile.ak.fbcdn.net/v223/1549/33/q562068812_7786.jpg" class="contact" />
+                            <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                        </li>
+                        <li class="contact">
+                            <img title="Sudheendra Hangal" src="http://profile.ak.fbcdn.net/profile2/71/10/q222915_29818.jpg" class="contact" />
+                            <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                        </li>
+                        <li class="contact">
+                            <img title="Diana MacLean" src="http://profile.ak.fbcdn.net/hprofile-ak-snc4/hs167.ash2/41502_24537_2715_q.jpg" class="contact" />
+                            <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                        </li>
+                        <li class="contact">
+                            <img title="Seng Keat Teh" src="http://profile.ak.fbcdn.net/v22942/249/3/q4804827_5646.jpg" class="contact" />
+                            <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                        </li>
+                        <li title="Add a Social Contact" class="add_clique_member addContact options">
+                            <img title="Add a Social Contact" src="stickers/q_silhouette.gif" class="contact"/>
+                            <div class="outer-image-overlay" title="Add a Social Contact"><div class="inner-image-overlay"><img src="stickers/plus.png"/></div></div>
+                        </li>
+                        </ul>
+                        </div>
+                    </div>
+                    </li>
+					<li class="socialflow">
+					<div style="padding-left: 23px;">
+					    <div class="sticker suggested">
+					    <div class="sticker-title" style="float:left;">Junction</div>
+					        <img class="delete_group options options-bar options-icon options-right options-saved options-selected" src="stickers/cross.gif" title="Delete"/>
+                            <img class="save_group   options options-bar options-icon options-right options-saved options-selected" src="stickers/disk.gif" title="Save"/>
+                            <img class="create_new_group options options-bar options-icon options-right" src="stickers/plus.png" title="Create New Subgroup"/>
+                            <input title="Merge Cliques" type="button" value="Merge" name="merge-cliques" class="merge_group button-fbstyle options options-bar options-button options-right options-selected"/>
+                            <input title="Select Clique" type="checkbox" class="sticker-selected options options-bar options-right options-selected"/>
+					    <br/>
+					    <ul id="clique" class="clique">
+					    <li class="contact placeholder" style="display:none;"></li>
+                        <li class="contact">
+                            <img title="Te-Yuan Huang" src="http://profile.ak.fbcdn.net/hprofile-ak-snc4/hs643.snc3/27386_621464089_1430_q.jpg" class="contact" />
+                            <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                        </li>
+                        <li class="contact">
+                            <img title="Ben Dodson" src="http://profile.ak.fbcdn.net/v225/1018/59/q601344_6531.jpg" class="contact" />
+                            <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                        </li>
+                        <li class="contact">
+                            <img title="Chanh Nguyen" src="http://profile.ak.fbcdn.net/hprofile-ak-snc4/hs251.snc3/23068_502643573_1056_q.jpg" class="contact" />
+                            <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                        </li>
+                        <li title="Add a Social Contact" class="add_clique_member addContact options">
+                            <img title="Add a Social Contact" src="stickers/q_silhouette.gif" class="contact"/>
+                            <div class="outer-image-overlay" title="Add a Social Contact"><div class="inner-image-overlay"><img src="stickers/plus.png"/></div></div>
+                        </li>
+                        </ul>
+                        </div>
+                    </div>
+                    </li>	
+                </ul>
+                <span class="socialflow socialflow-navi collapsed"/>
+            </li>
+			<li class="socialflow">
+			    <div style="padding-left: 23px;">
+			        <div class="sticker suggested">
+			        <div class="sticker-title" style="float:left;">Stanford Buddies</div>
+			            <img class="delete_group options options-bar options-icon options-right options-saved options-selected" src="stickers/cross.gif" title="Delete"/>
+                        <img class="save_group   options options-bar options-icon options-right options-saved options-selected" src="stickers/disk.gif" title="Save"/>
+                        <img class="create_new_group options options-bar options-icon options-right" src="stickers/plus.png" title="Create New Subgroup"/>
+                        <input title="Merge Cliques" type="button" value="Merge" name="merge-cliques" class="merge_group button-fbstyle options options-bar options-button options-right options-selected"/>
+                        <input title="Select Clique" type="checkbox" class="sticker-selected options options-bar options-right options-selected"/>
+			        <br/>
+			        <ul id="clique" class="clique">
+			        <li class="contact placeholder" style="display:none;"></li>
+                    <li class="contact">
+                        <img title="Guillaume Leseur" src="http://profile.ak.fbcdn.net/v226/735/125/q709041455_4882.jpg" class="contact">
+                        <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                    </li>
+                    <li class="contact">
+                        <img title="Mike Levin" src="http://profile.ak.fbcdn.net/v224/1274/111/q13953113_2684.jpg" class="contact">
+                        <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                    </li>
+                    <li class="contact">
+                        <img title="Nicolas Meunier" src="http://profile.ak.fbcdn.net/profile5/399/28/q706973172_1893.jpg" class="contact">
+                        <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                    </li>
+                    <li class="contact">
+                        <img title="Suman Chakravartula" src="http://profile.ak.fbcdn.net/hprofile-ak-snc4/hs625.snc3/27429_30317426_3209_q.jpg" class="contact">
+                        <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                    </li>
+                    <li class="contact">
+                        <img title="Jon Hsieh" src="http://profile.ak.fbcdn.net/hprofile-ak-snc4/hs173.ash2/41668_206809_8331_q.jpg" class="contact">
+                        <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                    </li>
+                    <li class="contact">
+                        <img title="Estelle Comment" src="http://profile.ak.fbcdn.net/profile-ak-snc1/profile2/965/7/q503979362_29752.jpg" class="contact">
+                        <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                    </li>
+                    <li title="Add a Social Contact" class="add_clique_member addContact options">
+                        <img title="Add a Social Contact" src="stickers/q_silhouette.gif" class="contact"/>
+                        <div class="outer-image-overlay" title="Add a Social Contact"><div class="inner-image-overlay"><img src="stickers/plus.png"/></div></div>
+                    </li>
+                    </ul>
+                    </div>
+                </div>
+				<ul class="socialflow" style="display: none;" >
+					<li class="socialflow">
+					<div style="padding-left: 23px;">
+					    <div class="sticker saved">
+					    <div class="sticker-title" style="float:left;">Mike-Suman-Jon</div>
+					        <img class="delete_group options options-bar options-icon options-right options-saved options-selected" src="stickers/cross.gif" title="Delete"/>
+                            <img class="save_group   options options-bar options-icon options-right options-saved options-selected" src="stickers/disk.gif" title="Save"/>
+                            <img class="create_new_group options options-bar options-icon options-right" src="stickers/plus.png" title="Create New Subgroup"/>
+                            <input title="Merge Cliques" type="button" value="Merge" name="merge-cliques" class="merge_group button-fbstyle options options-bar options-button options-right options-selected"/>
+                            <input title="Select Clique" type="checkbox" class="sticker-selected options options-bar options-right options-selected"/>
+					    <br/>
+					    <ul id="clique" class="clique">
+					    <li class="contact placeholder" style="display:none;"></li>
+                        <li class="contact">
+                            <img title="Mike Levin" src="http://profile.ak.fbcdn.net/v224/1274/111/q13953113_2684.jpg" class="contact">
+                            <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                        </li>
+                        <li class="contact">
+                            <img title="Suman Chakravartula" src="http://profile.ak.fbcdn.net/hprofile-ak-snc4/hs625.snc3/27429_30317426_3209_q.jpg" class="contact">
+                            <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                        </li>
+                        <li class="contact">
+                            <img title="Jon Hsieh" src="http://profile.ak.fbcdn.net/hprofile-ak-snc4/hs173.ash2/41668_206809_8331_q.jpg" class="contact">
+                            <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                        </li>
+                        <li title="Add a Social Contact" class="add_clique_member addContact options">
+                            <img title="Add a Social Contact" src="stickers/q_silhouette.gif" class="contact"/>
+                            <div class="outer-image-overlay" title="Add a Social Contact"><div class="inner-image-overlay"><img src="stickers/plus.png"/></div></div>
+                        </li>
+                        </ul>
+                        </div>
+                    </div>
+                    </li>
+                    <li class="socialflow">
+                    <div style="padding-left: 23px;">
+                        <div class="sticker deleted">
+                        <div class="sticker-title" style="float:left;">Mike-Suman-Guillaume-etc</div>
+                            <img class="delete_group options options-bar options-icon options-right options-saved options-selected" src="stickers/cross.gif" title="Delete"/>
+                            <img class="save_group   options options-bar options-icon options-right options-saved options-selected" src="stickers/disk.gif" title="Save"/>
+                            <img class="create_new_group options options-bar options-icon options-right" src="stickers/plus.png" title="Create New Subgroup"/>
+                            <input title="Merge Cliques" type="button" value="Merge" name="merge-cliques" class="merge_group button-fbstyle options options-bar options-button options-right options-selected"/>
+                            <input title="Select Clique" type="checkbox" class="sticker-selected options options-bar options-right options-selected"/>
+                        <br/>
+                        <ul id="clique" class="clique">
+                        <li class="contact placeholder" style="display:none;"></li>
+                        <li class="contact">
+                            <img title="Guillaume Leseur" src="http://profile.ak.fbcdn.net/v226/735/125/q709041455_4882.jpg" class="contact">
+                            <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                        </li>
+                        <li class="contact">
+                            <img title="Mike Levin" src="http://profile.ak.fbcdn.net/v224/1274/111/q13953113_2684.jpg" class="contact">
+                            <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                        </li>
+                        <li class="contact">
+                            <img title="Nicolas Meunier" src="http://profile.ak.fbcdn.net/profile5/399/28/q706973172_1893.jpg" class="contact">
+                            <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                        </li>
+                        <li class="contact">
+                            <img title="Suman Chakravartula" src="http://profile.ak.fbcdn.net/hprofile-ak-snc4/hs625.snc3/27429_30317426_3209_q.jpg" class="contact">
+                            <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                        </li>
+                        <li class="contact">
+                            <img title="Estelle Comment" src="http://profile.ak.fbcdn.net/profile-ak-snc1/profile2/965/7/q503979362_29752.jpg" class="contact">
+                            <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                        </li>
+                        <li title="Add a Social Contact" class="add_clique_member addContact options">
+                            <img title="Add a Social Contact" src="stickers/q_silhouette.gif" class="contact"/>
+                            <div class="outer-image-overlay" title="Add a Social Contact"><div class="inner-image-overlay"><img src="stickers/plus.png"/></div></div>
+                        </li>
+                        </ul>
+                        </div>
+                    </div>
+                    </li>
+				</ul>
+				<span class="socialflow socialflow-navi collapsed"/>
+			</li>
+			<li class="socialflow">
+			    <div style="padding-left: 23px;">
+			        <div class="sticker suggested">
+			        <div class="sticker-title" style="float:left;">ExploraTune ThinkTank</div>
+			            <div title="Share Data with this Group" class="share_data inline-block pillbutton options options-saved-hover">
+			            <div class="inline-block pillbutton-label">
+			               <div class="inline-block pillbutton-label-outer-box pillbutton-outer-box-color">
+			                 <div class="inline-block pillbutton-label-inner-box pillbutton-inner-box-color">
+			                 <div>SHARE</div>
+			            </div></div></div></div>
+			            <img class="delete_group options options-bar options-icon options-right options-saved options-selected" src="stickers/cross.gif" title="Delete"/>
+                        <img class="save_group   options options-bar options-icon options-right options-saved options-selected" src="stickers/disk.gif" title="Save"/>
+                        <img class="create_new_group options options-bar options-icon options-right options-selected" src="stickers/plus.png" title="Create New Subgroup"/>
+                        <input title="Merge Cliques" type="button" value="Merge" name="merge-cliques" class="merge_group button-fbstyle options options-bar options-button options-right options-selected"/>
+                        <input title="Select Clique" type="checkbox" class="sticker-selected options options-bar options-right options-selected"/>
+			        <br/>
+			        <ul id="clique" class="clique">
+			        <li class="contact placeholder" style="display:none;"></li>
+                    <li class="contact">
+                        <img title="Alexander Naruhiko Chee" src="http://profile.ak.fbcdn.net/v224/1122/119/q221366_3052.jpg" class="contact">
+                        <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                    </li>
+                    <li class="contact">
+                        <img title="Mike Lindquist" src="http://profile.ak.fbcdn.net/profile/754/111/q209006_16946.jpg" class="contact">
+                        <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                    </li>
+                    <li class="contact">
+                        <img class="contact" src="common/contact_placeholder.gif" title="Bowen Li"/>
+                        <div title="Bowen Li" class="outer-name-overlay"><div class="inner-name-overlay">Bowen Li</div></div>
+                        <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+                    </li>
+                    <li title="Add a Social Contact" class="add_clique_member addContact options">
+                        <img title="Add a Social Contact" src="stickers/q_silhouette.gif" class="contact"/>
+                        <div class="outer-image-overlay" title="Add a Social Contact"><div class="inner-image-overlay"><img src="stickers/plus.png"/></div></div>
+                    </li>
+                    </ul>
+                    </div>
+                </div>
+			</li>
+			<!-- 
+			<li class="socialflow"><a href="#">Third link</a>
+                <ul style="display: none;">
+                    <li><a href="#">First link</a></li>
+                    <li><a href="#">Second link</a></li>
+                    <li><a href="#">Third link</a>
+                        <ul style="display: none;">
+                            <li><a href="#">First link</a></li>
+                            <li><a href="#">Second link</a></li>
+                            <li><a href="#">Third link</a></li>
+                            <li><a href="#">Fourth link</a></li>
+                            <li><a href="#">Fifth link</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Fourth link</a></li>
+                    <li><a href="#">Fifth link</a></li>
+                </ul>
+            </li>
+            -->
+		</ul>
+
+	</div>
+</div>
+<p><!-- Placeholder --></p>
+
+
+
+  <!-- Selection to add more Clique members -->
+  <div id="cliqueSelection" class="faceUI" style="display: none;">
+    <div class="popup">
+
+    <table>
+        <tbody>
+        <tr>
+            <td class="tl"></td>
+            <td class="b"></td>
+            <td class="tr"></td>
+        </tr>
+        <tr>
+            <td class="b"></td>
+
+            <td class="body">
+            <h2 class="dialog_title">
+                <span>Add Clique Members</span>
+            </h2>
+    <div class="content" style="overflow-y: auto; overflow-x: hidden; height: 188px;">
+    <div id="friend_guesser" class="full" style="width: 460px;">
+    <div class="content clearfix">
+    <div class="clearfix">
+
+    <div class="friend_grid clearfix">
+    <!-- Start of grid -->
+               
+    <div class="friend_grid_row clearfix" style="margin: 10px -10px 5px;">
+                           
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="mailto:lam@moka5.com" target="_blank" class="UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Monica Lam" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" src="common/contact_placeholder.gif" style="width: 50px; height: 50px;" />
+        </a>
+        <input type="checkbox" value="lam@moka5.com" class="fg_action_hide UIImageBlock_Ext selectFriend"/>
+
+        <div class="metadata" style="display: none;">
+        <span id="lam@moka5.com" class="lam@moka5.com">
+            <input type="hidden" class="resourceURI" name="resourceURI" value="prpl://resource/2e4ad09d-66b1-3c70-822b-c08773f92faf#febde2df-295a-11b2-80e1-a8627af5eada" />
+            <input type="hidden" class="socialWeight" name="socialWeight" value="206" />  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="mailto:lam@moka5.com" target="_blank" class="fbProfileName">Monica Lam</a>
+
+            </div>
+            <div class="fg_action_add"></div>
+        </div>
+    </div>
+    </div>
+
+                     
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="http://www.facebook.com/hangal" target="_blank" class="UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+
+            <img title="Sudheendra Hangal" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" src="http://profile.ak.fbcdn.net/profile2/71/10/q222915_29818.jpg" style="width: 50px; height: 50px;" />
+        </a>
+        <input type="checkbox" value="fbid222915" class="fg_action_hide UIImageBlock_Ext selectFriend"/>
+        <div class="metadata" style="display: none;">
+        <span id="fbid222915" class="fbid222915">
+            <input type="hidden" class="resourceURI" name="resourceURI" value="prpl://resource/2e4ad09d-66b1-3c70-822b-c08773f92faf#febde2c3-295a-11b2-80e1-a8627af5eada" />
+            <input type="hidden" class="socialWeight" name="socialWeight" value="199" />  
+        </span>
+        </div>
+
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="http://www.facebook.com/hangal" target="_blank" class="fbProfileName">Sudheendra Hangal</a>
+            </div>
+            <div class="fg_action_add"></div>
+        </div>
+    </div>
+    </div>
+
+                     
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="http://www.facebook.com/sseong" target="_blank" class="UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Alan Seok-Won Seong" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" src="http://profile.ak.fbcdn.net/profile6/892/86/q694132280_2804.jpg" style="width: 50px; height: 50px;" />
+        </a>
+        <input type="checkbox" value="fbid694132280" class="fg_action_hide UIImageBlock_Ext selectFriend"/>
+        <div class="metadata" style="display: none;">
+        <span id="fbid694132280" class="fbid694132280">
+
+            <input type="hidden" class="resourceURI" name="resourceURI" value="prpl://resource/2e4ad09d-66b1-3c70-822b-c08773f92faf#febde2d2-295a-11b2-80e1-a8627af5eada" />
+            <input type="hidden" class="socialWeight" name="socialWeight" value="133" />  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="http://www.facebook.com/sseong" target="_blank" class="fbProfileName">Alan Seok-Won Seong</a>
+            </div>
+            <div class="fg_action_add"></div>
+
+        </div>
+    </div>
+    </div>
+
+                     
+    </div>
+                        
+    <div class="friend_grid_row clearfix" style="margin: 10px -10px 5px;">
+                           
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="http://www.facebook.com/risujin" target="_blank" class="UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+
+            <img title="Mike Levin" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" src="http://profile.ak.fbcdn.net/v224/1274/111/q13953113_2684.jpg" style="width: 50px; height: 50px;" />
+        </a>
+        <input type="checkbox" value="fbid13953113" class="fg_action_hide UIImageBlock_Ext selectFriend"/>
+        <div class="metadata" style="display: none;">
+        <span id="fbid13953113" class="fbid13953113">
+            <input type="hidden" class="resourceURI" name="resourceURI" value="prpl://resource/2e4ad09d-66b1-3c70-822b-c08773f92faf#febde2c9-295a-11b2-80e1-a8627af5eada" />
+            <input type="hidden" class="socialWeight" name="socialWeight" value="91" />  
+        </span>
+        </div>
+
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="http://www.facebook.com/risujin" target="_blank" class="fbProfileName">Mike Levin</a>
+            </div>
+            <div class="fg_action_add"></div>
+        </div>
+    </div>
+    </div>
+
+                     
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="http://www.facebook.com/profile.php?id=30317426" target="_blank" class="UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Suman Chakravartula" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" src="http://profile.ak.fbcdn.net/v22941/1452/92/q30317426_341.jpg" style="width: 50px; height: 50px;" />
+        </a>
+        <input type="checkbox" value="fbid30317426" class="fg_action_hide UIImageBlock_Ext selectFriend"/>
+        <div class="metadata" style="display: none;">
+        <span id="fbid30317426" class="fbid30317426">
+
+            <input type="hidden" class="resourceURI" name="resourceURI" value="prpl://resource/2e4ad09d-66b1-3c70-822b-c08773f92faf#febde2cc-295a-11b2-80e1-a8627af5eada" />
+            <input type="hidden" class="socialWeight" name="socialWeight" value="65" />  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="http://www.facebook.com/profile.php?id=30317426" target="_blank" class="fbProfileName">Suman Chakravartula</a>
+            </div>
+            <div class="fg_action_add"></div>
+
+        </div>
+    </div>
+    </div>
+
+                     
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="http://www.facebook.com/jiwon" target="_blank" class="UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Jiwon Seo" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" src="http://profile.ak.fbcdn.net/profile5/1044/122/q217778_4038.jpg" style="width: 50px; height: 50px;" />
+        </a>
+
+        <input type="checkbox" value="fbid217778" class="fg_action_hide UIImageBlock_Ext selectFriend"/>
+        <div class="metadata" style="display: none;">
+        <span id="fbid217778" class="fbid217778">
+            <input type="hidden" class="resourceURI" name="resourceURI" value="prpl://resource/2e4ad09d-66b1-3c70-822b-c08773f92faf#febde2c0-295a-11b2-80e1-a8627af5eada" />
+            <input type="hidden" class="socialWeight" name="socialWeight" value="44" />  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+
+            <a href="http://www.facebook.com/jiwon" target="_blank" class="fbProfileName">Jiwon Seo</a>
+            </div>
+            <div class="fg_action_add"></div>
+        </div>
+    </div>
+    </div>
+
+                     
+    </div>
+                        
+    <div class="friend_grid_row clearfix" style="margin: 10px -10px 5px;">
+
+                           
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="mailto:gleseur@stanford.edu" target="_blank" class="UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Guillaume Leseur" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" src="common/contact_placeholder.gif" style="width: 50px; height: 50px;" />
+        </a>
+        <input type="checkbox" value="gleseur@stanford.edu" class="fg_action_hide UIImageBlock_Ext selectFriend"/>
+        <div class="metadata" style="display: none;">
+        <span id="gleseur@stanford.edu" class="gleseur@stanford.edu">
+            <input type="hidden" class="resourceURI" name="resourceURI" value="prpl://resource/2e4ad09d-66b1-3c70-822b-c08773f92faf#febde2dd-295a-11b2-80e1-a8627af5eada" />
+
+            <input type="hidden" class="socialWeight" name="socialWeight" value="37" />  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="mailto:gleseur@stanford.edu" target="_blank" class="fbProfileName">Guillaume Leseur</a>
+            </div>
+            <div class="fg_action_add"></div>
+        </div>
+
+    </div>
+    </div>
+
+                     
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="http://www.facebook.com/julien.wetterwald" target="_blank" class="UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Julien Wetterwald" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" src="http://profile.ak.fbcdn.net/v228/629/81/q754421787_6175.jpg" style="width: 50px; height: 50px;" />
+        </a>
+        <input type="checkbox" value="fbid754421787" class="fg_action_hide UIImageBlock_Ext selectFriend"/>
+
+        <div class="metadata" style="display: none;">
+        <span id="fbid754421787" class="fbid754421787">
+            <input type="hidden" class="resourceURI" name="resourceURI" value="prpl://resource/2e4ad09d-66b1-3c70-822b-c08773f92faf#febde2d5-295a-11b2-80e1-a8627af5eada" />
+            <input type="hidden" class="socialWeight" name="socialWeight" value="22" />  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="http://www.facebook.com/julien.wetterwald" target="_blank" class="fbProfileName">Julien Wetterwald</a>
+
+            </div>
+            <div class="fg_action_add"></div>
+        </div>
+    </div>
+    </div>
+
+                     
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="http://www.facebook.com/jonhsieh" target="_blank" class="UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+
+            <img title="Jon Hsieh" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" src="http://profile.ak.fbcdn.net/hprofile-ak-sf2p/hs302.ash1/23094_206809_808_q.jpg" style="width: 50px; height: 50px;" />
+        </a>
+        <input type="checkbox" value="fbid206809" class="fg_action_hide UIImageBlock_Ext selectFriend"/>
+        <div class="metadata" style="display: none;">
+        <span id="fbid206809" class="fbid206809">
+            <input type="hidden" class="resourceURI" name="resourceURI" value="prpl://resource/2e4ad09d-66b1-3c70-822b-c08773f92faf#febde2bd-295a-11b2-80e1-a8627af5eada" />
+            <input type="hidden" class="socialWeight" name="socialWeight" value="19" />  
+        </span>
+        </div>
+
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="http://www.facebook.com/jonhsieh" target="_blank" class="fbProfileName">Jon Hsieh</a>
+            </div>
+            <div class="fg_action_add"></div>
+        </div>
+    </div>
+    </div>
+
+                     
+    </div>
+                        
+    <div class="friend_grid_row last clearfix" style="margin: 10px -10px 5px;">
+                           
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="http://www.facebook.com/chanh" target="_blank" class="UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Chanh Nguyen" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" src="http://profile.ak.fbcdn.net/v224/1749/18/q502643573_2762.jpg" style="width: 50px; height: 50px;" />
+        </a>
+        <input type="checkbox" value="fbid502643573" class="fg_action_hide UIImageBlock_Ext selectFriend"/>
+
+        <div class="metadata" style="display: none;">
+        <span id="fbid502643573" class="fbid502643573">
+            <input type="hidden" class="resourceURI" name="resourceURI" value="prpl://resource/2e4ad09d-66b1-3c70-822b-c08773f92faf#febde2cf-295a-11b2-80e1-a8627af5eada" />
+            <input type="hidden" class="socialWeight" name="socialWeight" value="15" />  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="http://www.facebook.com/chanh" target="_blank" class="fbProfileName">Chanh Nguyen</a>
+
+            </div>
+            <div class="fg_action_add"></div>
+        </div>
+    </div>
+    </div>
+
+                     
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="http://www.facebook.com/sengkeatteh" target="_blank" class="UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+
+            <img title="Seng Keat Teh" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" src="http://profile.ak.fbcdn.net/v22942/249/3/q4804827_5646.jpg" style="width: 50px; height: 50px;" />
+        </a>
+        <input type="checkbox" value="fbid4804827" class="fg_action_hide UIImageBlock_Ext selectFriend"/>
+        <div class="metadata" style="display: none;">
+        <span id="fbid4804827" class="fbid4804827">
+            <input type="hidden" class="resourceURI" name="resourceURI" value="prpl://resource/2e4ad09d-66b1-3c70-822b-c08773f92faf#febde2c6-295a-11b2-80e1-a8627af5eada" />
+            <input type="hidden" class="socialWeight" name="socialWeight" value="0" />  
+        </span>
+        </div>
+
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="http://www.facebook.com/sengkeatteh" target="_blank" class="fbProfileName">Seng Keat Teh</a>
+            </div>
+            <div class="fg_action_add"></div>
+        </div>
+    </div>
+    </div>
+
+                     
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="http://www.facebook.com/profile.php?id=1730754653" target="_blank" class="UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Sk Teh" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" src="http://profile.ak.fbcdn.net/v224/1648/30/q1730754653_495.jpg" style="width: 50px; height: 50px;" />
+        </a>
+        <input type="checkbox" value="fbid1730754653" class="fg_action_hide UIImageBlock_Ext selectFriend"/>
+        <div class="metadata" style="display: none;">
+        <span id="fbid1730754653" class="fbid1730754653">
+
+            <input type="hidden" class="resourceURI" name="resourceURI" value="prpl://resource/2e4ad09d-66b1-3c70-822b-c08773f92faf#febde2ba-295a-11b2-80e1-a8627af5eada" />
+            <input type="hidden" class="socialWeight" name="socialWeight" value="0" />  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="http://www.facebook.com/profile.php?id=1730754653" target="_blank" class="fbProfileName">Sk Teh</a>
+            </div>
+            <div class="fg_action_add"></div>
+
+        </div>
+    </div>
+    </div>
+
+                     
+    </div>
+                        
+    </div></div></div></div>
+                </div>
+                <div class="info"></div>
+                <div class="footer">
+
+                    <input type="button" class="inputsubmit addToClique" name="save" value="Add" style="float: left; vertical-align: top;"/>
+                    <a href="#" class="close"><img src="facebox/closelabel.gif" title="close" class="close_image" /></a>          
+                </div>            
+            </td>            
+            <td class="b"></td>           
+        </tr>          
+        <tr>            
+            <td class="bl"></td><td class="b"></td><td class="br"></td>
+        </tr>         
+        </tbody>
+    </table>     
+    </div>   
+ </div>
+
+
+<div class="hidden" id="overlayCover"></div>
+
+<div id="access-control-sticker" class="box you access-control hidden" style="position: absolute; top: 350px; left: 300px; width: 650px; z-index: 300;">
+  <div class="stickerMetadata" style="display: none;">
+    <input type="hidden" id="stickerResourceURI" name="stickerResourceURI" value="" />
+    <input type="hidden" id="stickerIconURI" name="stickerIconURI" value=" />
+    <span class="merged-stickers-metadata">
+    </span>
+  </div>
+  <div class="icon" style="width: 60px; height: 60px;"><a class="sticker_link"><img src="stickers_icons/sticker_new.png" title="Sticker Icon" class="sticker_icon" style="display: block; margin-left: auto; margin-right: auto;"></a></div>
+  <ul class="sticker-tabs" style="float: left; left: 68px; width: 85%;">
+    <li style="float: left;">
+      <h3 id="sticker_title" class="editableTitle click" style="top: 0px; left: 0px;">Click to name this suggested group</h3>
+    </li>
+  </ul>
+  <div class="sticker-wrap">
+    <div class="sticker-controls">
+        <input type="image" class="delete_ac" title="Cancel" src="stickers/cross.gif" style="float: right; vertical-align: top; margin-left: 0.5em;"/>
+        <input type="image" class="save_ac" title="Save" src="stickers/disk.gif" style="float: right; vertical-align: top; margin-left: 0.5em;"/>
+    </div>
+
+    <div class="panel">
+    <h3 style="left: 0px; font-size:13px;"><img title="Collection" src="stickers/photos.png"> Collection <a class="collection_link"><img title="Add Another Collection Item" src="stickers/plus.png"></a></h3>
+    <div id="collection_container" class="full collection" style="width: 568px; margin-top:15px;">
+    <table cellspacing="0" cellpadding="0" border="0" style="width: auto;">
+    <tbody>
+        <tr style="vertical-align: top;">
+            <td class="main_content">
+            <div id="main_album_content" style="overflow-y: auto; overflow-x: hidden; height: 212px;">
+            <div id="collection_container" class="content_wrapper">
+            <ul id="collection">
+            </ul>
+            </div>
+            </div>
+            </td>
+        </tr>
+    </tbody>
+    </table> 
+    </div>
+    <br/>
+    </div><!-- Closer of "panel" -->
+    
+  </div><!-- Close of "sticker-wrap" -->
+</div>
+
+<!-- Control Panel
+<div id="control-panel" class="box you show" style="position: fixed; right: -1px; top: 38px; height: 220px; line-height: 1;">
+</div>
+--->
+
+<script type="text/javascript" src="facebox/facebox.js"></script>
+<script type="text/javascript" src="common/statusUpdate.js"></script>
+<!-- 
+<script type="text/javascript" src="socialflow/socialflow.js"></script>
+ -->
+ 
+
+<!-- Control Panel -->
+<script type="text/javascript" src="slider/selectToUISlider.jQuery.js"></script>
+<link rel="stylesheet" href="slider/redmond/jquery-ui-1.7.1.custom.css" type="text/css" />
+<link rel="Stylesheet" href="slider/ui.slider.extras.css" type="text/css" />
+<style type="text/css">
+.ui-slider {
+    clear: both; 
+    width:155px;
+    margin-top: 8px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.ui-slider li, .ui-slider dd {
+    color:#555555;
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:10px;
+    text-align:center;
+}
+.ui-slider .ui-slider-handle {
+    width:0.8em;
+}
+.ui-helper-reset {
+    line-height:1.0;
+}
+</style>
+
+<div id="control-panel" style="display:none; z-index: 280; right:-198px;">
+<a href="#" id="toggleControlPanel" class="handle"><div id="toggleControlPanel-indicator">&#9668;</div></a>
+<a href="#" id="hideControlPanel">Hide</a>
+<div id=control-panel-spacer" style="height: 20px;"></div>
+
+<div id="feedback-panel">
+<div style="font-weight: bold; margin-bottom: 5px; text-align: justify;">
+Please rate the suggested social groups presented to you based upon your general evaluation.</div>
+<div id="rating" style="margin-bottom: 8px">
+    <select name="ratingLevels" id="ratingLevels">
+        <option value="1.0">Terrible (1)</option>
+        <option value="1.2">1.2</option>
+        <option value="1.4">1.4</option>
+        <option value="1.6">1.6</option>
+        <option value="1.8">1.8</option>
+        <option value="2.0">Poor (2)</option>
+        <option value="2.2">2.2</option>
+        <option value="2.4">2.4</option>
+        <option value="2.6">2.6</option>
+        <option value="2.8">2.8</option>
+        <option value="3.0" selected="selected">Average (3)</option>
+        <option value="3.2">3.2</option>
+        <option value="3.4">3.4</option>
+        <option value="3.6">3.6</option>
+        <option value="3.8">3.8</option>
+        <option value="4.0">Good (4)</option>
+        <option value="4.2">4.2</option>
+        <option value="4.4">4.4</option>
+        <option value="4.6">4.6</option>
+        <option value="4.8">4.8</option>
+        <option value="5.0">Great (5)</option>
+    </select>
+</div>
+<br/><br/><br/>
+<div style="font-weight: bold; margin-bottom: 5px; text-align: justify;">
+Please give us your evaluation of the relevance, accuracy and 
+usefulness of the suggested social groups presented to you.</div>
+<textarea cols="21" rows="8" class="feedback inputtext DOMControl_placeholder" name="feedback" id="feedback"></textarea>
+<input type="hidden" id="sfTopologyId" name="sfTopologyId" value="28" />
+<input type="button" id="submitfeedback" class="inputsubmit" name="submitfeedback" value="Submit" style="float: left; margin-top:10px; display: block;"/>
+<input type="button" id="skipfeedback" class="inputsubmit" name="skip" value="Skip" style="float: left; margin-top:10px; margin-left:10px; display: block;"/>
+</div>
+
+
+<div id="parameters-panel" style="display: none;">
+<h3 class="accordionButton buttons socialflow" style="position: relative; display: block; margin-top: 3px; margin-bottom: 3px;">
+<a id="parameters-email-panel-button" class="accordionButton" href="#" style="float: none; margin: 0px; position:relative; display:block;">Email</a>
+</h3>
+<div id="parameters-email-panel" class="accordionPanel">
+<div class="accordionPanelContents" style="position: relative; display: block; height: 218px; padding-top: 9px;">
+<div class="input-param-entry">
+    <div style="font-weight: bold; margin-bottom: 3px;">Min Frequency</div>
+    <div class="UIComposer_Attachment_TDTextArea" style="display: inline; padding-bottom: 5px;">
+        <input type="text" value="5" id="min_freq" size="5" maxlength="15" class="inputtext UIComposer_Attachment_Input DOMControl_placeholder paramInput" />
+    </div>
+    <div style="display: inline;">messages</div>
+</div>
+<div class="input-param-entry">
+    <div style="font-weight: bold; margin-bottom: 3px;">Max Error</div>
+    <div class="UIComposer_Attachment_TDTextArea" style="display: inline; padding-bottom: 5px;">
+        <input type="text" value="0.3" id="max_error" size="5" maxlength="15" class="inputtext UIComposer_Attachment_Input DOMControl_placeholder" />
+    </div>
+    <div style="display: inline;">(for subsumed subsets)</div>
+</div>
+<div class="input-param-entry">
+    <div style="font-weight: bold; margin-bottom: 3px;">Min Group Size</div>
+    <div class="UIComposer_Attachment_TDTextArea" style="display: inline; padding-bottom: 5px;">
+        <input type="text" value="2" id="min_group_size" size="5" maxlength="15" class="inputtext UIComposer_Attachment_Input DOMControl_placeholder" />
+    </div>
+    <div style="display: inline;">individuals</div>
+</div>
+<div class="input-param-entry">
+    <div style="font-weight: bold; margin-bottom: 3px;">Min Group Similarity</div>
+    <div class="UIComposer_Attachment_TDTextArea" style="display: inline; padding-bottom: 5px;">
+        <input type="text" value="0.35" id="min_group_similarity" size="5" maxlength="15" class="inputtext UIComposer_Attachment_Input DOMControl_placeholder" />
+    </div>
+    <div style="display: inline;">(for merging groups)</div>
+</div>
+<input type="button" class="inputsubmit reanalyze" name="reanalyze" value="Rerun" style="position:absolute; bottom: 0px; right: 0px; margin-top:10px;"/>
+<a href="#" class="resetParams">Reset</a>
+</div>
+<div style="height: 2px;" class="spacer"></div>
+</div>
+
+<h3 class="buttons socialflow" style="position:relative; display:block; margin-bottom: 3px; margin-top: 6px;">
+<a id="parameters-photos-panel-button" class="accordionButton" href="#" style="float: none; margin: 0px;">Photos</a>
+</h3>
+<div id="parameters-photos-panel" class="accordionPanel">
+<div class="accordionPanelContents" style="position: relative; display: block; height: 218px; padding-top: 9px;">
+<div class="input-param-entry">
+    <div style="font-weight: bold; margin-bottom: 3px;">Min Frequency</div>
+    <div class="UIComposer_Attachment_TDTextArea" style="display: inline; padding-bottom: 5px;">
+        <input type="text" value="5" id="min_freq" size="5" maxlength="15" class="inputtext UIComposer_Attachment_Input DOMControl_placeholder paramInput" />
+    </div>
+    <div style="display: inline;">messages</div>
+</div>
+<div class="input-param-entry">
+    <div style="font-weight: bold; margin-bottom: 3px;">Max Error</div>
+    <div class="UIComposer_Attachment_TDTextArea" style="display: inline; padding-bottom: 5px;">
+        <input type="text" value="0.3" id="max_error" size="5" maxlength="15" class="inputtext UIComposer_Attachment_Input DOMControl_placeholder" />
+    </div>
+    <div style="display: inline;">(for subsumed subsets)</div>
+</div>
+<div class="input-param-entry">
+    <div style="font-weight: bold; margin-bottom: 3px;">Min Group Size</div>
+    <div class="UIComposer_Attachment_TDTextArea" style="display: inline; padding-bottom: 5px;">
+        <input type="text" value="2" id="min_group_size" size="5" maxlength="15" class="inputtext UIComposer_Attachment_Input DOMControl_placeholder" />
+    </div>
+    <div style="display: inline;">individuals</div>
+</div>
+<div class="input-param-entry">
+    <div style="font-weight: bold; margin-bottom: 3px;">Min Group Similarity</div>
+    <div class="UIComposer_Attachment_TDTextArea" style="display: inline; padding-bottom: 5px;">
+        <input type="text" value="0.35" id="min_group_similarity" size="5" maxlength="15" class="inputtext UIComposer_Attachment_Input DOMControl_placeholder" />
+    </div>
+    <div style="display: inline;">(for merging groups)</div>
+</div>
+<input type="button" class="inputsubmit reanalyze" name="reanalyze" value="Rerun" style="position:absolute; bottom: 0px; right: 0px; margin-top:10px;"/>
+<a href="#" class="resetParams">Reset</a>
+</div>
+</div>
+
+</div><!--- Parameters Panel --->
+</div><!--- Control Panel --->
+
+
+</body></html>

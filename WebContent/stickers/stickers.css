@@ -1,0 +1,182 @@
+
+#access-control-sticker {
+    color:#333333;
+    direction:ltr;
+    font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+    font-size:11px;	
+    font:12px/1.5em "Lucida Grande",Helvetica,Arial,sans-serif;
+}
+
+div#access-control-sticker.box {
+    font-weight:bold;
+    padding:0;
+    /*  width:100%; */
+    overflow:hidden;
+    margin-bottom:20px;
+    position:relative;
+}
+
+#access-control-sticker .icon {
+    background:none repeat scroll 0 0 #FFFFFF;
+    border:1px solid #BBBBBB; /* #DDDDDD */
+    left:0;
+    margin-right:5px;
+    padding:3px;
+    position:absolute;
+    top:0;
+    float:left;
+    font-weight:bold;
+}
+
+#access-control-sticker .icon:hover {
+    border:1px solid #3B5998;
+}
+
+#access-control-sticker a{
+    color:#333333;
+    cursor:pointer;
+    text-decoration:none;
+}
+
+#access-control-sticker .sticker-tabs {
+    float:right;
+    position:relative;
+    width:45%;
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    list-style:none outside none;
+}
+
+#access-control-sticker .sticker-tabs li.selected {
+    border-bottom:1px solid #FFFFCC;
+    margin-bottom:-1px;
+}
+
+#access-control-sticker .sticker-tabs li {
+    background:none repeat scroll 0 0 #FFFFFF;
+    border-color:#DDDDDD #DDDDDD -moz-use-text-color;
+    border-style:solid solid none;
+    border-width:1px 1px 0;
+    display:block;
+    float:right;
+    margin:0 0 0 10px;
+    padding:5px 10px;
+    position:relative;
+}
+
+#access-control-sticker li {
+    font-weight:bold;
+    overflow:hidden;
+}
+
+#access-control-sticker h3 {
+    display:inline;
+    left:75px;
+    position:relative;
+    top:6px;
+    color:#333333;
+    margin:0;
+    padding:0;
+}
+
+#access-control-sticker .sticker-controls {
+    overflow:hidden;
+    width:100%;
+}
+
+#access-control-sticker .panel {
+    padding:0 15px 3px 33px;
+}
+
+#access-control-sticker .collection_container {
+  width: 505px;
+  min-height: 38px;
+}
+
+#access-control-sticker ul.collection {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+}
+
+#access-control-sticker #collection li.collection_item {
+    background:none repeat scroll 0 0 #F7F7F7;
+    padding-left:12px;
+    padding-right:0px; /* 10px; */
+}
+
+.heavy {
+    font-size:130%;
+    font-weight:bolder;
+}
+
+
+
+/* // color background
+background:none repeat scroll 0 0 #F7F7F7;
+border:1px solid #BBBBBB; 
+*/
+
+.sticker-wrap {
+  margin-left: 25px;
+  padding: 5px;
+  background:#FFFFCC;
+  border:1px solid #BBBBBB; /* #DDD */
+  clear:both;
+  margin:0 0 0 38px;
+}
+
+.fg_action_hide:hover {
+  background-color:#3B5998;
+  background-position:-857px -65px;
+  text-decoration:none;
+}
+
+.fg_action_hide {
+  background:transparent url(../common/3ay18ob4.png) no-repeat scroll -869px -65px;
+  display:block;
+  height:13px;
+  margin:1px 3px 0 6px;
+  text-indent:-5000px;
+  width:11px;
+}
+
+h3.editableTitle:hover {
+  outline-color:grey;
+  outline-style:dashed;
+  outline-width:1px;
+}
+
+.friend_grid
+.clique_member {
+  margin-left:0px;
+  margin-right:10px;
+  margin-bottom:10px;
+}
+
+.sticker_icon {
+  width: 60px;
+  height: 60px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sticker .collection #collection li {
+  background:#F7F7F7 none repeat scroll 0 0;
+  padding-left:12px;
+  padding-right:10px;
+}
+
+
+.faceUI .friend_grid .friend_grid_col 
+.selectItem {
+  display:block;
+  height:13px;
+  margin:1px 10px 0 6px;
+  text-indent:-5000px;
+  width:11px;
+}
+
+

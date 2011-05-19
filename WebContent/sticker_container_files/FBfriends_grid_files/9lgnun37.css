@@ -1,0 +1,536 @@
+/*    HTTP Host:  static.ak.fbcdn.net                                          */
+/*    Generated:  October 21st 2009 8:51:31 PM PDT                             */
+/*      Machine:  10.16.139.105                                                */
+/*       Source:  Global Cache                                                 */
+/*     Location:  css/3l4y4s0fzagwowkg.pkg.css h:9lgnun37                      */
+/*       Locale:  nu_ll                                                        */
+/*         Path:  css/3l4y4s0fzagwowkg.pkg.css                                 */
+
+.UIContentBox{margin:0;padding:5px;border:1px solid #ccc;background-color:#f7f7f7}
+.UIContentBox_White{background-color:#fff;border-color:#d6d6d6}
+.UIContentBox_GrayGirlyBlue{background-color:#eceff5;border:1px solid #ccc}
+.UIContentBox_GirlyBlue{background-color:#edeff4;border:1px solid #d4dae8}
+.UIContentBox_GrayBlueTop{background-color:#f0f0f0;border-color:#c8c8c8;border-bottom-color:#c0c0c0;border-top:2px solid #5872a7;padding:7px 0}
+.UIContentBox_GirlyBlueNoBorder{background-color:#f1f2f6;border:0;padding:5px 1px}
+.UIContentBox_GrayDarkTop{background-color:#f2f2f2;border-color:#b5b5b5;border-bottom-color:#cbcbcb;border-top:2px solid #919191;padding:7px 0}
+.UIContentBox_Yellow{background-color:#fff8cc;border:1px solid #ffe222;padding:4px 0}
+a.UITooltip{position:relative;z-index:10}
+a.UITooltip:hover{text-decoration:none}
+.ie6 a.UITooltip:hover{zoom:1}
+.UITooltip_Wrap{background:url(/rsrc.php/zA6K6/hash/cnbfiri3.gif) no-repeat left bottom;bottom:20px;padding-bottom:4px;position:absolute}
+.UITooltip_Text{background-color:#282828;background-position:left bottom;color:#fff;left:0;max-width:250px;padding:3px 8px 4px;white-space:nowrap}
+.UITooltip .right{right:0;background-position:right bottom}
+a.UITooltip .UITooltip_Wrap,
+a.UITooltip .UITooltip_Text{display:block;visibility:hidden}
+a.UITooltip:hover .UITooltip_Wrap,
+a.UITooltip:hover .UITooltip_Text{visibility:visible}
+#sidebar_ads{float:left;font-size:11px;padding:47px 0 0 17px;text-align:left}
+#facebook .sidebar_ads_test{padding:36px 0 0 17px}
+.profile .profile_sidebar_ads #sidebar_ads{float:none;padding-top:14px}
+#sidebar_ads .adcolumn_wrapper{border-left:1px solid #ccc;margin-bottom:20px}
+.ie6 #sidebar_ads .adcolumn_wrapper{zoom:1}
+#sidebar_ads .admin_upsell{padding:5px 0 5px 0;width:147px}
+#sidebar_ads .create_button{border:1px solid #3b6e22;margin:0 0 5px;float:left}
+.create_button_link{background:#67A54B none repeat scroll 0 0;border-top:1px solid #95bf82;color:#fff;display:block;font-size:11px;font-weight:bold;padding:3px 16px 5px;text-align:center}
+#sidebar_ads .adcolumn{border-left:4px solid #e5e5e5;padding:0}
+#sidebar_ads .adcolumn .adcolumn_header{padding:0 0 5px 10px}
+#sidebar_ads .admarket_ad{border-left:none;border-right:none;border-bottom:none;border-top:1px solid #e5e5e5;margin:0 0;padding:0 0 10px 10px}
+#sidebar_ads .admarket_ad .social_ad_advert{padding:10px 5px 3px 0}
+#sidebar_ads .banner_ad{border-top:1px solid #e5e5e5;padding:10px 0 5px 10px}
+#sidebar_ads .banner_ad .advert{margin-left:0}
+#sidebar_ads .below_social_ad .ads_feedback{float:left;padding:0 1px 0 0}
+#sidebar_ads .adcolumn .more_ads{border-top:1px solid #e5e5e5;display:block;margin:0;padding:5px 0 0 10px}
+#sidebar_ads .UIEMUASFrame,
+#sidebar_ads .UIEmuASIFrame{border-top:1px solid #e5e5e5}
+.profile_form .pop_content .dialog_body{padding:0;border-bottom:none}
+.profile_form .pop_content .dialog_body h2{margin:0}
+.profile_form .filter_options{font-size:11px;padding:8px 10px}
+.ie6 .profile_form .filter_options .PillFilter_pillfilter{zoom:1}
+.profile_form h3.filter_options strong{color:#808080;font-weight:bold}
+.profile_form h3.filter_options a.filter_option{margin:0 5px;padding:2px 5px;border:solid 1px #eee;font-weight:normal}
+.profile_form h3.filter_options a.selected{background:#dedede;border:solid 1px #999}
+.profile_form h3.filter_options a.selected:hover{text-decoration:none}
+.profile_form .preview_body{background:#f2f2f2 url(/rsrc.php/zBAGE/hash/759ub6xu.gif) no-repeat scroll 16px 60px;position:relative;border-top:solid 1px #ccc;padding:0 20px 20px 0}
+.profile_form .boxes{background:#f2f2f2 url(/rsrc.php/z8IA6/hash/38mqcy0v.gif) no-repeat scroll 16px 112px}
+.profile_form .boxes .preview_profile_image{display:none}
+.profile_form .boxes .preview_shadow{width:108px;height:122px;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/rsrc.php/z5C2Q/hash/3e3ynu6d.png',sizingMethod='scale');background-image:url(/rsrc.php/z5C2Q/hash/3e3ynu6d.png)!important;background-image:none;left:26px;top:19px}
+.profile_form .preview_body .preview_content{position:relative;z-index:2;border:solid 1px #3b5998;background:white;padding:20px 20px 0;overflow:auto;min-height:180px;top:20px;margin-left:134px;margin-bottom:20px}
+.profile_form .preview_body .preview_narrow{width:200px}
+.profile_form .preview_body .preview_wide{width:400px}
+.profile_form .preview_body .profile{max-height:400px;min-height:210px}
+.profile_form .preview_body .profile .box{margin-top:0;border-top:1px solid #94a3c4;border-bottom:none}
+.profile_form .preview_profile_image{position:absolute;top:66px;left:28px;filter:alpha(opacity=65);opacity:.65;z-index:1
+}
+.profile_form .preview_shadow{width:118px;height:160px;background-image:url(/rsrc.php/z32RZ/hash/d2s2khx1.png)!important;background-image:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/rsrc.php/z32RZ/hash/d2s2khx1.png', sizingMethod='scale');padding:0;margin:0;position:absolute;top:20px;left:20px}
+.profile_form #status{margin-top:10px}
+.profile_form .preview_body .preview_text{font-weight:bold;font-size:11px;position:absolute;padding:20px 0 0 20px}
+.profile_form .profile .box{margin-top:0}
+.profile_info_form #info{position:relative;z-index:2;border:solid 1px #3b5998;background:white;padding:20px;width:530px;overflow:hidden;margin:20px 0 0 130px}
+.profile_info_form #info .info_tab{padding:0}
+.profile_info_form #info .info_tab .editor_section{margin-bottom:0}
+.profile_info_form .generic_dialog_popup{width:740px}
+.profile_info_form .preview_body{background:#eeeeee url(/rsrc.php/zB305/hash/48ypwzqe.gif) no-repeat scroll 20px 60px}
+.profile_info_form .preview_shadow{width:51px;height:159px;background-image:url(/rsrc.php/z4ICO/hash/dyaf9o56.png)!important;background-image:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/rsrc.php/z4ICO/hash/dyaf9o56.png', sizingMethod='scale');padding:0;margin:0;position:absolute;top:21px;left:79px}
+.interaction_form .pop_content{width:600px}
+.interaction_form div.dialog_content{border-width:0}
+.interaction_form .pop_content div.dialog_body{padding:0}
+.interaction_dialog_body{padding:0;border-bottom:1px solid #ccc}
+.interaction_form_body{padding:0;border-bottom:none}
+.interaction_form .choose_story{margin:5px 10px 0;padding:0 0 3px;position:relative;width:350px;z-index:2}
+.interaction_form .underline{border-bottom:1px solid #edeff5;margin:0 10px}
+.interaction_form .choose_story .label{font-weight:bold;color:#808080;float:left;padding:2px 10px 4px 5px}
+.interaction_form_body .choose_story a.option{float:left;border-bottom:none;padding:4px 14px 4px;text-align:center;overflow:hidden;zoom:1}
+.interaction_form .minifeedwall .story{margin-top:0;margin-bottom:0}
+.interaction_form .story_preview{margin-top:0}
+.interaction_form .story_preview .preview{display:none}
+.interaction_form .story_preview .selected{display:block}
+.interim_status{padding:15px 10px}
+.interaction_form .story_preview{padding:15px 10px 10px}
+.interaction_form .story_preview_nile{padding:10px 3px 6px 20px}
+.interaction_form .story_preview .icon{float:left;width:16px}
+.interaction_form .recipients{font-size:11px;padding:5px 10px 2px;color:#808080}
+.interaction_form .recipients strong{float:left;padding:4px}
+.interaction_form .recipients .token{font-weight:normal;float:left;display:block;background-image:url(/rsrc.php/zO52Q/hash/5n2nw1c6.gif);background-repeat:no-repeat;color:#000;margin:2px;white-space:nowrap}
+.interaction_form .recipients .token span{background-image:url(/rsrc.php/zO52Q/hash/5n2nw1c6.gif);background-position:top right;background-repeat:no-repeat;display:block}
+.interaction_form .recipients .token span span{background-position:bottom right}
+.interaction_form .recipients .token span span span{background-position:bottom left}
+.interaction_form .recipients .token span span span span{background-image:none;padding:2px 3px 3px 5px}
+.interaction_form .recipients .token:hover,
+.interaction_form .recipients .token:hover span{background-image:url(/rsrc.php/zF06U/hash/acyc41zn.gif);text-decoration:none}
+.interaction_form .recipients a.hide{background-repeat:no-repeat;background-image:url(/rsrc.php/z3NZ7/hash/2fpiuayh.gif);background-position:3px 2px;padding:0 8px 0 3px;text-decoration:none}
+.interaction_form .recipients a.hide:hover{text-decoration:none}
+.interaction_form .link_placeholder{color:#3b5998;display:inline;padding:0}
+.interaction_form .title .link_placeholder{font-weight:bold}
+.interaction_form .minifeedwall .size_2.story_type_7 .icon{margin-top:0}
+.interaction_form .size_4 .title .link_placeholder{font-size:14px}
+.interaction_form .not_me_link{float:right;padding:2px 10px}
+.interaction_form .feed_dialog_disclaimer{padding:0 0 10px 10px;color:#808080;font-size:9px}
+.interaction_form .auto_accept{padding:0 0 10px 10px}
+.interaction_form .dialog_buttons{overflow:hidden;position:relative;background:#f7f7f7;padding:10px;zoom:1}
+.interaction_form .dialog_buttons_msg{float:left;width:340px;text-align:left;padding-top:3px}
+.interaction_form .dialog_buttons_msg .feed_remember .inputcheckbox{padding:0;margin:0 5px 0 5px;vertical-align:bottom;height:14px;width:14px}
+.interaction_form .dialog_buttons_msg .feed_remember .remember_explanation{padding:5px 0 0 5px;color:#777}
+.interaction_form .dialog_buttons input.align_bottom{position:absolute;bottom:10px;right:10px}
+.interaction_form .buttons input{margin-left:10px}
+table.connect_dialog{position:relative}
+table.box_section_iframe{width:432px}
+table.info_section_iframe{width:720px}
+.share_and_hide{font-size:9px}
+.s_and_h_big{font-size:11px}
+.share_and_hide .share_a{padding:0 14px 1px 4px;background:white url(/rsrc.php/z136G/hash/3ay18ob4.png) no-repeat right -355px;border:solid 1px #7f93bc}
+.ie6 .share_and_hide .share_a,
+.ie7 .share_and_hide .share_a,
+.ie8 .share_and_hide .share_a{float:left}
+.s_and_h_big .share_a{background:white url(/rsrc.php/z136G/hash/3ay18ob4.png) no-repeat right -274px;padding:1px 18px 2px 4px}
+.share_and_hide .save{background:#eceff5;border-left:none}
+.share_and_hide .share_a:hover{color:#fff;border-color:#3b5998;text-decoration:none;background-position:right -315px;background-color:#3b5998}
+.s_and_h_big .share_a:hover{background-position:right -236px;background-color:#3b5998}
+.share_and_hide .x_to_hide{border:none;width:3px;padding:1px 5px 2px;margin-left:3px;background:transparent url(/rsrc.php/z136G/hash/3ay18ob4.png) no-repeat -844px -65px}
+.s_and_h_big .x_to_hide{padding:2px 5px 3px}
+.share_and_hide .x_to_hide:hover{background:#3B5998 url(/rsrc.php/z136G/hash/3ay18ob4.png) no-repeat -868px -65px}
+.pop_squarecontainer{position:relative;overflow:hidden;zoom:1;padding:10px}
+.pop_squareborder{margin:-10px 0 0 -10px;position:absolute;width:1000px;height:1000px}
+.pop_container_advanced{background:rgba(82,82,82,0.7);padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px}
+.pop_borderopacity{background:#525252;filter:alpha(opacity=70);opacity:.7}
+.pop_content_old{position:relative;*margin-left:-10px;*padding-left:10px}
+.pop_container{direction:ltr;position:relative;margin:10px 10px 0}
+.pop_topleft, .pop_topright, .pop_bottomleft, .pop_bottomright{height:10px;width:10px;overflow:hidden;position:absolute}
+.pop_topleft{background:url(/rsrc.php/zEYDZ/hash/4xk9rts8.png) no-repeat 0 0;left:-10px;top:-10px}
+.pop_topright{background:url(/rsrc.php/zEYDZ/hash/4xk9rts8.png) no-repeat 0 -10px;right:-10px;top:-10px}
+.pop_bottomleft{background:url(/rsrc.php/zEYDZ/hash/4xk9rts8.png) no-repeat 0 -20px;bottom:-10px;left:-10px}
+.pop_bottomright{background:url(/rsrc.php/zEYDZ/hash/4xk9rts8.png) no-repeat 0 -30px;right:-10px;bottom:-10px}
+.pop_verticalslab, .pop_horizontalslab{width:100%;height:100%;position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}
+.pop_verticalslab{margin:-10px 0 0;padding-bottom:20px}
+.pop_horizontalslab{margin:0 0 0 -10px;padding-right:20px}
+.ie7 .pop_verticalslab{margin-left:10px}
+.ie7 .pop_horizontalslab{margin-left:0}
+.generic_dialog{height:0;left:0;overflow:visible;position:absolute;top:0;width:100%;z-index:101}
+#generic_dialog_iframe{filter:alpha(opacity=0);left:0;position:absolute;top:0;z-index:3}
+.generic_dialog_popup{height:0;overflow:visible;position:relative;width:465px;margin:auto}
+.generic_dialog div.dialog_loading{background-color:#f2f2f2;border:1px solid #606060;font-size:24px;padding:10px}
+#generic_dialog_overlay{z-index:100;position:fixed;*position:absolute;top:0;height:100%;width:100%;filter:alpha(opacity=50);opacity:.5}
+.dark_dialog_overlay{background-color:#747474}
+.light_dialog_overlay{background-color:#fff}
+.pop_content{direction:ltr}
+.pop_dialog_rtl .pop_content{direction:rtl}
+.pop_content h2.dialog_title{background:#6d84b4;border:1px solid #3b5998;border-bottom:none;color:#fff;font-size:14px;font-weight:bold;margin:0}
+.pop_content h2.loading{background:#6d84b4 url(/rsrc.php/z13JD/hash/16vt4yge.gif) 98% no-repeat}
+.pop_content h2.dialog_loading{background:#6d84b4 url(/rsrc.php/z13JD/hash/16vt4yge.gif) no-repeat 400px 10px;padding-right:40px}
+.pop_content h2 span{border-top:1px solid #788dba;display:block;padding:3px 10px 6px}
+.pop_content .dialog_content{background:#fff;border:1px solid #555;border-top-width:0}
+.pop_content .dialog_body{padding:10px;border-bottom:1px solid #ccc}
+.dialog_body .dialog_content_img{float:left;margin-right:15px}
+.dialog_body .dialog_content_txt{width:300px;float:left;padding-bottom:5px}
+.dialog_body .dialog_content_body{padding-bottom:13px}
+.dialog_body .form_label{padding-right:5px}
+.pop_content .dialog_summary{background:#f2f2f2;padding:8px 10px 8px 10px;border-bottom:1px solid #ccc}
+.pop_content .dialog_buttons{background:#f2f2f2;padding:8px;text-align:right}
+.pop_content .dialog_buttons input{margin-left:5px}
+.pop_content .dialog_buttons_msg{float:left;padding:5px 0 0 0}
+.pop_content .dialog_footer{background:#F2F2F2 none repeat scroll 0}
+.full_bleed .pop_content .dialog_body{padding:0}
+.contextual_dialog .generic_dialog_popup{width:360px;position:absolute}
+.contextual_dialog .contextual_arrow,
+.contextual_dialog .contextual_arrow_rev{background-image:url(/rsrc.php/z62FM/hash/6hlgd20w.gif);background-repeat:no-repeat;height:12px;position:relative;top:1px}
+.contextual_dialog .contextual_arrow_rev{background-image:url(/rsrc.php/zCQR6/hash/9laiajue.gif)}
+.contextual_dialog .contextual_arrow span,
+.contextual_dialog .contextual_arrow_rev span{display:none}
+.contextual_dialog .dialog_title{color:#000;font-size:11px;padding-bottom:2px}
+.contextual_dialog .contextual_dialog_content{background-color:#f7f7f7;border:1px solid #b7b7b7;border-bottom:2px solid #3b5998;line-height:15px;padding:8px 10px 10px 10px}
+.contextual_dialog .dialog_buttons{padding-top:10px}
+.contextual_dialog .dialog_buttons input{margin-right:10px}
+.contextual_dialog .dialog_buttons_msg{float:right}
+.errorDialog .pop_content h2{background:#ffebe8;border:none;border-bottom:1px solid #aaa;color:#333}
+.errorDialog .pop_content .dialog_content{border:none}
+.errorDialog .pop_content .dialog_content .dialog_body{padding:15px}
+.camera .pop_content .dialog_body{padding:0 0 0 0;margin-bottom:0}
+.camera .pop_content .dialog_buttons{margin-top:-2px;border-top:1px solid #555}
+.fbpage_edit_header{padding:0;margin:0;height:31px;border:0;margin:-7px 0 19px;border-bottom:1px solid #ccc;background:#fff}
+.pages_edit .fbpage_edit_header{margin:0}
+.icon_dock{margin:0;padding:0;width:300px;float:right}
+.icon_dock .icon_dock_container{margin:0;padding:0;padding-top:8px;float:right;z-index:30}
+.icon_dock .edit_link{padding-right:8px;padding-top:10px;font-weight:bold;color:#666;display:block;margin:0;float:right}
+.icon_dock a{padding:0;padding-left:5px;padding-top:8px;margin:0 0 0 0}
+.edit_app_switcher{margin:0 0;padding-top:6px}
+.edit_app_switcher .app_switcher_button .name{padding:2px 0 2px 6px}
+.edit_app_switcher .app_switcher_menu{width:160px}
+.edit_app_switcher .app_switcher_menu .name{width:105px;text-align:left}
+.edit_app_switcher .app_switcher_button .arrow{padding:2px 0 1px}
+.fbpage_edit_header .left_header{float:left;font-size:11px;font-weight:bold;overflow:hidden;padding:7px 0 2px;white-space:nowrap;width:250px}
+.fbpage_edit_header .left_header_text{padding-left:5px;position:relative;top:-4px}
+.fbpage_edit_header div.left_header .edit_link{font-weight:normal;padding-left:4px;color:#ccc}
+.fbpage_edit_header div.left_header .edit_link a{color:#6d84b4}
+.pages_viewer_settings{margin:0;padding:0}
+.pages_viewer_settings .profile_pic{width:100px;padding:0;float:left;padding-right:10px}
+.pages_viewer_settings .checkbox_table{margin:10px 0;font-weight:normal;color:#000}
+.pages_viewer_settings .checkbox_table .checkbox{vertical-align:top}
+.pages_viewer_settings .checkbox_table label{font-weight:normal;color:#000}
+.pages_viewer_settings .checkbox_table label .fbpage_profile_viewer_settings_subtext{font-size:9px;color:#808080}
+.pages_viewer_settings .privacy_explanation{font-size:9px;color:#808080}
+.fan_status_inactive{background-color:#fffccc;color:#666;margin:0;padding:0 0 0 3px;line-height:18px}
+.spritemap_icons{background-image:url(/rsrc.php/z8NMU/hash/aidzwv67.png);_background-image:url(/rsrc.php/z5YGX/hash/80ect5p7.gif);background-repeat:no-repeat;display:inline-block;height:16px;width:16px}
+.sx_icons__hidden{background-position:-0px -0px}
+.sx_icons_accessibility{background-position:-0px -301px}
+.sx_icons_ad{height:15px !important;background-position:-0px -1293px}
+.sx_icons_add_iphone{background-position:-0px -317px}
+.sx_icons_add_photo{background-position:-0px -333px}
+.sx_icons_ads_and_pages{background-position:-0px -349px}
+.sx_icons_affiliation{height:14px !important;background-position:-0px -1429px}
+.sx_icons_alert{background-position:-0px -365px}
+.sx_icons_analytics{background-position:-0px -381px}
+.sx_icons_answers{width:15px !important;background-position:-0px -1308px}
+.sx_icons_audioplayer{height:15px !important;background-position:-0px -1324px}
+.sx_icons_beacon{background-position:-0px -397px}
+.sx_icons_block{background-position:-0px -413px}
+.sx_icons_blog{height:15px !important;background-position:-0px -1339px}
+.sx_icons_bookmark{background-position:-0px -429px}
+.sx_icons_calendar{background-position:-0px -445px}
+.sx_icons_camera{background-position:-0px -461px}
+.sx_icons_canada_flag{background-position:-0px -477px}
+.sx_icons_chart{background-position:-0px -493px}
+.sx_icons_check_mark{width:13px !important;height:13px !important;background-position:-0px -1683px}
+.sx_icons_comment{height:15px !important;background-position:-0px -1354px}
+.sx_icons_comments{background-position:-0px -509px}
+.sx_icons_connect{background-position:-0px -525px}
+.sx_icons_connect_new{background-position:-0px -541px}
+.sx_icons_credits_plus{background-position:-0px -557px}
+.sx_icons_dev_app{width:18px !important;height:18px !important;background-position:-0px -54px}
+.sx_icons_developer{background-position:-0px -573px}
+.sx_icons_discussion{height:18px !important;background-position:-0px -72px}
+.sx_icons_down_arrow_blue{width:9px !important;height:5px !important;background-position:-10px -1560px}
+.sx_icons_edit_applications{background-position:-0px -589px}
+.sx_icons_edit_profile{background-position:-0px -605px}
+.sx_icons_election{height:13px !important;background-position:-0px -1489px}
+.sx_icons_email{background-position:-0px -621px}
+.sx_icons_email_application{width:18px !important;background-position:-0px -90px}
+.sx_icons_email_web{width:17px !important;height:17px !important;background-position:-0px -136px}
+.sx_icons_event{height:17px !important;background-position:-0px -170px}
+.sx_icons_external_link{width:12px !important;height:12px !important;background-position:-0px -1722px}
+.sx_icons_family{background-position:-0px -637px}
+.sx_icons_favicon{background-position:-0px -653px}
+.sx_icons_fbfile{width:14px !important;background-position:-0px -1443px}
+.sx_icons_fbml{background-position:-0px -669px}
+.sx_icons_fbpage{background-position:-0px -685px}
+.sx_icons_fbpage_add{background-position:-0px -701px}
+.sx_icons_feed{width:15px !important;height:15px !important;background-position:-0px -1576px}
+.sx_icons_feed_comments{background-position:-0px -717px}
+.sx_icons_flash{background-position:-0px -733px}
+.sx_icons_friend{background-position:-0px -749px}
+.sx_icons_friend_finder{background-position:-0px -765px}
+.sx_icons_friend_gal{background-position:-0px -781px}
+.sx_icons_friend_gal_pink{background-position:-0px -797px}
+.sx_icons_friend_guy{height:17px !important;background-position:-0px -187px}
+.sx_icons_friend_mob{height:17px !important;background-position:-0px -204px}
+.sx_icons_friend_suggestion{background-position:-0px -813px}
+.sx_icons_gift{height:15px !important;background-position:-0px -1369px}
+.sx_icons_great{width:12px !important;height:12px !important;background-position:-0px -1734px}
+.sx_icons_group{background-position:-0px -829px}
+.sx_icons_halt{width:12px !important;height:12px !important;background-position:-0px -1746px}
+.sx_icons_hd{width:18px !important;height:12px !important;background-position:-0px -124px}
+.sx_icons_hidden{background-position:-0px -845px}
+.sx_icons_hourglass{background-position:-0px -861px}
+.sx_icons_im{width:17px !important;height:15px !important;background-position:-0px -272px}
+.sx_icons_im_away{height:10px !important;background-position:-0px -1530px}
+.sx_icons_im_offline{height:10px !important;background-position:-0px -1540px}
+.sx_icons_im_online{height:10px !important;background-position:-0px -1550px}
+.sx_icons_install_app{width:17px !important;height:14px !important;background-position:-0px -287px}
+.sx_icons_invite{background-position:-0px -877px}
+.sx_icons_iphone{background-position:-0px -893px}
+.sx_icons_iphone_photo{height:19px !important;background-position:-0px -16px}
+.sx_icons_like{background-position:-0px -909px}
+.sx_icons_like_on{width:15px !important;height:13px !important;background-position:-0px -1606px}
+.sx_icons_link{height:15px !important;background-position:-0px -1384px}
+.sx_icons_location_target{width:15px !important;height:15px !important;background-position:-0px -1591px}
+.sx_icons_magnifying_glass{background-position:-0px -925px}
+.sx_icons_marketplace{background-position:-0px -941px}
+.sx_icons_message{height:12px !important;background-position:-0px -1518px}
+.sx_icons_mini_comment{width:11px !important;height:13px !important;background-position:-0px -1709px}
+.sx_icons_mini_credit{width:10px !important;height:10px !important;background-position:-0px -1845px}
+.sx_icons_mini_thumb{width:13px !important;height:13px !important;background-position:-0px -1696px}
+.sx_icons_mob_album{width:15px !important;height:11px !important;background-position:-0px -1634px}
+.sx_icons_mobile{height:18px !important;background-position:-0px -106px}
+.sx_icons_mobile_app{width:10px !important;background-position:-0px -1560px}
+.sx_icons_mobile_note{width:14px !important;background-position:-0px -1459px}
+.sx_icons_mobile_photo{height:19px !important;background-position:-0px -35px}
+.sx_icons_motion{background-position:-0px -957px}
+.sx_icons_music{height:15px !important;background-position:-0px -1399px}
+.sx_icons_new_feature{background-position:-0px -973px}
+.sx_icons_news{background-position:-0px -989px}
+.sx_icons_note{width:13px !important;background-position:-0px -1502px}
+.sx_icons_notifications{background-position:-0px -1005px}
+.sx_icons_pagefooter_bullet{width:4px !important;height:4px !important;background-position:-15px -1308px}
+.sx_icons_people_directory{width:13px !important;height:15px !important;background-position:-0px -1619px}
+.sx_icons_photo{background-position:-0px -1021px}
+.sx_icons_photos_notes{height:17px !important;background-position:-0px -221px}
+.sx_icons_poke{height:14px !important;background-position:-0px -1475px}
+.sx_icons_polls{background-position:-0px -1037px}
+.sx_icons_popout_window{width:17px !important;height:17px !important;background-position:-0px -153px}
+.sx_icons_post{height:15px !important;background-position:-0px -1414px}
+.sx_icons_privacy{background-position:-0px -1053px}
+.sx_icons_privacy_lock{background-position:-0px -1069px}
+.sx_icons_relationship{background-position:-0px -1085px}
+.sx_icons_relationship_remove{height:17px !important;background-position:-0px -238px}
+.sx_icons_request_button_icon{width:15px !important;height:10px !important;background-position:-0px -1645px}
+.sx_icons_requests{background-position:-0px -1101px}
+.sx_icons_reviews{background-position:-0px -1117px}
+.sx_icons_sampling{background-position:-0px -1133px}
+.sx_icons_security{background-position:-0px -1149px}
+.sx_icons_see_more{width:5px !important;height:9px !important;background-position:-14px -1443px}
+.sx_icons_see_more_down{width:9px !important;height:5px !important;background-position:-10px -1565px}
+.sx_icons_settings{background-position:-0px -1165px}
+.sx_icons_share{width:14px !important;height:14px !important;background-position:-0px -1655px}
+.sx_icons_share_button_large{background-position:-0px -1181px}
+.sx_icons_share_button_small{width:12px !important;height:12px !important;background-position:-0px -1758px}
+.sx_icons_share_plus{width:14px !important;height:14px !important;background-position:-0px -1669px}
+.sx_icons_short_note{background-position:-0px -1197px}
+.sx_icons_social_ad{background-position:-0px -1213px}
+.sx_icons_star_half{width:12px !important;height:12px !important;background-position:-0px -1770px}
+.sx_icons_star_off{width:12px !important;height:12px !important;background-position:-0px -1782px}
+.sx_icons_star_on{width:12px !important;height:12px !important;background-position:-0px -1794px}
+.sx_icons_term{background-position:-0px -1229px}
+.sx_icons_translations{background-position:-0px -1245px}
+.sx_icons_up_arrow_blue{width:9px !important;height:5px !important;background-position:-10px -1570px}
+.sx_icons_updates{background-position:-0px -1261px}
+.sx_icons_verified{width:12px !important;height:12px !important;background-position:-0px -1806px}
+.sx_icons_video{height:17px !important;background-position:-0px -255px}
+.sx_icons_wall_arrow_down{width:11px !important;height:9px !important;background-position:-0px -1818px}
+.sx_icons_wall_arrow_ltr{width:11px !important;height:9px !important;background-position:-0px -1827px}
+.sx_icons_wall_arrow_rtl{width:11px !important;height:9px !important;background-position:-0px -1836px}
+.sx_icons_wall_post{background-position:-0px -1277px}
+.typeahead_list{background:transparent;border:1px solid #bdc7d8;border-top:none;font-size:11px;margin-top:-1px;overflow:auto;position:absolute;text-align:left;z-index:97}
+.generic_dialog .typeahead_list,
+.typeahead_list_absolute{z-index:106}
+.typeahead_list .typeahead_suggestion,
+.typeahead_list .typeahead_message{border-top:1px solid #ddd;padding:3px}
+.typeahead_list .typeahead_suggestion{background:#fff;color:#000;cursor:default;filter:alpha(opacity=94);opacity:.94}
+.typeahead_list .typeahead_suggestion:hover{cursor:pointer;cursor:hand}
+.typeahead_list .typeahead_suggestion em{background:#d8dfea;color:#000;font-style:normal;font-weight:bold}
+.typeahead_list .typeahead_suggestion small{color:#808080;padding-left:5px}
+.typeahead_list .typeahead_selected{background:#3b5998;color:#fff;filter:alpha(opacity=100);opacity:1}
+.typeahead_list .typeahead_selected small{color:#95a5c6}
+.typeahead_list .typeahead_selected em{background:#5670a6;color:#fff}
+.typeahead_list .typeahead_message{background:#eee;color:#333}
+input.typeahead_found{background-color:#e1e9f6}
+.typeahead_iframe{filter:alpha(opacity=0);left:0;position:absolute;top:0}
+.typeahead_parent{margin:0;padding:0;overflow:visible;position:relative;float:left;width:0;height:0}
+.typeahead_list_icon{width:27px;height:22px;position:absolute;left:-30px;top:3px;cursor:pointer;padding:0}
+.typeahead_friendlist_icon{background:transparent url(/rsrc.php/zF4X9/hash/4agebnpg.png) 4px 6px no-repeat}
+.typeahead_friendlist_icon.on_selected{background-color:#3b5998;background-image:url(/rsrc.php/z9ZCZ/hash/wo8mv2bv.gif)}
+.tokenizer{min-height:5px;padding:0 0 3px 3px;width:100%;background:#fff;font-size:11px}
+.tokenizer_locked{background:#f4f4f4}
+.tokenizer,
+.tokenizer *{cursor:text
+}
+.tokenizer .placeholder{color:#777;float:left;margin-top:5px}
+.tokenizer input{width:100%}
+.tokenizer .tokenizer_input,
+.tokenizer .token{float:left;margin-right:3px;margin-top:3px}
+.tokenizer .tab_stop,
+.tokenizer .tokenizer_stretcher{display:block;float:left;overflow:hidden;width:0}
+.tokenizer .tab_stop{height:0}
+.tokenizer .tokenizer_stretcher{padding-top:7px}
+#facebook .tokenizer .tab_stop input{border:0 solid black;display:inline;position:relative;left:-500px}
+.tokenizer_input_borderless div{left:4px;margin-left:-1px;overflow:hidden;position:relative}
+.tokenizer_input_borderless div input{border:3px solid white!important;border-left:none;display:block;margin:-2px 0 -2px -2px;padding:0!important}
+.tokenizer div:-moz-first-node{padding-top:1px!important}
+.tokenizer_input{max-width:450px;overflow:hidden;padding:1px 0}
+#facebook .tokenizer_input input,
+.tokenizer_input_shadow{border:0 solid black;font-family:'lucida grande', tahoma, verdana, arial, sans-serif;font-size:11px;padding:0 5px;white-space:pre}
+.tokenizer_input_shadow{display:inline;left:-10000px;position:absolute;top:-10000px}
+.tokenizer .tokenizer_input_shadow{height:0;display:block;left:0;overflow:hidden;position:relative;top:0}
+div.tokenizer .inline_placeholder{color:#777;display:block;float:left;padding:5px 0 0 2px}
+div.tokenizer .token{background-image:url(/rsrc.php/zO52Q/hash/5n2nw1c6.gif);background-repeat:no-repeat;color:#000;white-space:nowrap}
+div.tokenizer .token span{background-image:url(/rsrc.php/zO52Q/hash/5n2nw1c6.gif);background-position:top right;background-repeat:no-repeat;display:block}
+div.tokenizer .token span span{background-position:bottom right}
+div.tokenizer .token span span span{background-position:bottom left}
+div.tokenizer .token span span span span{background-image:none;padding:2px 3px 2px 5px}
+div.tokenizer.tokenizer_locked .token span span span span{padding-right:5px}
+html div.tokenizer_locked .token:hover,
+html div.tokenizer_locked .token:hover span{background-image:url(/rsrc.php/zO52Q/hash/5n2nw1c6.gif)}
+div.tokenizer .token:hover,
+div.tokenizer .token:hover span{background-image:url(/rsrc.php/zF06U/hash/acyc41zn.gif);text-decoration:none}
+div.tokenizer .token_selected,
+div.tokenizer .token_selected span,
+div.tokenizer .token_selected:hover,
+div.tokenizer .token_selected:hover span{background-image:url(/rsrc.php/zA560/hash/c65u0xug.gif);color:#fff;text-decoration:none}
+div.tokenizer .token span.x,
+div.tokenizer .token span.x_hover,
+div.tokenizer .token:hover span.x,
+div.tokenizer .token:hover span.x_hover{background:url(/rsrc.php/z136G/hash/3ay18ob4.png) no-repeat -842px -64px;cursor:pointer;display:inline;padding:0 6px 0 5px}
+div.tokenizer.tokenizer_locked .token span.x,
+div.tokenizer.tokenizer_locked .token span.x_hover{display:none}
+div.standard_tokenizer div.tokenizer{border:solid 1px #8f96bd}
+.typeahead_list .typeahead_suggestion .with_pic small{padding-left:0}
+.UIButton{background-image:url(/rsrc.php/z9PKX/hash/e7508nhk.gif);border-style:solid;border-width:1px;display:-moz-inline-box;display:inline-block;outline:none;padding:3px 6px 4px;vertical-align:bottom}
+.UIButton:hover,
+.UIButton:active{text-decoration:none}
+.UIButton_Text{background-color:transparent;border:none;cursor:pointer;display:block;font-size:11px;font-weight:bold;line-height:14px;margin:0;overflow:visible;padding:0;width:auto}
+.UIButton_Large{padding:4px 8px 6px}
+.UIButton_Large .UIButton_Text{font-size:13px;line-height:16px}
+.UIButton_Gray{background-color:#eaeae9;border-color:#888}
+.UIButton_Gray:active{background-color:#ddd;background-image:none}
+.UIButton_Gray .UIButton_Text{color:#333}
+.UIButton_Blue{background-color:#5b74a8;background-position:0 -48px;border-color:#26446E #152F5F #0c2253}
+.UIButton_Blue:active{background-color:#516899;background-image:none}
+.UIButton_Blue .UIButton_Text{color:#fff}
+.UIButton_Green{background-color:#69a74e;background-position:0 -96px;border-color:#386F24 #236013 #16540a}
+.UIButton_Green:active{background-color:#609946;background-image:none}
+.UIButton_Green .UIButton_Text{color:#fff}
+.UIButton_Suppressed{background:transparent;border-color:transparent}
+.ie6 .UIButton_Suppressed,
+.UIButton_Suppressed:hover{background-image:url(/rsrc.php/z9PKX/hash/e7508nhk.gif);border-color:#888}
+.UIButton_Suppressed:active{background-color:#ddd;background-image:none}
+.UIButton_Disabled,
+.UIButton_Disabled:active{background-color:#f2f2f2;background-image:none;border-color:#b8b8b8}
+.UIButton_Disabled .UIButton_Text,
+.UIButton_Disabled:active .UIButton_Text{color:#b8b8b8}
+.UIButton_Depressed{background-color:#7d7d7d;background-image:none;border-color:#525252}
+.UIButton_Depressed .UIButton_Text{color:#fff}
+.UIActionButton{margin:5px}
+.UIActionButton_SuppressMargin{margin:0}
+span.UIButton_Icon,
+img.UIButton_Icon{display:block;height:16px !important;margin:-2px 5px 0 0;float:left;width:16px !important}
+img.UIButton_Icon{margin-top:0}
+span.UIButton_IconNoSpriteMap{background-image:url(/rsrc.php/z9PKX/hash/e7508nhk.gif)}
+a.UIActionButton_SuppressText{padding:3px 0 4px 4px}
+.UIActionButton_SuppressText .UIButton_Icon{margin:0}
+.UIActionButton .UITooltip_Wrap{bottom:25px;margin-left:0}
+.UIActionMenu{cursor:pointer;display:inline-block;font-size:11px;position:relative;border-bottom:1px solid #f2f2f2}
+.ie6 .UIActionMenu{display:inline}
+.UIActionMenu a:hover{text-decoration:none}
+.UIActionMenu_Wrap{position:relative;background-position:left top;border:1px solid #888;cursor:pointer;display:block;height:21px;padding:0 18px 0 4px;zoom:1}
+.UIActionMenu_Wrap input{background:none;border:none;cursor:pointer;height:0;outline:none;position:absolute;right:-5px;top:0;width:0}
+.ie6 .UIActionMenu_Wrap,
+.ie6 .UIActionMenu_Text{display:inline-block}
+.UIActionMenu_Chevron, .UIActionMenu_Text, .UIActionMenu_Icon{line-height:21px}
+.UIActionMenu_Chevron{background:no-repeat left -193px;height:21px;position:absolute;right:0;top:0;width:20px}
+.UIActionMenu_Text{color:#333;float:left;font-weight:bold;margin:0 2px}
+.UIActionMenu_Icon{float:left;height:21px}
+.UIActionMenu_Lock{background-position:0 -216px;width:16px}
+.UIActionMenu_Menu{border:1px solid #444;left:0;position:absolute;visibility:hidden;top:22px}
+.UIActionMenu_AlignRight .UIActionMenu_Menu{left:auto;right:0}
+.UIActionMenu_Wrap,
+.UIActionMenu_Icon,
+.UIActionMenu_Chevron,
+.UIActionMenu_SuppressButton .UIActionMenu_Wrap:hover,
+.ie6 .UIActionMenu_SuppressButton .UIActionMenu_Wrap{background-image:url(/rsrc.php/z9PKX/hash/e7508nhk.gif)}
+.UIActionMenu_SuppressButton{border-color:transparent}
+.ie6 .UIActionMenu_SuppressButton{border:none}
+.UIActionMenu_SuppressButton:hover{border-bottom:1px solid #f2f2f2}
+.UIActionMenu_SuppressButton .UIActionMenu_Wrap{background-image:none;border-color:transparent}
+.ie6 .UIActionMenu_SuppressButton .UIActionMenu_Wrap,
+.UIActionMenu_SuppressButton .UIActionMenu_Wrap:hover{border-color:#888}
+.UIActionMenu_Active .UIActionMenu_SuppressButton .UIActionMenu_Wrap{border-color:#444}
+.UIActionMenu_SuppressText .UIActionMenu_Text{display:none}
+.UIActionMenu_Blue .UIActionMenu_Text{color:#3b5998}
+.UIActionMenu_Blue .UIActionMenu_Lock{background-position:left -264px}
+.UIActionMenu_Active .UIActionMenu_Wrap{background:#444 !important;border-color:#444 !important}
+.UIActionMenu_Active .UIActionMenu_Text{color:#fff}
+.UIActionMenu_Active .UIActionMenu_Lock{background-position:left -240px}
+.UIActionMenu_Active .UIActionMenu_Chevron{background-position:left -169px}
+.UIActionMenu_Active,
+.UIActionMenu_Active .UIActionMenu_Menu{z-index:98;visibility:visible}
+.UIActionMenu_Active .UIActionMenu_Wrap:hover .UITooltip_Wrap,
+.UIActionMenu_Active .UIActionMenu_Wrap:hover .UITooltip_Text{visibility:hidden}
+#profile_settings .UIActionMenu,
+.FriendAddingTool_Menu .UIActionMenu{float:left}
+.UIObjectListing_ActionContainer .UIActionMenu{float:right}
+.ff2 .UIObjectListing_ActionContainer .UIActionMenu{float:none}
+span.UIFormButton{padding:0}
+span.UIFormButton .UIButton_Text{padding:3px 6px 4px}
+.ff3 span.UIFormButton .UIButton_Text{padding:2px 4px 3px}
+.ff3 span.UIFormButton_Large .UIButton_Text{padding:2px 5px 3px}
+.ie7 span.UIFormButton .UIButton_Text{padding:2px 7px 2px}
+.ie7 span.UIFormButton_Large{padding:0}
+.ie7 span.UIFormButton_Large .UIButton_Text{padding-top:1px}
+.ie6 span.UIFormButton .UIButton_Text{padding:2px 0 2px}
+.ie6 span.UIFormButton_Large .UIButton_Text{padding:1px 0 2px}
+.UIMessageBox{padding:10px;border-width:1px;border-style:solid}
+.UIMessageBox .sub_message{margin:4px 0 0}
+.status{background-color:#fff9d7;border-color:#e2c822}
+.error{background-color:#ffebe8;border-color:#dd3c10}
+.error a{color:#dd3c10}
+.explanation_note{background-color:#fff;border-color:#bdc7d8}
+.explanation_note .main_message{font-size:11px}
+.explanation_note a{color:#dd3c10}
+.UIProfileImage_LARGE{width:50px;height:50px}
+.UIProfileImage_SMALL{width:32px;height:32px}
+.UIProfileImage_TINY{width:25px;height:25px}
+.UISelectList{background-color:#eee;margin:0;padding:3px 0;width:100%}
+.UISelectList_Item{margin:0;padding:0;text-align:left}
+.UISelectList_Item input{visibility:hidden;position:absolute;left:-20px}
+.UISelectList_Label{color:#111;background-color:#eee;display:block;font-weight:normal;min-width:100px;max-width:300px;overflow:hidden;padding:2px 4px 3px 19px}
+.UISelectList_Label:hover{background-color:#333;color:#eee}
+.UISelectList_check_Checked,
+.UISelectList_radio_Checked{cursor:pointer;font-weight:bold}
+.UISelectList_check_Checked,
+.UISelectList_radio_Checked{background:#eee no-repeat left 4px}
+.UISelectList_check_Checked:hover,
+.UISelectList_radio_Checked:hover{background:#333 no-repeat left -16px}
+.UISelectList_check_Checked,
+.UISelectList_check_Checked:hover{background-image:url(/rsrc.php/zF5BP/hash/f26lvwdd.gif)}
+.UISelectList_radio_Checked,
+.UISelectList_radio_Checked:hover{background-image:url(/rsrc.php/zDOUV/hash/6m1zsoz1.gif)}
+.UITitle{font-weight:bold;margin:0;padding:0}
+.UITitle_h1{font-size:16px}
+.UITitle_h2{font-size:15px}
+.UITitle_h3{font-size:14px}
+.UITitle_h4{font-size:13px}
+.UITitle_h5{font-size:11px}
+.UITitle_Inline{display:inline}
+.UITitle_Section{position:relative}
+.UITitle_Body{float:left;padding-right:3px}
+.UITitle hr{background:#e5e5e5;color:#e5e5e5;position:relative}
+.UITitle_h4 hr{top:9px}
+.UITitle_h5 hr{top:7px}
+.UIImageBlock_Content{_display:block;overflow:hidden;vertical-align:top;*zoom:1}
+.UIImageBlock_Image{float:left;margin-right:5px}
+.UIImageBlock_Image img,
+img.UIImageBlock_Image{display:block}
+.UIImageBlock_Ext{float:right}
+.UIImageBlock_ICON_Image{margin-right:5px}
+.UIImageBlock_ICON_Content{padding-top:1px}
+.UIImageBlock_SMALL_Image{margin-right:8px}
+.UIImageBlock_MED_Image{margin-right:10px}
+
+#bootloader_css_3l4y4s0fzagwowkg_pkg_css { height: 42px; }

@@ -1,0 +1,194 @@
+/*    HTTP Host:  static.ak.fbcdn.net                                          */
+/*    Generated:  October 21st 2009 8:51:31 PM PDT                             */
+/*      Machine:  10.16.139.106                                                */
+/*       Source:  Backing Store                                                */
+/*     Location:  css/ayy72px8y00g0g8s.pkg.css h:6gtrra65                      */
+/*       Locale:  nu_ll                                                        */
+/*         Path:  css/ayy72px8y00g0g8s.pkg.css                                 */
+
+body{background:#fff;font-family:"lucida grande",tahoma,verdana,arial,sans-serif;font-size:11px;color:#333;margin:0;padding:0;text-align:left;direction:ltr;unicode-bidi:embed}
+.auto_resize_iframe{height:auto}
+h1, h2, h3, h4, h5{font-size:13px;color:#333;margin:0;padding:0}
+h1{font-size:14px}
+h4, h5{font-size:11px}
+p{font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;text-align:left}
+a{cursor:pointer;color:#3b5998;-moz-outline-style:none;text-decoration:none}
+a:hover{text-decoration:underline}
+img{border:0}
+select{border:1px solid #bdc7d8;font-family:"lucida grande",tahoma,verdana,arial,sans-serif;font-size:11px;padding:2px}
+td,
+td.label{font-size:11px;text-align:left}
+dd{color:#000}
+dt{color:#777}
+ul{list-style-type:none;margin:0;padding:0}
+abbr{border-bottom:none}
+.pipe{color:#808080;padding:0 3px}
+.column{float:left}
+.center{margin-left:auto;margin-right:auto}
+#facebook .hidden_elem{display:none}
+#facebook .invisible_elem{visibility:hidden}
+#facebook .aural{width:0;height:0;display:block;margin-left:-5000px;overflow:hidden}
+#content{width:auto;padding:0;margin:0}
+.profile #content, .home #content, .search #content{min-height:600px;_height:600px}
+.UIPage_LoggedOut .UIFullPage_Container{padding-top:26px}
+.UIPage_LoggedOut .UIStandardFrame_Container{padding-top:26px}
+.UIStandardFrame_Container{width:960px;padding:22px 0 0 20px;margin:0 auto}
+.UIStandardFrame_Content{width:760px;float:left;margin:0;padding:0}
+.UIStandardFrame_SidebarAds{width:200px;padding:0;margin:0;float:right}
+.UIStandardFrame_FooterAds{clear:both;overflow:hidden;text-align:center}
+.UINarrowFrame_Container{width:560px;padding:0;overflow:hidden}
+.UINarrowFrame_FullWidth{width:600px}
+.UINarrowFrame_CenterPage{margin:0 auto}
+.UIFullPage_Container{width:940px;padding:22px 12px 0 12px;margin:0 auto}
+.UIInterstitialContainer{margin:0 auto 0 auto;padding:22px 150px 50px 150px}
+.UIPage_LoggedOut .UIInterstitialContainer{padding:34px 150px 50px 150px}
+#pagefooter{border-top:solid 1px #ddd;margin:20px auto 35px;padding-bottom:5px;width:964px}
+#pagefooter .copyright_and_location{float:left;width:326px}
+#pagefooter .copyright{float:left;width:95px;color:#777;margin:0;padding:5px 8px 6px 0}
+#pagefooter .locale_footer_selector{direction:ltr;float:left;width:185px;padding:5px 5px 0 0}
+#pagefooter_links{float:right;padding:5px 0 6px 0;text-align:right;width:636px}
+#pagefooter_links .pagefooter_ul{display:inline;margin:0;padding:0;text-decoration:none}
+#pagefooter_links .pagefooter_li{display:inline;padding:0 0 0 10px}
+.ff3 #pagefooter_links .pagefooter_li{display:inline-block}
+#pagefooter_links .bullet{color:#a1a5a9;font-size:12px}
+.ff2 #pagefooter_links .bullet{display:-moz-inline-block}
+#pagefooter_left_links .li_bullet{margin:0 3px 2px 0}
+.empty_message{font-size:13px;line-height:17px;padding:20px 20px 50px 20px;text-align:center;background:#f7f7f7}
+.clearfix:after{clear:both;content:".";display:block;font-size:0;height:0;line-height:0;visibility:hidden}
+.clearfix{display:block}
+.ie6 .clearfix,
+.ie7 .clearfix,
+.ie8 .clearfix{zoom:1}
+form{margin:0;padding:0}
+label{cursor:pointer;color:#666;font-weight:bold;vertical-align:middle}
+label input{font-weight:normal}
+.formtable{margin:0}
+.formtable td{border:none;margin:0;padding:3px 1px}
+.formtable td.label{color:#666;font-weight:bold;padding-right:10px}
+.formtable .tallrow{vertical-align:top}
+.formbuttons{text-align:center;margin:10px 10px}
+.formbuttons .inputsubmit, .formbuttons .inputbutton{margin:2px 4px}
+.inputtext,
+.inputpassword{border:1px solid #bdc7d8;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;padding:3px}
+textarea{border:1px solid #bdc7d8;padding:3px;font-size:11px;font-family:"lucida grande", tahoma, verdana, arial, sans-serif}
+.inputradio{padding:0;margin:0 5px 0 0;vertical-align:middle}
+.inputcheckbox{border:0;vertical-align:middle}
+.inputbutton,
+.inputsubmit{padding:2px 15px 3px 15px;border-style:solid;border-top-width:1px;border-left-width:1px;border-bottom-width:1px;border-right-width:1px;border-top-color:#d9dfea;border-left-color:#d9dfea;border-bottom-color:#0e1f5b;border-right-color:#0e1f5b;background-color:#3b5998;color:#fff;font-size:11px;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;text-align:center}
+.inputsubmit_disabled{background-color:#999;border-bottom:1px solid #000;border-right:1px solid #666;color:#fff}
+.inputaux{background:#f0f0f0;color:#000;border-top-color:#e7e7e7;border-right-color:#666;border-bottom-color:#666;border-left-color:#e7e7e7}
+.inputaux_disabled{color:#999}
+.inputsearch{background:#fff url(/rsrc.php/z136G/hash/3ay18ob4.png) no-repeat left 4px;padding-left:17px}
+ul.square_bullets{list-style:square;padding-left:20px;color:#3b5998}
+ul.square_bullets li{padding:1px 0}
+ul.square_bullets span{color:#333}
+.datawrap{word-wrap:break-word}
+.word_break{display:block;float:left;margin-left:-10px;padding:0}
+.img_loading{position:absolute;left:-100000px;top:-100000px}
+.two_column .right,
+.two_column .left{float:left}
+.no_padding{padding:0}
+.see_all{text-align:right}
+.standard_status_element{visibility:hidden}
+.standard_status_element.async_saving{visibility:visible}
+.note_dialog{background:#FFFFFF none repeat scroll 0;border:1px solid #bdc7d8;color:#444;margin:0 10px 10px;padding:10px}
+.findfriends_block{text-align:left;margin:auto}
+.findfriends_block .findfriends_block_li{line-height:18px}
+.clickable{cursor:pointer}
+input.request_form_submit{background:#3B5998 url(/rsrc.php/z109F/hash/akfyjpcc.gif) no-repeat 8px 6px;padding:3px 6px 3px 26px;overflow:visible}
+img.tracking_pixel{height:1px;position:absolute;visibility:hidden;width:1px}
+.fbsmid{display:none}
+.DOMControl_placeholder{color:#777}
+.no_js .DOMControl_placeholder{color:#000}
+.DOMControl_shadow{position:absolute;left:-10000px;top:-10000px}
+.DOMControl_autogrow{overflow:hidden}
+.diagnostics{position:absolute;top:40px;left:10px;z-index:101;padding:10px;width:200px;border:1px solid #008;background:#dfdfff}
+#dropmenu_container{display:block;height:0;margin:0 auto;padding:0;position:relative;width:964px;z-index:105}
+#locale_selector_dialog_onclick{direction:ltr;float:left;width:185px;padding:5px 5px 0 0}
+#locale_selector_dialog_onclick .intl_selector_dialog_a{direction:ltr}
+.direction_ltr{direction:ltr}
+.direction_rtl{direction:rtl}
+.text_align_ltr{text-align:left}
+.text_align_rtl{text-align:right}
+#captcha fieldset{border-top:1px solid #c0c0c0;border-bottom:1px solid #c0c0c0;margin:0;padding:10px}
+#captcha legend{color:#808080}
+#captcha .captcha_challenge{color:#808080}
+#captcha .divider{display:none}
+#captcha .captcha_refresh{font-size:9px;color:#808080}
+#captcha .captcha_other_options{padding-top:5px;font-size:9px}
+#captcha .recaptcha_text{font-size:11px;line-height:16px}
+#captcha .captcha_optout{font-size:11px;padding:10px 0 5px}
+#captcha #recaptcha_image{color:#666;font-weight:bold;margin:10px 0 0 0}
+#captcha #recaptcha_image a.recaptcha_audio_cant_hear_link{font-size:9px;font-weight:normal}
+#captcha .captcha_challenge img{border:1px solid #c0c0c0}
+#captcha .captcha_input input{direction:ltr;margin-top:4px;width:137px}
+#captcha .captcha_input label{margin-right:4px}
+.register #captcha .captcha_input label{color:#666;font-weight:bold}
+#generic_dialog.captcha .generic_dialog_popup{width:340px}
+#generic_dialog.captcha #generic_dialog_popup{border:0 solid white;margin:auto}
+#generic_dialog.captcha #generic_dialog_popup legend{display:none}
+.audiocaptcha{overflow:hidden;display:block;margin:0;padding:0}
+.audiocaptcha a{display:block}
+.recaptcha_is_showing_audio .recaptcha_only_if_image{display:none !important}
+.recaptcha_isnot_showing_audio .recaptcha_only_if_audio{display:none !important}
+.recaptcha_had_incorrect_sol .recaptcha_only_if_no_incorrect_sol{display:none !important}
+.recaptcha_nothad_incorrec_sol .recaptcha_only_if_incorrect_sol{display:none !important}
+#menubar_container{display:block;padding:0;margin:0;background-color:#3b5998;position:relative;z-index:100}
+#fb_menubar{margin:0 auto;position:relative;width:964px;z-index:101}
+#fb_menubar .fb_menu_list .fb_menu{float:left}
+#fb_menubar_logo .fb_logo_link{display:block;padding:10px 0 6px 10px}
+#fb_menubar_logo .fb_logo_img{background:transparent url(/rsrc.php/z136G/hash/3ay18ob4.png) no-repeat -480px -66px;height:17px;vertical-align:bottom;width:90px}
+#fb_menubar_logo .fb_logo_link:hover .fb_logo_img{background-position:-480px -83px}
+.fb_menu_dropdown{background:white;border:1px solid #3b5998;margin:-2px 0 0 -1px;padding:5px 0;position:absolute;width:auto;z-index:100;display:none;left:0;top:28px;width:200px;font-size:11px;line-height:normal}
+.no_js .fb_menu:hover .fb_menu_dropdown,
+.hovered .fb_menu_dropdown{display:block}
+.fb_menu_dropdown .fb_menu_item .fb_menu_item_link{border:1px solid white;border-width:1px 0;display:block;padding:3px 35px 3px 19px;line-height:normal}
+.fb_menu_dropdown .fb_menu_item .fb_menu_item_link:hover{display:block;background-color:#6d84b4;border-top-color:#617aad;border-bottom-color:#3b5998;color:#fff;text-decoration:none;line-height:normal}
+.fb_menu_dropdown .fb_menu_item small{background-position:-16px 0;background-repeat:no-repeat;float:left;height:16px;margin:-1px 6px 0 0;width:16px}
+.fb_menu_dropdown .fb_menu_item .fb_menu_item_link:hover small{background-position:left top}
+.fb_menu_dropdown .account small{background:transparent url(/rsrc.php/z136G/hash/3ay18ob4.png) no-repeat -606px -66px}
+.fb_menu_dropdown .apps small{background:transparent url(/rsrc.php/z136G/hash/3ay18ob4.png) no-repeat -670px -66px}
+.fb_menu_dropdown .privacy small{background:transparent url(/rsrc.php/z136G/hash/3ay18ob4.png) no-repeat -638px -66px}
+.fb_menu_dropdown .help small{background:transparent url(/rsrc.php/z136G/hash/3ay18ob4.png) no-repeat -859px -102px}
+.fb_menu_dropdown .account .fb_menu_item_link:hover small{background-position:-590px -66px}
+.fb_menu_dropdown .apps .fb_menu_item_link:hover small{background-position:-654px -66px}
+.fb_menu_dropdown .privacy .fb_menu_item_link:hover small{background-position:-622px -66px}
+.fb_menu_dropdown .help .fb_menu_item_link:hover small{background-position:-843px -102px}
+.fb_menu_dropdown .fb_menu_item_disabled span{color:#808080;cursor:default;display:block;padding:4px 35px 4px 20px}
+.fb_menu_dropdown .fb_menu_separator{margin:6px 4px 5px 4px;border-bottom:1px solid #e0e0e0}
+.fb_menu{margin:6px 4px 0 0;position:relative}
+.fb_menu .fb_menu_link{color:#fff;display:block;font-weight:bold;margin-top:0;padding:7px 7px 6px 8px;height:15px}
+.ie6 .fb_menu .fb_menu_link{display:inline-block}
+.ff2 .fb_menu .fb_menu_link{display:-moz-inline-box}
+.hovered .fb_menu_link,
+.fb_menu .fb_menu_link:hover{background-color:#5c75aa;text-decoration:none}
+#fb_menubar_logo{margin-top:0}
+#fb_menubar_logo .fb_logo_link:hover{background-color:transparent}
+.fb_menu_count_holder{position:relative}
+.ie6 .fb_menu_count_holder,
+.ie7 .fb_menu_count_holder{display:inline-block;line-height:15px;height:15px;margin-top:-2px}
+#fb_menubar_core .fb_menu_count_holder .in_start{background:transparent url(/rsrc.php/z136G/hash/3ay18ob4.png) no-repeat -250px -101px;display:-moz-inline-box;display:inline-block;padding:0 6px 0 6px;height:15px}
+.ie7 #fb_menubar_core .fb_menu_count_holder .in_start{background-position:-250px -100px}
+#fb_menubar_core a:hover .fb_menu_count_holder .in_start,
+#fb_menubar_core .hovered .in_start{background-position:-250px -116px}
+.ie7 #fb_menubar_core a:hover .fb_menu_count_holder .in_start,
+.ie7 #fb_menubar_core .hovered .in_start{background-position:-250px -115px}
+#fb_menubar_core .fb_menu_count_holder .in_end{background:transparent url(/rsrc.php/z136G/hash/3ay18ob4.png) no-repeat -331px -101px;display:block;height:15px;width:7px;position:absolute;top:0;right:0}
+.ie6 #fb_menubar_core .fb_menu_count_holder .in_end,
+.ie7 #fb_menubar_core .fb_menu_count_holder .in_end{right:-1px}
+.ie7 #fb_menubar_core .fb_menu_count_holder .in_end{background-position:-331px -100px}
+#fb_menubar_core a:hover .fb_menu_count_holder .in_end,
+#fb_menubar_core .hovered .fb_menu_count_holder .in_end{background-position:-331px -116px}
+.ie7 #fb_menubar_core a:hover .fb_menu_count_holder .in_end,
+.ie7 #fb_menubar_core .hovered .fb_menu_count_holder .in_end{background-position:-331px -115px}
+#fb_menu_inbox_dropdown .nav_inbox_message_unread{background:url(/rsrc.php/zCX2K/hash/24fot0bv.gif) no-repeat 7px 7px}
+#fb_menu_inbox_dropdown .nav_inbox_message_unread .nav_inbox_message_author{font-weight:bold}
+#fb_menu_inbox_dropdown .nav_inbox_message_content{color:#8d9ccf;font-weight:normal;margin-left:5px}
+#fb_menu_inbox_dropdown .nav_inbox_message_unread a:hover{background-image:url(/rsrc.php/z61GH/hash/enc9dthy.gif);background-position:7px 6px;background-repeat:no-repeat}
+#fb_menu_inbox_dropdown a:hover .nav_inbox_message_content{color:#fff}
+#fb_menubar #fb_menubar_aux .fb_menu{float:right;margin:6px 5px 0 0}
+#fb_menubar_aux .fb_menu .fb_menu_link{font-weight:normal}
+#fb_menubar #fb_menubar_aux .fbm_last{margin-right:0}
+#fb_menubar_aux .fb_menu .fb_menu_link:hover .menu_icon{background-position:100% 0}
+
+#bootloader_css_ayy72px8y00g0g8s_pkg_css { height: 42px; }

@@ -1,0 +1,2850 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SocialFlows</title>
+<script type="text/javascript" src="common/json2min.js"></script>
+<script type="text/javascript" src="common/jscommon.js"></script>
+<script type="text/javascript" src="jquery/jquery-1.5.1.min.js"></script>
+<script type="text/javascript" src="jquery/jquery.jeditable.js"></script>
+<script type="text/javascript" src="jquery/jquery-ui-1.8.11.custom.min.js"></script>
+
+<link type="text/css" rel="stylesheet" media="screen" href="facebox/facebox.css"/>
+<link type="text/css" rel="stylesheet" media="screen" href="facebox/faceUI.css"/>
+<link type="text/css" rel="stylesheet" media="screen" href="facebox/faceUIBody.css"/>
+<link type="text/css" rel="stylesheet" media="screen" href="stickers/stickers.css"/>
+<style>
+
+.faceUI .friend_grid_col.fbFriend {
+    margin-bottom:10px;
+}
+
+div.progress-display {
+    padding-bottom:0px;
+    padding-top:50px;
+    text-align:center;
+    padding-left:5px;
+    padding-right:5px;
+    /*
+    -moz-border-radius-bottomleft:4px;
+    -moz-border-radius-bottomright:4px;
+    -moz-border-radius-topleft:4px;
+    -moz-border-radius-topright:4px;
+    background-image:url(images/bluetext.jpg);
+    border:1px solid #C0C0C0;
+    */
+}
+
+.progress-display #progressmessage {
+    font-size:125%;
+}
+
+</style>
+
+<link href="socialflow/socialflow.css" rel="stylesheet" type="text/css" media="screen"/>
+<script type="text/javascript">
+var socialflowProcessDone = false;
+var dunbarGroupsGeneratorURL = "http://localhost:9099/muse/getContactGroupsToSocialFlows.jsp";
+var isEmailEnabled = true;
+var isDevMode      = false;
+var isDemoMode     = true;
+
+function processSocialflow()
+{
+	if (socialflowProcessDone)
+		return;
+    $.ajax({
+    	  url: 'getStatus.jsp',
+    	  success: function(response) {
+               // jQuery.trim(response);
+    	       response = response.replace(/^\s+|\s+$/g, ''); // remember to strip whitespace, used to be a bug
+    	       if (response.length > 0)
+    	    	  $('#progressmessage').html(response);
+    	       setTimeout ("processSocialflow()", 1000); // keep polling till cleared
+    	  }
+    });
+}
+
+function displaySocialflowError(errorMsg)
+{
+	socialflowProcessDone = true;
+	$('#progressmessage').html(errorMsg);
+	$('#loading').hide();
+
+	var retry = $('#retry');
+    if (retry.length != 0) {
+    	retry.click(function(){
+            window.location.reload(true);
+            //return false;
+        });
+    }
+}
+</script> 
+</head>
+<body>
+
+<div id="container">
+	<div id="header" class="socialflow">
+       <div class="socialflow-title"><h1 style="padding-top: 8px; padding-bottom: 5px; font-size: 150%;"><img style="vertical-align: middle; padding-right: 8px; height: 50px; width: 50px;" class="contact" src="egTopology/luke_skywalker_fb.jpg" title="Luke Skywalker">Luke Skywalker's SocialFlows</h1></div>
+       <div title="Add a New Group" class="buttons socialflow" style="display:none;"><a id="create_group" href="#"><img src="stickers/plus.png" title="Add a New Group"> Add a New Group</a></div>
+    </div>
+	<div id="content">
+		
+		<noscript><p><strong>Requires Javascript for viewing</strong></p></noscript>
+		
+		<!--- Progress Display -->
+        <div id="progress-display" class="progress-display">
+        <img id="loading" src="facebox/loading.gif">
+        <br><br>
+        <!-- Analyzing Social Cliques from your email... -->
+        <span id="progressmessage">Building Your Social Topology... </span>
+        </div>
+
+        <!-- 
+        <script type="text/javascript">
+        processSocialflow();
+        </script>
+        -->
+
+        <ul id="socialtree" class="socialflow socialflow-root socialflow-init-display" style="display: none;"> 
+				<li class="socialflow">  
+				<div style="padding-left: 23px;">  
+				    <div class="sticker suggested" id="sticker_1121533620">  
+				    <div class="stickerMetadata" style="display: none;">  
+				        <input id="stickerSfID" name="stickerSfID" value="null" type="hidden">  
+				        <input id="stickerTopologyRunID" name="stickerTopologyRunID" value="1" type="hidden">  
+				        <input id="stickerResourceURI" name="stickerResourceURI" value="null" type="hidden">  
+				        <input id="stickerIconURI" name="stickerIconURI" value="" type="hidden">  
+				        <span class="merged-stickers-metadata"></span>  
+				        <span class="collection">  
+				        </span>  
+				        <input id="numDroppedIn" name="numDroppedIn" value="0" type="hidden">  
+				        <input id="numDraggedOut" name="numDraggedOut" value="0" type="hidden">  
+				        <input id="numAddedContactsByAdd" name="numAddedContactsByAdd" value="1" type="hidden">  
+				        <input id="numAddedContactsByMerge" name="numAddedContactsByMerge" value="0" type="hidden">  
+				        <input id="numClicksToAddContacts" name="numClicksToAddContacts" value="3" type="hidden">  
+				        <input id="numDeletedContacts" name="numDeletedContacts" value="2" type="hidden">  
+				        <input id="numMerges" name="numMerges" value="0" type="hidden">  
+				        <input id="totalClicks" name="totalClicks" value="5" type="hidden">  
+				    </div>  
+				    <div class="sticker-title" style="float: left;"></div>  
+				        <img class="delete_group options options-bar options-icon options-right options-saved options-selected" src="stickers/cross.gif" title="Delete">  
+				        <img class="create_subgroup options options-bar options-icon options-right options-saved options-selected" src="stickers/plus.png" title="Create New Subgroup">  
+				        <input title="Merge Cliques" value="Merge" name="merge-cliques" class="merge_group button-fbstyle options options-bar options-button options-right options-selected" type="button">  
+				        <input title="Select Clique" class="sticker-selected options options-bar options-right options-selected" type="checkbox">  
+				    <br>  
+				    <ul id="clique" class="clique">  
+				    <li class="placeholder" style="display: none;"></li>  
+				    <li style="" class="contact" id="17" title="Princess Leia Organa"> 
+				       <div class="metadata" style="display: none;"> 
+				            <span id="17" class="17"> 
+				                <input class="sfContactID" name="sfContactID" value="17" type="hidden"> 
+				                <input class="socialWeight" name="socialWeight" value="0" type="hidden"> 
+				            </span> 
+				       </div> 
+				       <img title="Princess Leia Organa" src="egTopology/leia_fb.jpg" class="contact">  
+				       <a title="Delete" class="delete deletelink remove_clique_member">X</a>  
+				    </li>  
+				      
+				    <li style="" class="contact" id="1" title="Admiral Ackbar"> 
+				       <div class="metadata" style="display: none;"> 
+				            <span id="1" class="1"> 
+				                <input class="sfContactID" name="sfContactID" value="1" type="hidden"> 
+				                <input class="socialWeight" name="socialWeight" value="0" type="hidden"> 
+				            </span> 
+				       </div> 
+				       <img title="Admiral Ackbar" src="egTopology/ackbar_fb.jpg" class="contact">  
+				       <a title="Delete" class="delete deletelink remove_clique_member">X</a>  
+				    </li>  
+				    <li style="" class="contact" id="20" title="Obi-Wan Kenobi"> 
+				       <div class="metadata" style="display: none;"> 
+				            <span id="20" class="20"> 
+				                <input class="sfContactID" name="sfContactID" value="20" type="hidden"> 
+				                <input class="socialWeight" name="socialWeight" value="0" type="hidden"> 
+				            </span> 
+				       </div> 
+				       <img title="Obi-Wan Kenobi" src="egTopology/obiwan_kenobi_fb.jpg" class="contact">  
+				       <a title="Delete" class="delete deletelink remove_clique_member">X</a>  
+				    </li>  
+				    <li style="" class="contact" id="14" title="Han Solo"> 
+				       <div class="metadata" style="display: none;"> 
+				            <span id="14" class="14"> 
+				                <input class="sfContactID" name="sfContactID" value="14" type="hidden"> 
+				                <input class="socialWeight" name="socialWeight" value="0" type="hidden"> 
+				            </span> 
+				       </div> 
+				       <img title="Han Solo" src="egTopology/han_solo_fb.jpg" class="contact">  
+				       <a title="Delete" class="delete deletelink remove_clique_member">X</a>  
+				    </li>  
+				      
+				    <li style="" class="contact" id="30" title="Yoda"> 
+				       <div class="metadata" style="display: none;"> 
+				            <span id="30" class="30"> 
+				                <input class="sfContactID" name="sfContactID" value="30" type="hidden"> 
+				                <input class="socialWeight" name="socialWeight" value="0" type="hidden"> 
+				            </span> 
+				       </div>
+				       <img title="Yoda" src="egTopology/yoda_fb.jpg" class="contact">  
+				       <a title="Delete" class="delete deletelink remove_clique_member">X</a>  
+				    </li>
+				    
+				    <li style="" class="contact" id="9" title="Chewbacca"> 
+                       <div class="metadata" style="display: none;"> 
+                            <span id="9" class="9"> 
+                                <input class="sfContactID" name="sfContactID" value="9" type="hidden"> 
+                                <input class="socialWeight" name="socialWeight" value="0" type="hidden"> 
+                            </span> 
+                       </div>
+                       <img title="Chewbacca" src="egTopology/chewbacca_fb.jpg" class="contact">  
+                       <a title="Delete" class="delete deletelink remove_clique_member">X</a>  
+                    </li>
+                    
+                    <li style="" class="contact" id="4" title="Biggs Darklighter"> 
+                       <div style="display: none;" class="metadata"> 
+                            <span class="4" id="4"> 
+                                <input type="hidden" value="4" name="sfContactID" class="sfContactID"> 
+                                <input type="hidden" value="0" name="socialWeight" class="socialWeight"> 
+                            </span> 
+                       </div> 
+                       <img class="contact" src="http://static.ak.fbcdn.net/rsrc.php/yo/r/UlIqmHJn-SK.gif" title="Biggs Darklighter">  
+                       <div class="outer-name-overlay" title="Biggs Darklighter"><div class="inner-name-overlay">Biggs Darklighter</div></div>  
+                       <a class="delete deletelink remove_clique_member" title="Delete">X</a>  
+                    </li>
+                    
+                    <li style="" class="contact" id="28" title="Wedge Antilles"> 
+                       <div style="display: none;" class="metadata"> 
+                            <span class="28" id="28"> 
+                                <input type="hidden" value="28" name="sfContactID" class="sfContactID"> 
+                                <input type="hidden" value="0" name="socialWeight" class="socialWeight"> 
+                            </span> 
+                       </div> 
+                       <img class="contact" src="http://static.ak.fbcdn.net/rsrc.php/yo/r/UlIqmHJn-SK.gif" title="Wedge Antilles">  
+                       <div class="outer-name-overlay" title="Wedge Antilles"><div class="inner-name-overlay">Wedge Antilles</div></div>  
+                       <a class="delete deletelink remove_clique_member" title="Delete">X</a>  
+                    </li>
+                    
+                    <li style="" class="contact" id="19" title="Mon Mothma"> 
+                       <div class="metadata" style="display: none;"> 
+                            <span id="19" class="19"> 
+                                <input class="sfContactID" name="sfContactID" value="19" type="hidden"> 
+                                <input class="socialWeight" name="socialWeight" value="0" type="hidden"> 
+                            </span> 
+                       </div>
+                       <img title="Mon Mothma" src="egTopology/secondary/mon_mothma_fb.jpg" class="contact">  
+                       <a title="Delete" class="delete deletelink remove_clique_member">X</a>  
+                    </li>
+                    
+                    <li style="" class="contact" id="10" title="Dack Ralter"> 
+                       <div class="metadata" style="display: none;"> 
+                            <span id="10" class="10"> 
+                                <input class="sfContactID" name="sfContactID" value="10" type="hidden"> 
+                                <input class="socialWeight" name="socialWeight" value="0" type="hidden"> 
+                            </span> 
+                       </div>
+                       <img title="Dack Ralter" src="egTopology/secondary/dack_ralter_fb.jpg" class="contact">  
+                       <a title="Delete" class="delete deletelink remove_clique_member">X</a>  
+                    </li>
+                    
+                    <li style="" class="contact" id="13" title="General Dodonna"> 
+                       <div class="metadata" style="display: none;"> 
+                            <span id="13" class="13"> 
+                                <input class="sfContactID" name="sfContactID" value="13" type="hidden"> 
+                                <input class="socialWeight" name="socialWeight" value="0" type="hidden"> 
+                            </span> 
+                       </div>
+                       <img title="General Dodonna" src="egTopology/secondary/gen_jan_dodonna_fb.jpg" class="contact">  
+                       <a title="Delete" class="delete deletelink remove_clique_member">X</a>  
+                    </li>
+
+                    <li title="Add a Social Contact" class="add_clique_member addContact options"> 
+				       <img title="Add a Social Contact" src="stickers/q_silhouette.gif" class="contact">  
+				       <div title="Add a Social Contact" class="outer-image-overlay"><div class="inner-image-overlay"><img src="stickers/plus.png"></div></div>  
+				    </li>  
+				    </ul>  
+				    </div>  
+				</div>
+				
+				<ul class="socialflow socialflow-init-display" style="display: none;">  
+					<li class="socialflow">  
+					<div style="padding-left: 23px;">  
+					    <div class="sticker suggested" id="sticker_1121533625">  
+					    <div class="stickerMetadata" style="display: none;">  
+					        <input id="stickerSfID" name="stickerSfID" value="null" type="hidden">  
+					        <input id="stickerTopologyRunID" name="stickerTopologyRunID" value="1" type="hidden">  
+					        <input id="stickerResourceURI" name="stickerResourceURI" value="null" type="hidden">  
+					        <input id="stickerIconURI" name="stickerIconURI" value="" type="hidden">  
+					        <span class="merged-stickers-metadata"></span>  
+					        <span class="collection">  
+					        </span>  
+					        <input id="numDroppedIn" name="numDroppedIn" value="0" type="hidden">  
+					        <input id="numDraggedOut" name="numDraggedOut" value="0" type="hidden">  
+					        <input id="numAddedContactsByAdd" name="numAddedContactsByAdd" value="0" type="hidden">  
+					        <input id="numAddedContactsByMerge" name="numAddedContactsByMerge" value="0" type="hidden">  
+					        <input id="numClicksToAddContacts" name="numClicksToAddContacts" value="0" type="hidden">  
+					        <input id="numDeletedContacts" name="numDeletedContacts" value="1" type="hidden">  
+					        <input id="numMerges" name="numMerges" value="0" type="hidden">  
+					        <input id="totalClicks" name="totalClicks" value="1" type="hidden">  
+					    </div>  
+					    <div class="sticker-title" style="float: left;"></div>  
+					        <img class="delete_group options options-bar options-icon options-right options-saved options-selected" src="stickers/cross.gif" title="Delete">  
+					        <img class="create_subgroup options options-bar options-icon options-right options-saved options-selected" src="stickers/plus.png" title="Create New Subgroup">  
+					        <input title="Merge Cliques" value="Merge" name="merge-cliques" class="merge_group button-fbstyle options options-bar options-button options-right options-selected" type="button">  
+					        <input title="Select Clique" class="sticker-selected options options-bar options-right options-selected" type="checkbox">  
+					    <br>  
+					    <ul id="clique" class="clique">  
+					    <li class="placeholder" style="display: none;"></li>
+					    
+                        <li style="display: list-item;" class="contact" id="20" title="Obi-Wan Kenobi"> 
+                           <div class="metadata" style="display: none;"> 
+                                <span id="20" class="20"> 
+                                    <input class="sfContactID" name="sfContactID" value="20" type="hidden"> 
+                                    <input class="socialWeight" name="socialWeight" value="0" type="hidden"> 
+                                </span> 
+                           </div> 
+                           <img title="Obi-Wan Kenobi" src="egTopology/obiwan_kenobi_fb.jpg" class="contact">  
+                           <a title="Delete" class="delete deletelink remove_clique_member">X</a>  
+                        </li>
+					    
+					    <li style="" class="contact" id="14" title="Han Solo"> 
+					       <div class="metadata" style="display: none;"> 
+					            <span id="14" class="14"> 
+					                <input class="sfContactID" name="sfContactID" value="14" type="hidden"> 
+					                <input class="socialWeight" name="socialWeight" value="0" type="hidden"> 
+					            </span> 
+					       </div> 
+					       <img title="Han Solo" src="egTopology/han_solo_fb.jpg" class="contact">  
+					       <a title="Delete" class="delete deletelink remove_clique_member">X</a>  
+					    </li>
+					      
+					    <li style="" class="contact" id="9" title="Chewbacca"> 
+					       <div class="metadata" style="display: none;"> 
+					            <span id="9" class="9"> 
+					                <input class="sfContactID" name="sfContactID" value="9" type="hidden"> 
+					                <input class="socialWeight" name="socialWeight" value="0" type="hidden"> 
+					            </span> 
+					       </div> 
+					       <img title="Chewbacca" src="egTopology/chewbacca_fb.jpg" class="contact">  
+					       <a title="Delete" class="delete deletelink remove_clique_member">X</a>  
+					    </li>  
+					      
+					      
+					    <li title="Add a Social Contact" class="add_clique_member addContact options"> 
+					       <img title="Add a Social Contact" src="stickers/q_silhouette.gif" class="contact">  
+					       <div title="Add a Social Contact" class="outer-image-overlay"><div class="inner-image-overlay"><img src="stickers/plus.png"></div></div>  
+					    </li>  
+					    </ul>  
+					    </div>  
+					</div>  
+					</li>  
+
+					<li class="socialflow">  
+					<div style="padding-left: 23px;">  
+					    <div class="sticker suggested" id="sticker_1121533626">  
+					    <div class="stickerMetadata" style="display: none;">  
+					        <input id="stickerSfID" name="stickerSfID" value="null" type="hidden">  
+					        <input id="stickerTopologyRunID" name="stickerTopologyRunID" value="1" type="hidden">  
+					        <input id="stickerResourceURI" name="stickerResourceURI" value="null" type="hidden">  
+					        <input id="stickerIconURI" name="stickerIconURI" value="" type="hidden">  
+					        <span class="merged-stickers-metadata"></span>  
+					        <span class="collection">  
+					        </span>  
+					        <input id="numDroppedIn" name="numDroppedIn" value="1" type="hidden">  
+					        <input id="numDraggedOut" name="numDraggedOut" value="0" type="hidden">  
+					        <input id="numAddedContactsByAdd" name="numAddedContactsByAdd" value="0" type="hidden">  
+					        <input id="numAddedContactsByMerge" name="numAddedContactsByMerge" value="0" type="hidden">  
+					        <input id="numClicksToAddContacts" name="numClicksToAddContacts" value="0" type="hidden">  
+					        <input id="numDeletedContacts" name="numDeletedContacts" value="2" type="hidden">  
+					        <input id="numMerges" name="numMerges" value="0" type="hidden">  
+					        <input id="totalClicks" name="totalClicks" value="3" type="hidden">  
+					    </div>  
+					    <div class="sticker-title" style="float: left;"></div>  
+					        <img class="delete_group options options-bar options-icon options-right options-saved options-selected" src="stickers/cross.gif" title="Delete">  
+					        <img class="create_subgroup options options-bar options-icon options-right options-saved options-selected" src="stickers/plus.png" title="Create New Subgroup">  
+					        <input title="Merge Cliques" value="Merge" name="merge-cliques" class="merge_group button-fbstyle options options-bar options-button options-right options-selected" type="button">  
+					        <input title="Select Clique" class="sticker-selected options options-bar options-right options-selected" type="checkbox">  
+					    <br>  
+					    <ul id="clique" class="clique">  
+					    <li class="placeholder" style="display: none;"></li>  
+
+					    <li style="display: list-item;" class="contact" id="30" title="Yoda"> 
+					       <div class="metadata" style="display: none;"> 
+					            <span id="30" class="30"> 
+					                <input class="sfContactID" name="sfContactID" value="30" type="hidden"> 
+					                <input class="socialWeight" name="socialWeight" value="0" type="hidden"> 
+					            </span> 
+					       </div> 
+					       <img title="Yoda" src="egTopology/yoda_fb.jpg" class="contact">  
+					       <a title="Delete" class="delete deletelink remove_clique_member">X</a>  
+					    </li>
+					      
+					    <li title="Add a Social Contact" class="add_clique_member addContact options"> 
+					       <img title="Add a Social Contact" src="stickers/q_silhouette.gif" class="contact">  
+					       <div title="Add a Social Contact" class="outer-image-overlay"><div class="inner-image-overlay"><img src="stickers/plus.png"></div></div>  
+					    </li>
+					    </ul>
+					    </div>
+					</div>
+
+					</li>
+				</ul>
+				<span class="socialflow socialflow-navi collapsed">
+				</span></li>
+
+	  
+    
+<li class="socialflow" style="display: block;"> 
+<div style="padding-left: 23px;"> 
+    <div class="sticker suggested" id="newSticker_48"> 
+    <div class="stickerMetadata" style="display: none;"> 
+        <input id="stickerSfID" name="stickerSfID" value="null" type="hidden"> 
+        <input id="stickerResourceURI" name="stickerResourceURI" value="null" type="hidden"> 
+        <input id="stickerIconURI" name="stickerIconURI" value="null" type="hidden"> 
+        <span class="merged-stickers-metadata"></span> 
+        <input id="numDroppedIn" name="numDroppedIn" value="2" type="hidden"> 
+        <input id="numDraggedOut" name="numDraggedOut" value="0" type="hidden"> 
+        <input id="numAddedContactsByAdd" name="numAddedContactsByAdd" value="0" type="hidden"> 
+        <input id="numAddedContactsByMerge" name="numAddedContactsByMerge" value="0" type="hidden"> 
+        <input id="numClicksToAddContacts" name="numClicksToAddContacts" value="0" type="hidden"> 
+        <input id="numDeletedContacts" name="numDeletedContacts" value="0" type="hidden"> 
+        <input id="numMerges" name="numMerges" value="0" type="hidden"> 
+        <input id="totalClicks" name="totalClicks" value="3" type="hidden"> 
+    </div> 
+    <div class="sticker-title" style="float: left;"></div> 
+        <img class="delete_group options options-bar options-icon options-right options-saved options-selected" src="stickers/cross.gif" title="Delete"> 
+        <img class="create_subgroup options options-bar options-icon options-right options-saved options-selected" src="stickers/plus.png" title="Create New Subgroup"> 
+        <input title="Merge Cliques" value="Merge" name="merge-cliques" class="merge_group button-fbstyle options options-bar options-button options-right options-selected" type="button"> 
+        <input title="Select Clique" class="sticker-selected options options-bar options-right options-selected" type="checkbox"> 
+    <br> 
+    <ul id="clique" class="clique"> 
+        <li class="placeholder" style="display: none;"></li>
+        
+        <li style="display: list-item;" class="contact" id="16" title="Lando Calrissian"> 
+           <div class="metadata" style="display: none;"> 
+                <span id="16" class="16"> 
+                    <input class="sfContactID" name="sfContactID" value="16" type="hidden"> 
+                    <input class="socialWeight" name="socialWeight" value="0" type="hidden"> 
+                </span> 
+           </div> 
+           <img title="Lando Calrissian" src="egTopology/lando_fb.jpg" class="contact">  
+           <a title="Delete" class="delete deletelink remove_clique_member">X</a>  
+        </li>
+        
+        <li style="display: list-item;" class="contact" id="18" title="Lobot"> 
+           <div class="metadata" style="display: none;">
+                <span id="18" class="18">
+                    <input class="sfContactID" name="sfContactID" value="18" type="hidden">
+                    <input class="socialWeight" name="socialWeight" value="0" type="hidden">
+                </span>
+           </div>
+           <img title="Lobot" src="egTopology/secondary/lobot_fb.jpg" class="contact">
+           <a title="Delete" class="delete deletelink remove_clique_member">X</a>
+        </li>
+        
+        <li title="Add a Social Contact" class="add_clique_member addContact options"> 
+            <img title="Add a Social Contact" src="stickers/q_silhouette.gif" class="contact"> 
+            <div class="outer-image-overlay" title="Add a Social Contact"><div class="inner-image-overlay"><img src="stickers/plus.png"></div></div> 
+        </li>
+    </ul> 
+    </div> 
+</div> 
+</li> 
+
+	<li class="socialflow">  
+	<div style="padding-left: 23px;">  
+	    <div class="sticker suggested" id="sticker_1121533632">  
+	    <div class="stickerMetadata" style="display: none;">  
+	        <input id="stickerSfID" name="stickerSfID" value="null" type="hidden">  
+	        <input id="stickerTopologyRunID" name="stickerTopologyRunID" value="1" type="hidden">  
+	        <input id="stickerResourceURI" name="stickerResourceURI" value="null" type="hidden">  
+	        <input id="stickerIconURI" name="stickerIconURI" value="" type="hidden">  
+	        <span class="merged-stickers-metadata"></span>  
+	        <span class="collection">  
+	        </span>  
+	        <input id="numDroppedIn" name="numDroppedIn" value="1" type="hidden">  
+	        <input id="numDraggedOut" name="numDraggedOut" value="0" type="hidden">  
+	        <input id="numAddedContactsByAdd" name="numAddedContactsByAdd" value="0" type="hidden">  
+	        <input id="numAddedContactsByMerge" name="numAddedContactsByMerge" value="0" type="hidden">  
+	        <input id="numClicksToAddContacts" name="numClicksToAddContacts" value="0" type="hidden">  
+	        <input id="numDeletedContacts" name="numDeletedContacts" value="2" type="hidden">  
+	        <input id="numMerges" name="numMerges" value="0" type="hidden">  
+	        <input id="totalClicks" name="totalClicks" value="3" type="hidden">  
+	    </div>  
+	    <div class="sticker-title" style="float: left;"></div>  
+	        <img class="delete_group options options-bar options-icon options-right options-saved options-selected" src="stickers/cross.gif" title="Delete">  
+	        <img class="create_subgroup options options-bar options-icon options-right options-saved options-selected" src="stickers/plus.png" title="Create New Subgroup">  
+	        <input title="Merge Cliques" value="Merge" name="merge-cliques" class="merge_group button-fbstyle options options-bar options-button options-right options-selected" type="button">  
+	        <input title="Select Clique" class="sticker-selected options options-bar options-right options-selected" type="checkbox">  
+	    <br>  
+	    <ul id="clique" class="clique">  
+	    <li class="placeholder" style="display: none;"></li>
+	    
+	    <li style="display: list-item;" class="contact" id="11" title="Darth Vader"> 
+	       <div class="metadata" style="display: none;"> 
+	            <span id="11" class="11"> 
+	                <input class="sfContactID" name="sfContactID" value="11" type="hidden"> 
+	                <input class="socialWeight" name="socialWeight" value="0" type="hidden"> 
+	            </span> 
+	       </div> 
+	       <img title="Darth Vader" src="egTopology/darth_vader_fb.jpg" class="contact">  
+	       <a title="Delete" class="delete deletelink remove_clique_member">X</a>  
+	    </li>
+	    
+	    <li style="display: list-item;" class="contact" id="27" title="Grand Moff Tarkin"> 
+	       <div class="metadata" style="display: none;"> 
+	            <span id="27" class="27"> 
+	                <input class="sfContactID" name="sfContactID" value="27" type="hidden"> 
+	                <input class="socialWeight" name="socialWeight" value="0" type="hidden"> 
+	            </span> 
+	       </div> 
+	       <img title="Grand Moff Tarkin" src="egTopology/grandmoff_tarkin_fb.jpg" class="contact">  
+	       <a title="Delete" class="delete deletelink remove_clique_member">X</a>  
+	    </li>
+	    
+	    <li style="display: list-item;" class="contact" id="24" title="Emperor Palpatine"> 
+	       <div class="metadata" style="display: none;"> 
+	            <span id="24" class="24"> 
+	                <input class="sfContactID" name="sfContactID" value="24" type="hidden"> 
+	                <input class="socialWeight" name="socialWeight" value="0" type="hidden"> 
+	            </span> 
+	       </div> 
+	       <img title="Emperor Palpatine" src="egTopology/palpatine_fb.jpg" class="contact">  
+	       <a title="Delete" class="delete deletelink remove_clique_member">X</a>  
+	    </li>
+	      
+	    <li title="Add a Social Contact" class="add_clique_member addContact options"> 
+	       <img title="Add a Social Contact" src="stickers/q_silhouette.gif" class="contact">  
+	       <div title="Add a Social Contact" class="outer-image-overlay"><div class="inner-image-overlay"><img src="stickers/plus.png"></div></div>  
+	    </li>  
+	    </ul>  
+	    </div>  
+	</div>  
+	</li>
+	
+	<li class="socialflow">  
+        <div style="padding-left: 23px;">  
+            <div class="sticker suggested" id="sticker_1121533633">  
+            <div class="stickerMetadata" style="display: none;">  
+                <input id="stickerSfID" name="stickerSfID" value="null" type="hidden">  
+                <input id="stickerTopologyRunID" name="stickerTopologyRunID" value="1" type="hidden">  
+                <input id="stickerResourceURI" name="stickerResourceURI" value="null" type="hidden">  
+                <input id="stickerIconURI" name="stickerIconURI" value="" type="hidden">  
+                <span class="merged-stickers-metadata"></span>  
+                <span class="collection">  
+                </span>  
+                <input id="numDroppedIn" name="numDroppedIn" value="1" type="hidden">  
+                <input id="numDraggedOut" name="numDraggedOut" value="0" type="hidden">  
+                <input id="numAddedContactsByAdd" name="numAddedContactsByAdd" value="0" type="hidden">  
+                <input id="numAddedContactsByMerge" name="numAddedContactsByMerge" value="0" type="hidden">  
+                <input id="numClicksToAddContacts" name="numClicksToAddContacts" value="0" type="hidden">  
+                <input id="numDeletedContacts" name="numDeletedContacts" value="2" type="hidden">  
+                <input id="numMerges" name="numMerges" value="0" type="hidden">  
+                <input id="totalClicks" name="totalClicks" value="3" type="hidden">  
+            </div>  
+            <div class="sticker-title" style="float: left;"></div>  
+                <img class="delete_group options options-bar options-icon options-right options-saved options-selected" src="stickers/cross.gif" title="Delete">  
+                <img class="create_subgroup options options-bar options-icon options-right options-saved options-selected" src="stickers/plus.png" title="Create New Subgroup">  
+                <input title="Merge Cliques" value="Merge" name="merge-cliques" class="merge_group button-fbstyle options options-bar options-button options-right options-selected" type="button">  
+                <input title="Select Clique" class="sticker-selected options options-bar options-right options-selected" type="checkbox">  
+            <br>  
+            <ul id="clique" class="clique">  
+            <li class="placeholder" style="display: none;"></li>  
+ 
+            <li style="display: list-item;" class="contact" id="5" title="Boba Fett"> 
+                <div class="metadata" style="display: none;"> 
+                    <span id="5" class="5"> 
+                        <input class="sfContactID" name="sfContactID" value="5" type="hidden"> 
+                        <input class="socialWeight" name="socialWeight" value="0" type="hidden"> 
+                    </span> 
+                </div> 
+                <img title="Boba Fett" src="egTopology/bobafett_fb.jpg" class="contact">  
+                <a title="Delete" class="delete deletelink remove_clique_member">X</a>  
+            </li>
+ 
+            <li style="display: list-item;" class="contact" id="15" title="Jabba the Hutt"> 
+               <div class="metadata" style="display: none;"> 
+                   <span id="15" class="15"> 
+                       <input class="sfContactID" name="sfContactID" value="15" type="hidden"> 
+                       <input class="socialWeight" name="socialWeight" value="0" type="hidden"> 
+                   </span> 
+               </div> 
+               <img title="Jabba the Hutt" src="egTopology/jabba_fb.jpg" class="contact">  
+               <a title="Delete" class="delete deletelink remove_clique_member">X</a>  
+            </li>  
+            
+            <li style="display: list-item;" class="contact" id="3" title="Bib Fortuna"> 
+               <div class="metadata" style="display: none;"> 
+                   <span id="3" class="3"> 
+                       <input class="sfContactID" name="sfContactID" value="3" type="hidden"> 
+                       <input class="socialWeight" name="socialWeight" value="0" type="hidden"> 
+                   </span> 
+               </div> 
+               <img title="Bib Fortuna" src="egTopology/secondary/bib_fortuna_fb.jpg" class="contact">  
+               <a title="Delete" class="delete deletelink remove_clique_member">X</a>  
+            </li>  
+
+            <li title="Add a Social Contact" class="add_clique_member addContact options"> 
+               <img title="Add a Social Contact" src="stickers/q_silhouette.gif" class="contact">  
+               <div title="Add a Social Contact" class="outer-image-overlay"><div class="inner-image-overlay"><img src="stickers/plus.png"></div></div>  
+            </li>  
+            </ul>  
+            </div>  
+        </div>  
+    </li> 
+
+	<li class="socialflow">  
+	<div style="padding-left: 23px;">  
+	    <div class="sticker suggested" id="sticker_1121533634">  
+	    <div class="stickerMetadata" style="display: none;">  
+	        <input id="stickerSfID" name="stickerSfID" value="null" type="hidden">  
+	        <input id="stickerTopologyRunID" name="stickerTopologyRunID" value="1" type="hidden">  
+	        <input id="stickerResourceURI" name="stickerResourceURI" value="null" type="hidden">  
+	        <input id="stickerIconURI" name="stickerIconURI" value="" type="hidden">  
+	        <span class="merged-stickers-metadata"></span>  
+	        <span class="collection">  
+	        </span>  
+	        <input id="numDroppedIn" name="numDroppedIn" value="0" type="hidden">  
+	        <input id="numDraggedOut" name="numDraggedOut" value="0" type="hidden">  
+	        <input id="numAddedContactsByAdd" name="numAddedContactsByAdd" value="0" type="hidden">  
+	        <input id="numAddedContactsByMerge" name="numAddedContactsByMerge" value="0" type="hidden">  
+	        <input id="numClicksToAddContacts" name="numClicksToAddContacts" value="0" type="hidden">  
+	        <input id="numDeletedContacts" name="numDeletedContacts" value="0" type="hidden">  
+	        <input id="numMerges" name="numMerges" value="0" type="hidden">  
+	        <input id="totalClicks" name="totalClicks" value="0" type="hidden">  
+	    </div>  
+	    <div class="sticker-title" style="float: left;"></div>  
+	        <img class="delete_group options options-bar options-icon options-right options-saved options-selected" src="stickers/cross.gif" title="Delete">  
+	        <img class="create_subgroup options options-bar options-icon options-right options-saved options-selected" src="stickers/plus.png" title="Create New Subgroup">  
+	        <input title="Merge Cliques" value="Merge" name="merge-cliques" class="merge_group button-fbstyle options options-bar options-button options-right options-selected" type="button">  
+	        <input title="Select Clique" class="sticker-selected options options-bar options-right options-selected" type="checkbox">  
+	    <br>  
+	    <ul id="clique" class="clique">  
+	    <li class="placeholder" style="display: none;"></li>
+	    
+	    <li style="display: list-item;" class="contact" id="17" title="Princess Leia Organa"> 
+	       <div class="metadata" style="display: none;"> 
+	            <span id="17" class="17"> 
+	                <input class="sfContactID" name="sfContactID" value="17" type="hidden"> 
+	                <input class="socialWeight" name="socialWeight" value="0" type="hidden"> 
+	            </span> 
+	       </div> 
+	       <img title="Princess Leia Organa" src="egTopology/leia_fb.jpg" class="contact">  
+	       <a title="Delete" class="delete deletelink remove_clique_member">X</a>  
+	    </li>
+
+        <li style="" class="contact" id="22" title="Owen Lars">
+           <div style="display: none;" class="metadata">
+                <span class="22" id="22"> 
+                    <input type="hidden" value="22" name="sfContactID" class="sfContactID"> 
+                    <input type="hidden" value="0" name="socialWeight" class="socialWeight"> 
+                </span> 
+           </div> 
+           <img class="contact" src="http://static.ak.fbcdn.net/rsrc.php/yo/r/UlIqmHJn-SK.gif" title="Owen Lars">  
+           <div class="outer-name-overlay" title="Owen Lars"><div class="inner-name-overlay">Owen Lars</div></div>  
+           <a class="delete deletelink remove_clique_member" title="Delete">X</a>  
+        </li>
+        
+        <li style="" class="contact" id="2" title="Beru Lars">
+           <div style="display: none;" class="metadata">
+                <span class="2" id="2"> 
+                    <input type="hidden" value="2" name="sfContactID" class="sfContactID"> 
+                    <input type="hidden" value="0" name="socialWeight" class="socialWeight"> 
+                </span> 
+           </div> 
+           <img class="contact" src="http://static.ak.fbcdn.net/rsrc.php/yo/r/UlIqmHJn-SK.gif" title="Beru Lars">  
+           <div class="outer-name-overlay" title="Beru Lars"><div class="inner-name-overlay">Beru Lars</div></div>  
+           <a class="delete deletelink remove_clique_member" title="Delete">X</a>  
+        </li>
+	      
+	    <li title="Add a Social Contact" class="add_clique_member addContact options"> 
+	       <img title="Add a Social Contact" src="stickers/q_silhouette.gif" class="contact">  
+	       <div title="Add a Social Contact" class="outer-image-overlay"><div class="inner-image-overlay"><img src="stickers/plus.png"></div></div>  
+	    </li>
+
+	    </ul>  
+	    </div>  
+	</div>  
+	  
+	</li>  
+
+	<li class="socialflow">  
+	<div style="padding-left: 23px;">  
+	    <div class="sticker suggested" id="sticker_1121533637">  
+	    <div class="stickerMetadata" style="display: none;">  
+	        <input id="stickerSfID" name="stickerSfID" value="null" type="hidden">  
+	        <input id="stickerTopologyRunID" name="stickerTopologyRunID" value="1" type="hidden">  
+	        <input id="stickerResourceURI" name="stickerResourceURI" value="null" type="hidden">  
+	        <input id="stickerIconURI" name="stickerIconURI" value="" type="hidden">  
+	        <span class="merged-stickers-metadata"></span>  
+	        <span class="collection">  
+	        </span>  
+	        <input id="numDroppedIn" name="numDroppedIn" value="1" type="hidden">  
+	        <input id="numDraggedOut" name="numDraggedOut" value="0" type="hidden">  
+	        <input id="numAddedContactsByAdd" name="numAddedContactsByAdd" value="0" type="hidden">  
+	        <input id="numAddedContactsByMerge" name="numAddedContactsByMerge" value="0" type="hidden">  
+	        <input id="numClicksToAddContacts" name="numClicksToAddContacts" value="0" type="hidden">  
+	        <input id="numDeletedContacts" name="numDeletedContacts" value="0" type="hidden">  
+	        <input id="numMerges" name="numMerges" value="0" type="hidden">  
+	        <input id="totalClicks" name="totalClicks" value="1" type="hidden">  
+	    </div>  
+	    <div class="sticker-title" style="float: left;"></div>  
+	        <img class="delete_group options options-bar options-icon options-right options-saved options-selected" src="stickers/cross.gif" title="Delete">  
+	        <img class="create_subgroup options options-bar options-icon options-right options-saved options-selected" src="stickers/plus.png" title="Create New Subgroup">  
+	        <input title="Merge Cliques" value="Merge" name="merge-cliques" class="merge_group button-fbstyle options options-bar options-button options-right options-selected" type="button">  
+	        <input title="Select Clique" class="sticker-selected options options-bar options-right options-selected" type="checkbox">  
+	    <br>  
+	    <ul id="clique" class="clique">  
+	    <li class="placeholder" style="display: none;"></li>  
+	    <li style="" class="contact" id="25" title="R2-D2"> 
+	       <div class="metadata" style="display: none;"> 
+	            <span id="25" class="25"> 
+	                <input class="sfContactID" name="sfContactID" value="25" type="hidden"> 
+	                <input class="socialWeight" name="socialWeight" value="0" type="hidden"> 
+	            </span> 
+	       </div> 
+	       <img title="R2-D2" src="egTopology/r2d2_fb.jpg" class="contact">  
+	       <a title="Delete" class="delete deletelink remove_clique_member">X</a>  
+	    </li>
+	    <li style="display: list-item;" class="contact" id="8" title="C-3PO"> 
+	       <div class="metadata" style="display: none;"> 
+	            <span id="8" class="8"> 
+	                <input class="sfContactID" name="sfContactID" value="8" type="hidden"> 
+	                <input class="socialWeight" name="socialWeight" value="0" type="hidden"> 
+	            </span> 
+	       </div> 
+	       <img title="C-3PO" src="egTopology/c3po_fb.jpg" class="contact">  
+	       <a title="Delete" class="delete deletelink remove_clique_member">X</a>  
+	    </li>  
+	    <li title="Add a Social Contact" class="add_clique_member addContact options"> 
+	       <img title="Add a Social Contact" src="stickers/q_silhouette.gif" class="contact">  
+	       <div title="Add a Social Contact" class="outer-image-overlay"><div class="inner-image-overlay"><img src="stickers/plus.png"></div></div>  
+	    </li>  
+	    </ul>  
+	    </div>  
+	</div>  
+	</li>  
+
+        </ul>
+		
+	</div>
+</div>
+<p><!-- Placeholder --></p>
+
+
+
+<div class="hidden" id="overlayCover"></div>
+
+
+
+
+<!-- Selection to add more Clique members -->
+<div id="cliqueSelection" class="faceUI" style="top: 70px; left: 145.5px; display: none;">
+    <div class="popup">
+    <table>
+        <tbody>
+        <tr>
+            <td class="tl"></td>
+            <td class="b"></td>
+            <td class="tr"></td>
+        </tr>
+        <tr>
+            <td class="b"></td>
+            <td class="body">
+            <h2 class="dialog_title">
+                <span>Add Social Contacts</span>
+            </h2>
+    <div class="content" style="overflow-y: auto; overflow-x: hidden; height: 188px;">
+    <div id="friend_guesser" class="full" style="width: 460px;">
+    <div class="content clearfix">
+    <div class="clearfix">
+    <div class="friend_grid clearfix">
+    <!-- Start of grid -->
+    
+    <div class="friend_grid_row clearfix" style="margin: 10px -10px 5px;">
+    
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="#" class="socialContactProfilePhoto UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Admiral Ackbar" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" 
+                 src="egTopology/ackbar_fb.jpg" style="width: 50px; height: 50px;">
+        </a>
+        <input value="1" class="fg_action_hide UIImageBlock_Ext selectFriend" type="checkbox">
+        <div class="metadata" style="display: none;">
+        <span id="1" class="1">
+            <input class="sfContactID" name="sfContactID" value="1" type="hidden">
+            <input class="resourceURI" name="resourceURI" value="null" type="hidden">
+            <input class="socialWeight" name="socialWeight" value="0" type="hidden">  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="#" class="socialContactDisplayName fbDisplayName">Admiral Ackbar</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="#" class="socialContactProfilePhoto UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Beru Lars" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" 
+                 src="http://static.ak.fbcdn.net/rsrc.php/y9/r/IB7NOFmPw2a.gif" style="width: 50px; height: 50px;">
+        </a>
+        <input value="2" class="fg_action_hide UIImageBlock_Ext selectFriend" type="checkbox">
+        <div class="metadata" style="display: none;">
+        <span id="2" class="2">
+            <input class="sfContactID" name="sfContactID" value="2" type="hidden">
+            <input class="resourceURI" name="resourceURI" value="null" type="hidden">
+            <input class="socialWeight" name="socialWeight" value="0" type="hidden">  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="#" class="socialContactDisplayName fbDisplayName">Beru Lars</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="#" class="socialContactProfilePhoto UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Bib Fortuna" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" 
+                 src="egTopology/secondary/bib_fortuna_fb.jpg" style="width: 50px; height: 50px;">
+        </a>
+        <input value="3" class="fg_action_hide UIImageBlock_Ext selectFriend" type="checkbox">
+        <div class="metadata" style="display: none;">
+        <span id="3" class="3">
+            <input class="sfContactID" name="sfContactID" value="3" type="hidden">
+            <input class="resourceURI" name="resourceURI" value="null" type="hidden">
+            <input class="socialWeight" name="socialWeight" value="0" type="hidden">  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="#" class="socialContactDisplayName fbDisplayName">Bib Fortuna</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    </div>
+                
+    <div class="friend_grid_row clearfix" style="margin: 10px -10px 5px;">
+    
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="#" class="socialContactProfilePhoto UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Biggs Darklighter" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" 
+                 src="common/contact_placeholder.gif" style="width: 50px; height: 50px;">
+        </a>
+        <input value="4" class="fg_action_hide UIImageBlock_Ext selectFriend" type="checkbox">
+        <div class="metadata" style="display: none;">
+        <span id="4" class="4">
+            <input class="sfContactID" name="sfContactID" value="4" type="hidden">
+            <input class="resourceURI" name="resourceURI" value="null" type="hidden">
+            <input class="socialWeight" name="socialWeight" value="0" type="hidden">  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="#" class="socialContactDisplayName fbDisplayName">Biggs Darklighter</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="#" class="socialContactProfilePhoto UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Boba Fett" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" 
+                 src="egTopology/bobafett_fb.jpg" style="width: 50px; height: 50px;">
+        </a>
+        <input value="5" class="fg_action_hide UIImageBlock_Ext selectFriend" type="checkbox">
+        <div class="metadata" style="display: none;">
+        <span id="5" class="5">
+            <input class="sfContactID" name="sfContactID" value="5" type="hidden">
+            <input class="resourceURI" name="resourceURI" value="null" type="hidden">
+            <input class="socialWeight" name="socialWeight" value="0" type="hidden">  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="#" class="socialContactDisplayName fbDisplayName">Boba Fett</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="#" class="socialContactProfilePhoto UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Bossk" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" 
+                 src="egTopology/secondary/bossk_fb.jpg" style="width: 50px; height: 50px;">
+        </a>
+        <input value="6" class="fg_action_hide UIImageBlock_Ext selectFriend" type="checkbox">
+        <div class="metadata" style="display: none;">
+        <span id="6" class="6">
+            <input class="sfContactID" name="sfContactID" value="6" type="hidden">
+            <input class="resourceURI" name="resourceURI" value="null" type="hidden">
+            <input class="socialWeight" name="socialWeight" value="0" type="hidden">  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="#" class="socialContactDisplayName fbDisplayName">Bossk</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    </div>
+                
+    <div class="friend_grid_row clearfix" style="margin: 10px -10px 5px;">
+    
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="#" class="socialContactProfilePhoto UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Boushh" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" 
+                 src="egTopology/secondary/boushh_fb.jpg" style="width: 50px; height: 50px;">
+        </a>
+        <input value="7" class="fg_action_hide UIImageBlock_Ext selectFriend" type="checkbox">
+        <div class="metadata" style="display: none;">
+        <span id="7" class="7">
+            <input class="sfContactID" name="sfContactID" value="7" type="hidden">
+            <input class="resourceURI" name="resourceURI" value="null" type="hidden">
+            <input class="socialWeight" name="socialWeight" value="0" type="hidden">  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="#" class="socialContactDisplayName fbDisplayName">Boushh</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="#" class="socialContactProfilePhoto UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="C-3PO" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" 
+                 src="egTopology/c3po_fb.jpg" style="width: 50px; height: 50px;">
+        </a>
+        <input value="8" class="fg_action_hide UIImageBlock_Ext selectFriend" type="checkbox">
+        <div class="metadata" style="display: none;">
+        <span id="8" class="8">
+            <input class="sfContactID" name="sfContactID" value="8" type="hidden">
+            <input class="resourceURI" name="resourceURI" value="null" type="hidden">
+            <input class="socialWeight" name="socialWeight" value="0" type="hidden">  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="#" class="socialContactDisplayName fbDisplayName">C-3PO</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="#" class="socialContactProfilePhoto UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Chewbacca" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" 
+                 src="egTopology/chewbacca_fb.jpg" style="width: 50px; height: 50px;">
+        </a>
+        <input value="9" class="fg_action_hide UIImageBlock_Ext selectFriend" type="checkbox">
+        <div class="metadata" style="display: none;">
+        <span id="9" class="9">
+            <input class="sfContactID" name="sfContactID" value="9" type="hidden">
+            <input class="resourceURI" name="resourceURI" value="null" type="hidden">
+            <input class="socialWeight" name="socialWeight" value="0" type="hidden">  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="#" class="socialContactDisplayName fbDisplayName">Chewbacca</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    </div>
+                
+    <div class="friend_grid_row clearfix" style="margin: 10px -10px 5px;">
+    
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="#" class="socialContactProfilePhoto UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Dack Ralter" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" 
+                 src="egTopology/secondary/dack_ralter_fb.jpg" style="width: 50px; height: 50px;">
+        </a>
+        <input value="10" class="fg_action_hide UIImageBlock_Ext selectFriend" type="checkbox">
+        <div class="metadata" style="display: none;">
+        <span id="10" class="10">
+            <input class="sfContactID" name="sfContactID" value="10" type="hidden">
+            <input class="resourceURI" name="resourceURI" value="null" type="hidden">
+            <input class="socialWeight" name="socialWeight" value="0" type="hidden">  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="#" class="socialContactDisplayName fbDisplayName">Dack Ralter</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="#" class="socialContactProfilePhoto UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Darth Vader" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" 
+                 src="egTopology/darth_vader_fb.jpg" style="width: 50px; height: 50px;">
+        </a>
+        <input value="11" class="fg_action_hide UIImageBlock_Ext selectFriend" type="checkbox">
+        <div class="metadata" style="display: none;">
+        <span id="11" class="11">
+            <input class="sfContactID" name="sfContactID" value="11" type="hidden">
+            <input class="resourceURI" name="resourceURI" value="null" type="hidden">
+            <input class="socialWeight" name="socialWeight" value="0" type="hidden">  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="#" class="socialContactDisplayName fbDisplayName">Darth Vader</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="#" class="socialContactProfilePhoto UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Derek Klivian" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" 
+                 src="egTopology/secondary/derek_klivian_fb.jpg" style="width: 50px; height: 50px;">
+        </a>
+        <input value="12" class="fg_action_hide UIImageBlock_Ext selectFriend" type="checkbox">
+        <div class="metadata" style="display: none;">
+        <span id="12" class="12">
+            <input class="sfContactID" name="sfContactID" value="12" type="hidden">
+            <input class="resourceURI" name="resourceURI" value="null" type="hidden">
+            <input class="socialWeight" name="socialWeight" value="0" type="hidden">  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="#" class="socialContactDisplayName fbDisplayName">Derek Klivian</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    </div>
+                
+    <div class="friend_grid_row clearfix" style="margin: 10px -10px 5px;">
+    
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="#" class="socialContactProfilePhoto UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="General Dodonna" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" 
+                 src="egTopology/secondary/gen_jan_dodonna_fb.jpg" style="width: 50px; height: 50px;">
+        </a>
+        <input value="13" class="fg_action_hide UIImageBlock_Ext selectFriend" type="checkbox">
+        <div class="metadata" style="display: none;">
+        <span id="13" class="13">
+            <input class="sfContactID" name="sfContactID" value="13" type="hidden">
+            <input class="resourceURI" name="resourceURI" value="null" type="hidden">
+            <input class="socialWeight" name="socialWeight" value="0" type="hidden">  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="#" class="socialContactDisplayName fbDisplayName">General Dodonna</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="#" class="socialContactProfilePhoto UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Han Solo" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" 
+                 src="egTopology/han_solo_fb.jpg" style="width: 50px; height: 50px;">
+        </a>
+        <input value="14" class="fg_action_hide UIImageBlock_Ext selectFriend" type="checkbox">
+        <div class="metadata" style="display: none;">
+        <span id="14" class="14">
+            <input class="sfContactID" name="sfContactID" value="14" type="hidden">
+            <input class="resourceURI" name="resourceURI" value="null" type="hidden">
+            <input class="socialWeight" name="socialWeight" value="0" type="hidden">  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="#" class="socialContactDisplayName fbDisplayName">Han Solo</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="#" class="socialContactProfilePhoto UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Jabba the Hutt" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" 
+                 src="egTopology/jabba_fb.jpg" style="width: 50px; height: 50px;">
+        </a>
+        <input value="15" class="fg_action_hide UIImageBlock_Ext selectFriend" type="checkbox">
+        <div class="metadata" style="display: none;">
+        <span id="15" class="15">
+            <input class="sfContactID" name="sfContactID" value="15" type="hidden">
+            <input class="resourceURI" name="resourceURI" value="null" type="hidden">
+            <input class="socialWeight" name="socialWeight" value="0" type="hidden">  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="#" class="socialContactDisplayName fbDisplayName">Jabba the Hutt</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    </div>
+                
+    <div class="friend_grid_row clearfix" style="margin: 10px -10px 5px;">
+    
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="#" class="socialContactProfilePhoto UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Lando Calrissian" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" 
+                 src="egTopology/lando_fb.jpg" style="width: 50px; height: 50px;">
+        </a>
+        <input value="16" class="fg_action_hide UIImageBlock_Ext selectFriend" type="checkbox">
+        <div class="metadata" style="display: none;">
+        <span id="16" class="16">
+            <input class="sfContactID" name="sfContactID" value="16" type="hidden">
+            <input class="resourceURI" name="resourceURI" value="null" type="hidden">
+            <input class="socialWeight" name="socialWeight" value="0" type="hidden">  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="#" class="socialContactDisplayName fbDisplayName">Lando Calrissian</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="#" class="socialContactProfilePhoto UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Princess Leia Organa" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" 
+                 src="egTopology/leia_fb.jpg" style="width: 50px; height: 50px;">
+        </a>
+        <input value="17" class="fg_action_hide UIImageBlock_Ext selectFriend" type="checkbox">
+        <div class="metadata" style="display: none;">
+        <span id="17" class="17">
+            <input class="sfContactID" name="sfContactID" value="17" type="hidden">
+            <input class="resourceURI" name="resourceURI" value="null" type="hidden">
+            <input class="socialWeight" name="socialWeight" value="0" type="hidden">  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="#" class="socialContactDisplayName fbDisplayName">Princess Leia Organa</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="#" class="socialContactProfilePhoto UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Lobot" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" 
+                 src="egTopology/secondary/lobot_fb.jpg" style="width: 50px; height: 50px;">
+        </a>
+        <input value="18" class="fg_action_hide UIImageBlock_Ext selectFriend" type="checkbox">
+        <div class="metadata" style="display: none;">
+        <span id="18" class="18">
+            <input class="sfContactID" name="sfContactID" value="18" type="hidden">
+            <input class="resourceURI" name="resourceURI" value="null" type="hidden">
+            <input class="socialWeight" name="socialWeight" value="0" type="hidden">  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="#" class="socialContactDisplayName fbDisplayName">Lobot</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    </div>
+                
+    <div class="friend_grid_row clearfix" style="margin: 10px -10px 5px;">
+    
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="#" class="socialContactProfilePhoto UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Mon Mothma" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" 
+                 src="egTopology/secondary/mon_mothma_fb.jpg" style="width: 50px; height: 50px;">
+        </a>
+        <input value="19" class="fg_action_hide UIImageBlock_Ext selectFriend" type="checkbox">
+        <div class="metadata" style="display: none;">
+        <span id="19" class="19">
+            <input class="sfContactID" name="sfContactID" value="19" type="hidden">
+            <input class="resourceURI" name="resourceURI" value="null" type="hidden">
+            <input class="socialWeight" name="socialWeight" value="0" type="hidden">  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="#" class="socialContactDisplayName fbDisplayName">Mon Mothma</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="#" class="socialContactProfilePhoto UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Obi-Wan Kenobi" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" 
+                 src="egTopology/obiwan_kenobi_fb.jpg" style="width: 50px; height: 50px;">
+        </a>
+        <input value="20" class="fg_action_hide UIImageBlock_Ext selectFriend" type="checkbox">
+        <div class="metadata" style="display: none;">
+        <span id="20" class="20">
+            <input class="sfContactID" name="sfContactID" value="20" type="hidden">
+            <input class="resourceURI" name="resourceURI" value="null" type="hidden">
+            <input class="socialWeight" name="socialWeight" value="0" type="hidden">  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="#" class="socialContactDisplayName fbDisplayName">Obi-Wan Kenobi</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="#" class="socialContactProfilePhoto UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Oola" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" 
+                 src="egTopology/secondary/oola_fb.jpg" style="width: 50px; height: 50px;">
+        </a>
+        <input value="21" class="fg_action_hide UIImageBlock_Ext selectFriend" type="checkbox">
+        <div class="metadata" style="display: none;">
+        <span id="21" class="21">
+            <input class="sfContactID" name="sfContactID" value="21" type="hidden">
+            <input class="resourceURI" name="resourceURI" value="null" type="hidden">
+            <input class="socialWeight" name="socialWeight" value="0" type="hidden">  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="#" class="socialContactDisplayName fbDisplayName">Oola</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    </div>
+                
+    <div class="friend_grid_row clearfix" style="margin: 10px -10px 5px;">
+    
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="#" class="socialContactProfilePhoto UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Owen Lars" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" 
+                 src="common/contact_placeholder.gif" style="width: 50px; height: 50px;">
+        </a>
+        <input value="22" class="fg_action_hide UIImageBlock_Ext selectFriend" type="checkbox">
+        <div class="metadata" style="display: none;">
+        <span id="22" class="22">
+            <input class="sfContactID" name="sfContactID" value="22" type="hidden">
+            <input class="resourceURI" name="resourceURI" value="null" type="hidden">
+            <input class="socialWeight" name="socialWeight" value="0" type="hidden">  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="#" class="socialContactDisplayName fbDisplayName">Owen Lars</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="#" class="socialContactProfilePhoto UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Padmé Amidala" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" 
+                 src="egTopology/amidala_fb.jpg" style="width: 50px; height: 50px;">
+        </a>
+        <input value="23" class="fg_action_hide UIImageBlock_Ext selectFriend" type="checkbox">
+        <div class="metadata" style="display: none;">
+        <span id="23" class="23">
+            <input class="sfContactID" name="sfContactID" value="23" type="hidden">
+            <input class="resourceURI" name="resourceURI" value="null" type="hidden">
+            <input class="socialWeight" name="socialWeight" value="20" type="hidden">  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="#" class="socialContactDisplayName fbDisplayName">Padmé Amidala</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="#" class="socialContactProfilePhoto UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Emperor Palpatine" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" 
+                 src="egTopology/palpatine_fb.jpg" style="width: 50px; height: 50px;">
+        </a>
+        <input value="24" class="fg_action_hide UIImageBlock_Ext selectFriend" type="checkbox">
+        <div class="metadata" style="display: none;">
+        <span id="24" class="24">
+            <input class="sfContactID" name="sfContactID" value="24" type="hidden">
+            <input class="resourceURI" name="resourceURI" value="null" type="hidden">
+            <input class="socialWeight" name="socialWeight" value="0" type="hidden">  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="#" class="socialContactDisplayName fbDisplayName">Emperor Palpatine</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    </div>
+                
+    <div class="friend_grid_row clearfix" style="margin: 10px -10px 5px;">
+    
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="#" class="socialContactProfilePhoto UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="R2-D2" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" 
+                 src="egTopology/r2d2_fb.jpg" style="width: 50px; height: 50px;">
+        </a>
+        <input value="25" class="fg_action_hide UIImageBlock_Ext selectFriend" type="checkbox">
+        <div class="metadata" style="display: none;">
+        <span id="25" class="25">
+            <input class="sfContactID" name="sfContactID" value="25" type="hidden">
+            <input class="resourceURI" name="resourceURI" value="null" type="hidden">
+            <input class="socialWeight" name="socialWeight" value="0" type="hidden">  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="#" class="socialContactDisplayName fbDisplayName">R2-D2</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="#" class="socialContactProfilePhoto UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="General Rieekan" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" 
+                 src="egTopology/secondary/gen_carlist_rieekan_fb.jpg" style="width: 50px; height: 50px;">
+        </a>
+        <input value="26" class="fg_action_hide UIImageBlock_Ext selectFriend" type="checkbox">
+        <div class="metadata" style="display: none;">
+        <span id="26" class="26">
+            <input class="sfContactID" name="sfContactID" value="26" type="hidden">
+            <input class="resourceURI" name="resourceURI" value="null" type="hidden">
+            <input class="socialWeight" name="socialWeight" value="0" type="hidden">  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="#" class="socialContactDisplayName fbDisplayName">General Rieekan</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="#" class="socialContactProfilePhoto UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Grand Moff Tarkin" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" 
+                 src="egTopology/grandmoff_tarkin_fb.jpg" style="width: 50px; height: 50px;">
+        </a>
+        <input value="27" class="fg_action_hide UIImageBlock_Ext selectFriend" type="checkbox">
+        <div class="metadata" style="display: none;">
+        <span id="27" class="27">
+            <input class="sfContactID" name="sfContactID" value="27" type="hidden">
+            <input class="resourceURI" name="resourceURI" value="null" type="hidden">
+            <input class="socialWeight" name="socialWeight" value="0" type="hidden">  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="#" class="socialContactDisplayName fbDisplayName">Grand Moff Tarkin</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    </div>
+                
+    <div class="friend_grid_row clearfix" style="margin: 10px -10px 5px;">
+    
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="#" class="socialContactProfilePhoto UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Wedge Antilles" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" 
+                 src="common/contact_placeholder.gif" style="width: 50px; height: 50px;">
+        </a>
+        <input value="28" class="fg_action_hide UIImageBlock_Ext selectFriend" type="checkbox">
+        <div class="metadata" style="display: none;">
+        <span id="28" class="28">
+            <input class="sfContactID" name="sfContactID" value="28" type="hidden">
+            <input class="resourceURI" name="resourceURI" value="null" type="hidden">
+            <input class="socialWeight" name="socialWeight" value="0" type="hidden">  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="#" class="socialContactDisplayName fbDisplayName">Wedge Antilles</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="#" class="socialContactProfilePhoto UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Wicket" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" 
+                 src="egTopology/secondary/wicket_fb.jpg" style="width: 50px; height: 50px;">
+        </a>
+        <input value="29" class="fg_action_hide UIImageBlock_Ext selectFriend" type="checkbox">
+        <div class="metadata" style="display: none;">
+        <span id="29" class="29">
+            <input class="sfContactID" name="sfContactID" value="29" type="hidden">
+            <input class="resourceURI" name="resourceURI" value="null" type="hidden">
+            <input class="socialWeight" name="socialWeight" value="0" type="hidden">  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="#" class="socialContactDisplayName fbDisplayName">Wicket</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    <div class="friend_grid_col clearfix fbFriend" style="width: 138px; height: 50px;">
+    <div class="UIImageBlock clearfix">
+        <a href="#" class="socialContactProfilePhoto UIImageBlock_Image UIImageBlock_SMALL_Image fbProfileUrl">
+            <img title="Yoda" class="UIProfileImage UIProfileImage_LARGE fbProfileImage" 
+                 src="egTopology/yoda_fb.jpg" style="width: 50px; height: 50px;">
+        </a>
+        <input value="30" class="fg_action_hide UIImageBlock_Ext selectFriend" type="checkbox">
+        <div class="metadata" style="display: none;">
+        <span id="30" class="30">
+            <input class="sfContactID" name="sfContactID" value="30" type="hidden">
+            <input class="resourceURI" name="resourceURI" value="null" type="hidden">
+            <input class="socialWeight" name="socialWeight" value="0" type="hidden">  
+        </span>
+        </div>
+        <div class="fg_links UIImageBlock_Content UIImageBlock_SMALL_Content">
+            <div class="fg_name">
+            <a href="#" class="socialContactDisplayName fbDisplayName">Yoda</a>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+    </div>
+                
+    </div></div></div></div>
+                </div>
+                <div class="info"></div>
+                <div class="footer">
+                    <input class="inputsubmit addToClique" name="save" value="Add" style="float: left; vertical-align: top;" type="button">
+                    <a href="#" class="close"><img src="facebox/closelabel.gif" title="close" class="close_image"></a>          
+                </div>            
+            </td>            
+            <td class="b"></td>           
+        </tr>          
+        <tr>            
+            <td class="bl"></td><td class="b"></td><td class="br"></td>           
+        </tr>         
+        </tbody>      
+    </table>     
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- Control Panel -->
+<!-- Feedback Panel CSS and Javascript -->
+<script type="text/javascript">
+    var enableUserStudyMode = false;
+
+    /* Control Panel methods */
+    function showControlPanel()
+    {
+        var controlPanel = $('div#control-panel');
+
+        // Reveal/Display control panel
+        //controlPanel.show();
+        controlPanel.animate({right:'-3px'}, 1500, function() {
+            controlPanel.find('#toggleControlPanel').addClass('showControlPanel');
+        });
+        $('#toggleControlPanel-indicator').html('&#9658;'); //Shows Right-Arrow
+    }
+    
+    function initControlPanel()
+    {
+        var controlPanel = $('div#control-panel');
+        var controlPanelToggle = controlPanel.find('#toggleControlPanel');
+
+        // Enable reveal/hide control panel
+        controlPanelToggle.click(function() {
+            if ($(this).hasClass('showControlPanel')) {
+                $(this).removeClass('showControlPanel');
+                controlPanel.animate({right:'-198px'}, 300);
+                $('#toggleControlPanel-indicator').html('&#9668;'); //Shows Left-Arrow
+            }
+            else {
+                $(this).addClass('showControlPanel');
+                controlPanel.animate({right:'-3px'}, 300);
+                $('#toggleControlPanel-indicator').html('&#9658;'); //Shows Right-Arrow
+            }
+            return false;
+        });
+        
+        // Hide link
+        controlPanel.find('#hideControlPanel').click(function() {
+            controlPanelToggle.removeClass('showControlPanel');
+            controlPanel.animate({right:'-198px'}, 300);
+            controlPanelToggle.find('#toggleControlPanel-indicator').html('&#9668;'); //Shows Left-Arrow
+            return false;
+        });
+        
+                
+        /*
+        $('div#control-panel').tabSlideOut({
+            tabHandle: '.handle',                     //class of the element that will become your tab
+            pathToTabImage: null, //path to the image for the tab //Optionally can be set using css
+            imageHeight: '30px',                     //height of tab image           //Optionally can be set using css
+            imageWidth: '20px',                       //width of tab image            //Optionally can be set using css
+            tabLocation: 'right',                      //side of screen where tab lives, top, right, bottom, or left
+            speed: 300,                               //speed of animation
+            action: 'click',                          //options: 'click' or 'hover', action to trigger animation
+            topPos: '38px',                          //position from the top/ use if tabLocation is left or right
+            leftPos: '20px',                          //position from left/ use if tabLocation is bottom or top
+            fixedPosition: true,                      //options: true makes it stick(fixed position) on scroll
+            toggleCallback: function(mode) {
+                               if (mode == 'open')
+                                  $('#toggleControlPanel-indicator').html('&#9658;'); //Shows Right-Arrow
+                               else if (mode == 'close')
+                                  $('#toggleControlPanel-indicator').html('&#9668;'); //Shows Left-Arrow
+                            }
+        });
+        */
+        
+        // Initialize feedback/user-study panel
+        initFeedbackPanel();
+
+        // Initialize the multi-options panel
+        initFacetedPanels();
+
+    }
+    
+    function initFeedbackPanel()
+    {
+        var feedbackPanel = $('#feedback-panel');
+        if (feedbackPanel.length <= 0)
+            return;
+
+        // Slider for ratings
+        var ratingLevels = feedbackPanel.find('select#ratingLevels');
+        ratingLevels.selectToUISlider({
+            labels: 5,
+            tooltip: true, //show tooltips, boolean
+            tooltipSrc: 'value',
+            labelSrc: 'text',
+            sliderOptions: null
+        }).hide();
+
+
+        // Submit feedback button
+        feedbackPanel.find('#submitfeedback').click(function(){
+            var sfTopologyId = feedbackPanel.find('#sfTopologyId').val();
+            var rating = ratingLevels.find("option:selected");
+            if (rating.length <= 0)
+                return false;
+            //var feedbackText = feedbackPanel.find('#feedback').text();
+            var feedbackText = feedbackPanel.find('#feedback').attr('value');
+            
+            feedbackPanel.slideUp(1000, function(){
+                if (enableUserStudyMode) {
+                    $('#parameters-panel').slideDown(1000); 
+                }
+                else {
+                    $('#feedback-submitted-msg').slideDown('fast');
+                }
+            });
+
+            // POST feedback about current social topology run
+            $.ajax({
+                type:           'POST',
+                cache:          false,
+                url:            "saveFeedback.jsp",
+                data:           {sfTopologyId: sfTopologyId, feedback: feedbackText, rating: rating.val() },  //{input: postdata},
+                // processData:    false,
+                dataType:       'text'
+                // success:        function(data, textStatus) { processPOSTSuccess(data, klass, postdata, postcallback) },
+                // error:          function(XMLHttpRequest, textStatus, errorThrown) { processPOSTError(textStatus, errorThrown, klass) }
+            });
+        });
+        
+        if (enableUserStudyMode) {
+            // Skip feedback button
+            feedbackPanel.find('#skipfeedback').click(function(){
+                feedbackPanel.slideUp(1000, function(){
+                    $('#parameters-panel').slideDown(1000);
+                });
+            });
+        }
+    }
+    
+    function initMoreOptionsPanel()
+    {
+        $('#enableBrushAndLink').click(function() {
+            if ($(this).attr('checked'))
+                toggleBrushLink(true);
+            else
+                toggleBrushLink(false);
+        });
+    }
+
+    function initFacetedPanels()
+    {
+        initMoreOptionsPanel();
+
+        $('#parameters-panel .resetParams').click(function() {
+            var currentPanel = $(this).closest('.accordionPanel');
+            resetAlgoParams(currentPanel);
+            return false;
+        });
+        
+        // Rerun algo depending on dataset
+        $('#parameters-panel .reanalyze').click(function() {
+            var currentPanel = $(this).closest('.accordionPanel');
+            runAlgo(currentPanel);
+            return false;
+        });
+        
+        // Nice bit of accordion code from 
+        // "http://www.stemkoski.com/stupid-simple-jquery-accordion-menu/"
+        // JQueryUI Accordion widget is too heavy/complicated, not lightweight enough
+        $('a.accordionButton').click(function() {
+            // Order of animations added to JQuery's event queue 
+            // ensures accordion panel that is eventually revealed
+            // will run after all previously-opened panels are closed
+            $('a.accordionButton').removeClass('on');
+            $('.accordionPanel').slideUp('slow');
+            
+            // Check if corresponding panel is currently hidden
+            var correspondingPanel = $(this).parent().next();
+            if(correspondingPanel.is(':hidden')) {
+                // A currently-hidden element will not have a
+                // slideUp() animation in its corresponding 'fx' queue
+                $(this).addClass('on');
+                correspondingPanel.slideDown('slow');
+            }
+            return false;
+        });
+        // $('.accordionPanel').hide(); 
+    }
+    
+    function resetAlgoParams(currentPanel)
+    {
+        var algoParams = currentPanel.find('.algoParams');
+        var panelName  = currentPanel.attr('id');
+        
+        if (panelName == 'parameters-email-newalgo-panel'
+            || panelName == 'parameters-photos-panel') 
+        {
+            var errWeightDefault = algoParams.children('#errWeightDefault').val();
+            var numGroupsDefault = algoParams.children('#numGroupsDefault').val();
+            
+            currentPanel.find('#errWeight').val(errWeightDefault);
+            currentPanel.find('#numGroups').val(numGroupsDefault);
+        }
+        else
+        {
+            // Default values are always available within DOM metadata
+            var minFreqDefault            = algoParams.children('#minCountDefault').val();
+            var maxErrorDefault           = algoParams.children('#maxErrorDefault').val();
+            var minGroupSizeDefault       = algoParams.children('#minGroupSizeDefault').val();
+            var minGroupSimilarityDefault = algoParams.children('#minMergeGroupSimDefault').val();
+
+            currentPanel.find('#minCount').val(minFreqDefault);
+            currentPanel.find('#maxError').val(maxErrorDefault);
+            currentPanel.find('#minGroupSize').val(minGroupSizeDefault);
+            currentPanel.find('#minMergeGroupSim').val(minGroupSimilarityDefault);
+        }
+    }
+    
+    function runAlgo(currentPanel)
+    {
+        var algoParams = currentPanel.find('.algoParams');
+        var panelName  = currentPanel.attr('id');
+        
+        var errWeight = null, numGroups  = null;
+        if (panelName == 'parameters-email-newalgo-panel'
+            || panelName == 'parameters-photos-panel') 
+        {
+            var errWeightDefault = algoParams.children('#errWeightDefault').val();
+            var numGroupsDefault = algoParams.children('#numGroupsDefault').val();
+            
+            errWeight = currentPanel.find('#errWeight').val();
+            if (errWeight == null || errWeight.trim().length <= 0)
+                errWeight = errWeightDefault;
+            numGroups = currentPanel.find('#numGroups').val();
+            if (numGroups == null || numGroups.trim().length <= 0)
+                numGroups = numGroupsDefault;
+        }
+        
+        if (panelName == 'parameters-email-newalgo-panel')
+        {
+            /*
+            var genGroupURL
+            = $('#generateGroupURL').val()
+              + "&useNewGroupsAlgo=true"
+              + "&errWeight="+errWeight
+              + "&numGroups="+numGroups;
+            window.location.href = genGroupURL;
+            */
+            invokeMuse(numGroups, errWeight);
+            
+            return;
+        }
+        else if (panelName == 'parameters-photos-panel')
+        {
+            var dataToHarvest = new Object();
+            //dataToHarvest.refresh = true;
+            var algoParams = new Object();
+            algoParams.useNewGroupsAlgo = true;
+            algoParams.errWeight        = errWeight;
+            algoParams.numGroups        = numGroups;
+            dataToHarvest.algoParams = algoParams;
+
+            // STRINGIFY!
+            var dataToHarvestJSON = JSON.stringify(dataToHarvest, null, 1);
+            
+            // show harvesting photo albums dialog
+            var loadingMsg = 'Deducing Your Social Groups from your Facebook Photos...';
+            $.facebox.settings.loadingMessage = loadingMsg;
+
+            // Using POST method to list of FB photo albums to harvest
+            jQuery.facebox({ post: 'analyzeFBPhotos.jsp', progress: 'getStatus.jsp',
+                             postdata: dataToHarvestJSON, 
+                             postcallback: processAnalyzePhotosResult });
+            return;
+        }
+        
+        
+        // OLD ALGO
+        var minFreqDefault            = algoParams.children('#minCountDefault').val();
+        var maxErrorDefault           = algoParams.children('#maxErrorDefault').val();
+        var minGroupSizeDefault       = algoParams.children('#minGroupSizeDefault').val();
+        var minGroupSimilarityDefault = algoParams.children('#minMergeGroupSimDefault').val();
+        
+        var minFreq = currentPanel.find('#minCount').val();
+        if (minFreq == null || minFreq.trim().length <= 0)
+            minFreq = minFreqDefault;
+        var maxError = currentPanel.find('#maxError').val();
+        if (maxError == null || maxError.trim().length <= 0)
+            maxError = maxErrorDefault;
+        var minGroupSize = currentPanel.find('#minGroupSize').val();
+        if (minGroupSize == null || minGroupSize.trim().length <= 0)
+            minGroupSize = minGroupSizeDefault;
+        var minGroupSimilarity = currentPanel.find('#minMergeGroupSim').val();
+        if (minGroupSimilarity == null || minGroupSimilarity.trim().length <= 0)
+            minGroupSimilarity = minGroupSimilarityDefault;
+        
+        
+        if (panelName == 'parameters-email-panel') 
+        {
+            //var genGroupURL
+            //= dunbarGroupsGeneratorURL + "?"
+            //  + "minCount="+minFreq+"&maxError="+maxError
+            //  + "&minGroupSize="+minGroupSize+"&minMergeGroupSim="+minGroupSimilarity
+            //  + "&utilityType=linear&multiplier=1.4&submit=submit";
+            var genGroupURL
+            = $('#generateGroupURL').val()
+              + "&minCount="+minFreq+"&maxError="+maxError
+              + "&minGroupSize="+minGroupSize+"&minMergeGroupSim="+minGroupSimilarity;
+
+            window.location.href = genGroupURL;
+        }
+        else if (panelName == 'parameters-photos-oldalgo-panel')
+        {
+            var dataToHarvest = new Object();
+            //dataToHarvest.refresh = true;
+            var algoParams = new Object();
+            algoParams.useNewGroupsAlgo = false;
+            algoParams.minCount         = minFreq;
+            algoParams.maxError         = maxError;
+            algoParams.minGroupSize     = minGroupSize;
+            algoParams.minMergeGroupSim = minGroupSimilarity;
+            dataToHarvest.algoParams = algoParams;
+
+            // STRINGIFY!
+            var dataToHarvestJSON = JSON.stringify(dataToHarvest, null, 1);
+            
+            // show harvesting photo albums dialog
+            var loadingMsg = 'Deducing Your Social Groups from your Facebook Photos...';
+            $.facebox.settings.loadingMessage = loadingMsg;
+
+            // Using POST method to list of FB photo albums to harvest
+            jQuery.facebox({ post: 'analyzeFBPhotos.jsp', progress: 'getStatus.jsp',
+                             postdata: dataToHarvestJSON, 
+                             postcallback: processAnalyzePhotosResult });
+        }
+    }
+    
+    function processAnalyzePhotosResult(resultText, inputdata)
+    {
+        if (resultText == null)
+           return "An error has occured. No results were returned.";
+        
+        var resultData = JSON.parse(resultText);
+        if (!resultData.success)
+           return resultData.message;
+
+        // Hide progress dialog
+        $.facebox.close();
+
+        // Need to refresh UI
+        var refreshSocialFlow = parent.document.getElementById('refreshSocialFlow');
+        var refreshStickers   = parent.document.getElementById('refreshStickers');
+        refreshSocialFlow.value = "true";
+        refreshStickers.value   = "true";
+        
+        // Redirect to SocialFlows page
+        parent.changeInSituTabSelected("socialflow");
+        parent.changeToWindow(3, $('#generateGroupURL').val());
+    }
+
+</script>
+<script type="text/javascript" src="slider/selectToUISlider.jQuery.js"></script>
+<link rel="stylesheet" href="slider/redmond/jquery-ui-1.7.1.custom.css" type="text/css" />
+<link rel="stylesheet" href="slider/ui.slider.extras.css" type="text/css" />
+<style type="text/css">
+.ui-slider {
+    clear: both; 
+    width:155px;
+    margin-top: 8px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.ui-slider li, .ui-slider dd {
+    color:#555555;
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:10px;
+    text-align:center;
+}
+.ui-slider .ui-slider-handle {
+    width:0.8em;
+}
+.ui-helper-reset {
+    line-height:1.0;
+}
+</style>
+
+<div id="control-panel" style="display: block; z-index: 200; right: -198px;">
+<a href="#" id="toggleControlPanel" class="handle"><div id="toggleControlPanel-indicator">&#9668;</div></a>
+<a href="#" id="hideControlPanel">Hide</a>
+<div id=control-panel-spacer" style="height: 20px;"></div>
+
+
+
+
+<!--- Control Panel -->
+<div id="parameters-panel" style="display: block;">
+
+<!--- Panel for groups saving & export options -->
+
+<h3 class=" buttons socialflow" style="position: relative; display: block; margin-top: 3px; margin-bottom: 3px;">
+<a id="save-groups-panel-button" class="" href="javascript:;" style="float: none; margin: 0px; position: relative; display: block;">Save Your Groups</a>
+</h3>
+<div id="more-options-panel" class="accordionPanel" style="display: block;">
+<div class="accordionPanelContents" style="position: relative; display: block; padding-top: 9px;">
+
+<!-- Export social groups to various social networking accounts -->
+<div id="exportToGmailPanel">
+
+<!-- Export social groups to Gmail -->
+<input type="hidden" id="gmailAuthToken" value="null" />
+<div style="padding-top: 0px; padding-bottom:5px;">
+    <input type="button" class="inputsubmit beginGmailAuth" id="beginGmailAuth" name="beginGmailAuth" 
+           value="Save to" style="display: inline; width: 88px;"/>
+    <img src="common/gmail.png" style="display: inline; vertical-align: middle; width: 80px; margin-left: 5px;">
+</div>
+<div id="exportProgressMessage" style="margin-left: 3px;"></div>
+
+<!-- Export social groups to FB as friends lists -->
+<input id="fb_postformid" value="null" type="hidden">
+<input id="fb_dtsg" value="null" type="hidden">
+<div style="padding-top: 0px; padding-bottom: 5px;">
+    <input class="inputsubmit beginFBExport" id="beginFBExport" name="beginFBExport" value="Save to" style="display: inline; width: 88px;" type="button">
+    <img src="common/facebook-logo.png" style="display: inline; vertical-align: middle; width: 80px; height: 36px; margin-left: 5px;">
+</div>
+</div>
+</div>
+<div style="height: 3px;" class="spacer"></div>
+</div>
+
+
+<!--- Panel to give feedback -->
+
+<h3 class="accordionButton buttons socialflow" style="position: relative; display: block; margin-bottom: 3px; margin-top: 6px;">
+<a id="give-feedback-panel-button" class="accordionButton" href="#" style="float: none; margin: 0px; position: relative; display: block;">Give Us Feedback</a>
+</h3>
+<div id="give-feedback-panel" class="accordionPanel" style="display: none;">
+<div class="accordionPanelContents" style="position: relative; display: block; padding-top: 9px;">
+
+<!-- Feedback submitted message -->
+<div id="feedback-submitted-msg" class="hidden">
+<div style="font-weight: bold; text-align: justify; padding-left: 10px; padding-right: 10px;">
+Thanks for your quick feedback!
+<br><br>
+If you want to give us even more feedback, we have the following
+survey available:
+<br><br>
+<div style="text-align: center; font-size: 13px; color: rgb(50, 205, 50);">
+<a target="_blank" href="https://spreadsheets.google.com/viewform?hl=en&amp;formkey=dDBWVG80Y3VkR2hDYjZQLVpjVXhyZWc6MQ#gid=0">SocialFlows Survey</a>
+</div>
+</div>
+<br>
+</div>
+
+<!-- Feedback input form -->
+<div id="feedback-panel">
+<div style="font-weight: bold; margin-bottom: 5px; text-align: justify; padding-left: 8px; padding-right: 8px;">
+How good were the groups suggested to you? Give us a rating!
+</div>
+<div id="rating" style="margin-bottom: 8px;">
+    <select style="display: none;" name="ratingLevels" id="ratingLevels">
+        <option value="1.0">Terrible (1)</option>
+        <option value="1.2">1.2</option>
+        <option value="1.4">1.4</option>
+        <option value="1.6">1.6</option>
+        <option value="1.8">1.8</option>
+        <option value="2.0">Poor (2)</option>
+        <option value="2.2">2.2</option>
+        <option value="2.4">2.4</option>
+        <option value="2.6">2.6</option>
+        <option value="2.8">2.8</option>
+        <option value="3.0" selected="selected">Average (3)</option>
+        <option value="3.2">3.2</option>
+        <option value="3.4">3.4</option>
+        <option value="3.6">3.6</option>
+        <option value="3.8">3.8</option>
+        <option value="4.0">Good (4)</option>
+        <option value="4.2">4.2</option>
+        <option value="4.4">4.4</option>
+        <option value="4.6">4.6</option>
+        <option value="4.8">4.8</option>
+        <option value="5.0">Great (5)</option>
+    </select><div role="application" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><a style="left: 50%;" href="#" tabindex="0" id="handle_ratingLevels" class="ui-slider-handle ui-state-default ui-corner-all" role="slider" aria-labelledby="undefined" aria-valuemin="0" aria-valuemax="20" aria-valuenow="10" aria-valuetext="3.0"><span class="screenReaderContext"></span><span class="ui-slider-tooltip ui-widget-content ui-corner-all"><span class="ttContent">3.0</span><span class="ui-tooltip-pointer-down ui-widget-content"><span style="border-top: 6.3px solid rgb(252, 253, 253);" class="ui-tooltip-pointer-down-inner"></span></span></span></a><ol class="ui-slider-scale ui-helper-reset" role="presentation"><li style="left: 0%;"><span style="margin-left: -12px;" class="ui-slider-label ui-slider-label-show">Terrible (1)</span><span class="ui-slider-tic ui-widget-content" style="display: none;"></span></li><li style="left: 5%;"><span style="margin-left: 7px;" class="ui-slider-label">1.2</span><span class="ui-slider-tic ui-widget-content" style="display: none;"></span></li><li style="left: 10%;"><span style="margin-left: 7px;" class="ui-slider-label">1.4</span><span class="ui-slider-tic ui-widget-content" style="display: none;"></span></li><li style="left: 15%;"><span style="margin-left: 7px;" class="ui-slider-label">1.6</span><span class="ui-slider-tic ui-widget-content" style="display: none;"></span></li><li style="left: 20%;"><span style="margin-left: 7px;" class="ui-slider-label">1.8</span><span class="ui-slider-tic ui-widget-content" style="display: none;"></span></li><li style="left: 25%;"><span style="display: block; visibility: visible; margin-left: -10px;" class="ui-slider-label ui-slider-label-show">Poor (2)</span><span class="ui-slider-tic ui-widget-content" style="display: block;"></span></li><li style="left: 30%;"><span style="margin-left: 7px;" class="ui-slider-label">2.2</span><span class="ui-slider-tic ui-widget-content" style="display: none;"></span></li><li style="left: 35%;"><span style="margin-left: 7px;" class="ui-slider-label">2.4</span><span class="ui-slider-tic ui-widget-content" style="display: none;"></span></li><li style="left: 40%;"><span style="margin-left: 7px;" class="ui-slider-label">2.6</span><span class="ui-slider-tic ui-widget-content" style="display: none;"></span></li><li style="left: 45%;"><span style="margin-left: 7px;" class="ui-slider-label">2.8</span><span class="ui-slider-tic ui-widget-content" style="display: none;"></span></li><li style="left: 50%;"><span style="display: block; visibility: visible; margin-left: -18px;" class="ui-slider-label ui-slider-label-show">Average (3)</span><span class="ui-slider-tic ui-widget-content" style="display: block;"></span></li><li style="left: 55%;"><span style="margin-left: 7px;" class="ui-slider-label">3.2</span><span class="ui-slider-tic ui-widget-content" style="display: none;"></span></li><li style="left: 60%;"><span style="margin-left: 7px;" class="ui-slider-label">3.4</span><span class="ui-slider-tic ui-widget-content" style="display: none;"></span></li><li style="left: 65%;"><span style="margin-left: 7px;" class="ui-slider-label">3.6</span><span class="ui-slider-tic ui-widget-content" style="display: none;"></span></li><li style="left: 70%;"><span style="margin-left: 7px;" class="ui-slider-label">3.8</span><span class="ui-slider-tic ui-widget-content" style="display: none;"></span></li><li style="left: 75%;"><span style="display: block; visibility: visible; margin-left: -12px;" class="ui-slider-label ui-slider-label-show">Good (4)</span><span class="ui-slider-tic ui-widget-content" style="display: block;"></span></li><li style="left: 80%;"><span style="margin-left: 7px;" class="ui-slider-label">4.2</span><span class="ui-slider-tic ui-widget-content" style="display: none;"></span></li><li style="left: 85%;"><span style="margin-left: 7px;" class="ui-slider-label">4.4</span><span class="ui-slider-tic ui-widget-content" style="display: none;"></span></li><li style="left: 90%;"><span style="margin-left: 7px;" class="ui-slider-label">4.6</span><span class="ui-slider-tic ui-widget-content" style="display: none;"></span></li><li style="left: 95%;"><span style="margin-left: 7px;" class="ui-slider-label">4.8</span><span class="ui-slider-tic ui-widget-content" style="display: none;"></span></li><li style="left: 100%;"><span style="display: block; visibility: visible; margin-left: -14px;" class="ui-slider-label ui-slider-label-show">Great (5)</span><span class="ui-slider-tic ui-widget-content" style="display: none;"></span></li></ol></div>
+</div>
+<br><br><br>
+<div style="padding-left: 5px; padding-right: 5px;">
+<div style="font-weight: bold; margin-bottom: 5px; text-align: justify; padding-left: 3px; padding-right: 3px;">
+Your comments will help us in our research!
+Feel free to comment about the groups you got &amp; your experience using SocialFlows.
+Thanks!
+</div>
+<textarea cols="20" rows="5" class="feedback inputtext DOMControl_placeholder" name="feedback" id="feedback"></textarea>
+
+<input id="sfTopologyId" name="sfTopologyId" value="1" type="hidden"> 
+<input id="submitfeedback" class="inputsubmit" name="submitfeedback" value="Give Feedback!" style="display: inline; margin-top: 10px;" type="button">
+</div>
+</div>
+
+</div>
+<div style="height: 6px;" class="spacer"></div>
+</div>
+
+
+
+<!--- Panel for visualization options -->
+
+
+
+<!--- Redirection for running algo or processing algo results -->
+<input id="generateGroupURL" value="socialflowInput.jsp?" type="hidden">
+
+<!--- Panel to run algo on co-tagged Photos data -->
+
+
+<!--- Panel to rerun algo on Email data -->
+
+
+
+
+
+
+
+<!--- Panel to rerun OLD algo on Email data -->
+
+
+
+<!--- Panel to rerun OLD algo on co-tagged Photos data -->
+
+
+
+</div><!--- Parameters Panel -->
+</div><!--- Control Panel -->
+
+<link type="text/css" rel="stylesheet" media="screen" href="common/collection.css"/>
+
+  <!-- Dialog Box to display info -->
+  <div id="dialogBox">
+  <div class="faceUI" style="display: none; z-index: 300;">
+    <div class="popup">
+    <table>
+        <tbody>
+        <tr>
+            <td class="tl"></td>
+            <td class="b"></td>
+            <td class="tr"></td>
+        </tr>
+        <tr>
+            <td class="b"></td>
+            <td class="body">
+            <h2 class="dialog_title">
+                <span id="dialogBoxTitle"></span>
+            </h2>
+            <div id="main_content_height" class="content" style="overflow-y: auto; overflow-x: hidden; max-height: 218px;">
+                <div id="main_content_container" class="full" style="width: 500px;">
+                    <div class="content clearfix">
+                    <div class="clearfix">
+                    <div id="contentHolder" class="clearfix">
+                    <!-- Start of grid -->
+                    Test, this is the contents!
+                    <!-- End of grid -->
+                    </div></div></div>
+                </div>
+            </div>
+            <div class="info"></div>
+            <div class="footer">
+                <input id="dialogBoxConfirmButton" class="inputsubmit" name="Confirm" value="Confirm" style="float: left; vertical-align: top;" type="button">
+                <a href="#" class="close"><img src="facebox/closelabel.gif" title="close" class="close_image"></a>          
+            </div>            
+            </td>            
+            <td class="b"></td>           
+        </tr>          
+        <tr>            
+            <td class="bl"></td><td class="b"></td><td class="br"></td>           
+        </tr>         
+        </tbody>
+    </table>     
+    </div>   
+  </div>
+  </div>
+
+  
+  
+  
+<style type="text/css">
+img {
+    border: 0 none;
+}
+
+.fbFriendListIcon {
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    background-image: url("http://static.ak.fbcdn.net/rsrc.php/zp/r/lPOQoTp3Dcs.png");
+    background-position: 0pt -65px;
+    background-repeat: no-repeat;
+}
+
+.saveGroupsGrid {
+    width: 94%;
+    padding-top: 8px;
+    padding-left: 15px; /* 28px; */
+}
+
+.saveGroupsGrid thead th {
+    color: #666666;
+    font-weight: bold;
+    padding-bottom: 5px;
+    text-align: center;
+    vertical-align: bottom;
+}
+
+.saveGroupsGrid tbody th {
+    border-top: 1px solid #E5E5E5;
+    color: #666666;
+    font-weight: normal;
+    padding: 2px 0; /* 4px 0; */
+    text-align: left;
+    width: 180px;
+}
+
+.saveGroupsGrid td {
+    border-top: 1px solid #E5E5E5;
+    color: #999999;
+    font-size: 13px;
+    text-align: center;
+    vertical-align: middle;
+    width: 80px;
+}
+
+.uiListVerticalItemBorder {
+    border-width: 1px 0 0;
+}
+
+.uiListItem {
+    display: block;
+}
+
+</style>
+
+
+<div id="exportToFB_Bookmarklet" class="hidden">
+<a id="exportToFB_Bookmark" href="javascript:%20%20%20%20%20%20%20%20%20var%20sfAppUrl%20%20%20%20%20%20%20=%20'http://apps.facebook.com/socialflows/';%20%20%20%20%20%20%20%20%20var%20integrationUrl%20=%20'http://limburger.stanford.edu:8080/SocialFlows/processFBAuth.jsp';%20%20%20%20%20%20%20%20%20(function()%20%20%20%20%20%20%20%20%20%20{%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20mc_script=document.createElement('SCRIPT');%20%20%20%20%20%20%20%20%20%20%20%20%20%20mc_script.type='text/javascript';%20%20%20%20%20%20%20%20%20%20%20%20%20%20mc_script.src='http://limburger.stanford.edu:8080/SocialFlows/export/exportGroupsToFB.js?';%20%20%20%20%20%20%20%20%20%20%20%20%20%20document.getElementsByTagName('head')[0].appendChild(mc_script);%20%20%20%20%20%20%20%20%20%20})();">Save My Groups to Facebook</a>
+</div>
+<script language="javascript" type="text/javascript">
+
+jQuery(document).ready(function($) {
+
+	$(".closeProgressMsg").live("click", function() {
+	    $.facebox.close();
+	    return false;
+	});
+
+	// Initiate complicated workflow to begin exporting SocialFlows groups to FB
+	if (!isDevMode) {
+		$('#save-groups-panel-button').click(function() {
+	        startFBExport();
+	        return false;
+	    });
+    }
+	$('#beginFBExport').click(function() {
+		startFBExport();
+        return false;
+	});
+
+});
+
+function startFBExport()
+{
+	// check if fb credentials already obtained
+    var fb_postformid = $('#fb_postformid').val();
+    if (fb_postformid == null || fb_postformid == 'null' || fb_postformid.trim().length <= 0)
+        fb_postformid = 'null';
+
+    if (fb_postformid == 'null') 
+    {
+        var exportToFB_bookmarklet = $('#exportToFB_Bookmarklet').html();
+        
+        // request user to create/click on bookmarklet to obtain FB credentials
+        var loadingMsg = 'To save your social groups to Facebook:<br/>\n'+
+                         '<ul style=\"list-style-type: square; padding-left: 20px;\">\n'+
+                         '<li>Drag this link <b>'+$('#exportToFB_Bookmarklet').html()+'</b> to your browser\'s Bookmarks Toolbar</li>\n'+
+                         '<li>From your browser\'s toolbar, click on the created link</li>\n'+
+                         '<li>Your groups will then be saved to Facebook</li>\n'+
+                         '</ul>\n<br/>\n'+
+                         'Or click <a class="closeProgressMsg" href="#"><b>Cancel</b></a> to not proceed further.';
+        $.facebox.settings.loadingMessage = loadingMsg;
+
+        // Using POST method but posting no data to getFBAuth.jsp
+        jQuery.facebox({ post: 'getFBAuth.jsp', 
+                         progress: 'getStatus.jsp',
+                         postdata: '{}', 
+                         postcallback: checkUserFBAuthorization });
+    }
+    else
+    {
+    	determineGroupsToExport('Facebook');
+    }
+}
+
+function checkUserFBAuthorization(response, inputdata)
+{
+	var stdErrorResponse
+	= "An error has occured. No Facebook authorization response was found. "+
+      "Please try again to save your social groups to Facebook.";
+
+    if (response == null)
+        return stdErrorResponse;
+    
+    response = response.replace(/^\s+|\s+$/g, ''); // remember to strip whitespace, used to be a bug
+    if (response.length > 0) {
+        var resultData = JSON.parse(response);
+        if (!resultData.success) {
+           // hide progress message
+           // Show error message
+           return resultData.message;
+        }
+        else {
+           // Set FB auth info
+           $('#fb_postformid').val(resultData.fb_postformid);
+           $('#fb_dtsg').val(resultData.fb_dtsg);
+           
+           // reveal "Save Groups to Facebook" dialog window
+           determineGroupsToExport('Facebook');
+        }
+    }
+    else
+    	return stdErrorResponse;
+
+    // Hide progress dialog
+    //$.facebox.close();
+}
+
+var postGroupsToFBDelay = 300;
+var batchLimit = 1;
+function exportGroupsToFBResult(response, inputdata)
+{
+    if (response == null)
+        return "An error has occured. No results were returned.";
+     
+     var resultData = JSON.parse(response);
+     if (!resultData.success)
+        return resultData.message;
+
+     updateSavedGroups(resultData);     
+     //var is_chrome = isChromeBrowser();
+
+
+     // 1. show export update for each group
+     // 2. create iframes, initiate HTML FORM POST submits to create FB friends lists
+     // 3. once done, display success message
+     
+     var iframeHTML 
+     = '<iframe name="FBEXPORT_WINDOW" id="FBEXPORT_IFRAME" src ="#" frameborder=0 '+
+       '        scrolling="auto" style="width: 100%; height: 100%; border: medium none;">'+
+       '  <p>Your browser does not support iframes.</p>'+
+       '</iframe>';
+
+     if (resultData.savedStickers != null && resultData.savedStickers.length > 0) 
+     {
+         var postGroupToFB
+         = function(startIndex) {
+               var count = 0, index = 0;
+
+               // Auto-like
+               var iframeAutoLikeObj = $(iframeHTML);
+               iframeAutoLikeObj.attr('src' , 'formToFB_POST.jsp');
+               $('#fbexport-display').append(iframeAutoLikeObj);
+
+               for (index = startIndex; index < resultData.savedStickers.length; index++) 
+               {
+            	   var sticker = resultData.savedStickers[index];
+            	   if (sticker.exportToFB)
+            	   {
+                	   if (sticker.saveAsFBFriendList) {
+                		   // Update progress message
+                           log('Saving '+sticker.name+' as a Friend List...');
+                           $.facebox.setLoadingMessage(
+                              'Saving your <b>'+sticker.name+'</b> group as a Friend List...');
+
+                           var iframeObj = $(iframeHTML);
+                           iframeObj.attr('name', 'FBEXPORT_WINDOW_fbfl_'+sticker.stickerID);
+                           iframeObj.attr('id'  , 'FBEXPORT_IFRAME_fbfl_'+sticker.stickerID);
+                           iframeObj.attr('src' , 'saveGroupsToFB_POST.jsp?'
+                        		                  +'&fbExportType=fbFriendList'
+                                                  +'&sfGroupId='+sticker.stickerSfID
+                                                  +'&fbListId='+sticker.FBflid);
+                           $('#fbexport-display').append(iframeObj);
+                	   }
+
+                	   if (sticker.saveAsFBGroup) {
+                           // Update progress message
+                           log('Saving '+sticker.name+' as a Facebook Group...');
+                           $.facebox.setLoadingMessage(
+                              'Saving your <b>'+sticker.name+'</b> group as a Facebook Group...');
+
+                           var iframeObj = $(iframeHTML);
+                           iframeObj.attr('name', 'FBEXPORT_WINDOW_fbg_'+sticker.stickerID);
+                           iframeObj.attr('id'  , 'FBEXPORT_IFRAME_fbg_'+sticker.stickerID);
+                           iframeObj.attr('src' , 'saveGroupsToFB_POST.jsp?'
+                        		                  +'&fbExportType=fbGroup'
+                                                  +'&sfGroupId='+sticker.stickerSfID);
+                           $('#fbexport-display').append(iframeObj);
+                       }
+                       
+                       count++;
+                   }
+            	   else
+                	   continue; 
+
+            	   // Batch the POST requests in delayed small batches
+                   if ((count >= batchLimit)
+                       && (index+1 < resultData.savedStickers.length)) {
+                       setTimeout(function(){postGroupToFB(index+1)}, 
+                                  postGroupsToFBDelay);
+                       return;
+                   }
+               }
+
+               // Very last step, everything has been processed
+               if (index == resultData.savedStickers.length)
+               {
+            	   setTimeout(function(){
+                                 if (isDevMode) {
+                                	 $.facebox.close();
+                                	 displayExportFBSuccessMsg(resultData.savedStickers.length);
+                                 }
+                                 else
+                                 {
+                                     var msg
+                                     = "Your social groups have been saved to Facebook! "+
+                                       "Check them out as your <a target=\"_blank\" "+
+                                       "href=\"http://www.facebook.com/home.php?sk=2361831622\"><b>Facebook Groups</b></a>!";
+                                	 $.facebox.reveal(msg);
+                                	
+                                     // show users their FB groups
+                                     window.open('http://www.facebook.com/home.php?sk=2361831622');
+                                 }
+                	          }, 
+                              postGroupsToFBDelay);
+                  return;
+               }
+           };  // close of function
+
+
+           // Clear previous iframes doing POST requests to FB
+           $('#fbexport-display').empty();
+           // Initiate the exporting of social groups as FB friendlists
+           postGroupToFB(0);
+     }
+
+}
+
+function displayExportFBSuccessMsg(numGroups)
+{
+	// create dialog box
+	var dialogBox = $($('#dialogBox').html()); // $('#dialogBox').clone(false);
+    dialogBox.find('#main_content_height').css({'max-height':'288px'});
+    dialogBox.find('#main_content_container').css({'width':'550px'});
+	
+    var text = "";
+    text = "<div style=\"margin-top: 8px; margin-left: 8px; margin-right: 8px;\">\n" +
+           "<div style=\"font-weight: bold; font-size: 13px; margin-bottom: 5px;\">Share With People You Care.</div>\n" +
+           "<ul style=\"list-style-type: square; padding-left: 20px;\">\n" +
+           "<li>With your social groups now saved in Facebook as " +
+           "    <a target=\"_blank\" href=\"http://www.facebook.com/friends/edit/\"><b>Friend Lists</b></a>," +
+           "    you can now share what you post on Facebook with the right group(s) of people " +
+           "    by customizing your privacy settings.</li>\n" +           
+           "<br><img src=\"export/FBAC_Step1.png\" style=\"width:480px;\"><br><br>\n" +
+           "<li>Next, in the displayed <b>Custom Privacy</b> dialog, select the <b>Specific People...</b> option </li>\n" +
+           "<br><img src=\"export/FBAC_Step2.png\" style=\"width:480px;\"><br><br>\n" +
+           "<li>Then, type the names of the specific social groups you wish to share with, and click on the matching Friend List </li>\n" +
+           "<br><img src=\"export/FBAC_Step3.png\" style=\"width:480px;\"><br><br>\n" +
+           "<li>Finally, after adding all the appropriate groups, click on the <b>Save Setting</b> button </li>\n" +
+           "<br><img src=\"export/FBAC_Step4.png\" style=\"width:480px;\">\n" +
+           "    <img src=\"export/FBAC_Step5.png\" style=\"width:480px;\">\n" +
+           "</ul>\n" +
+           "</div>";
+
+	dialogBox.find('#dialogBoxTitle').text("Groups Saved as Friend Lists & Facebook Groups!");
+    dialogBox.find('#contentHolder').html(text);
+    dialogBox.find('.close').unbind('click').click(function() {
+    	dialogBox.fadeOut(function(){
+        	$(this).remove();
+        });
+        return false;
+      });
+
+    var footer   = dialogBox.find('.footer');
+    var flButton = footer.find('#dialogBoxConfirmButton').detach();
+    flButton.attr('id', 'buttonSeeFBFL');
+    flButton.val('See My Friend Lists!');
+    flButton.unbind('click').click(function() {
+        // open a window to reveal FB friend lists
+        window.open('http://www.facebook.com/friends/edit/');
+        return false;
+      });
+
+    var fgButton = flButton.clone();
+    fgButton.attr('id', 'buttonSeeFBG');
+    fgButton.val('See My FB Groups!');
+    fgButton.unbind('click').click(function() {
+        // open a window to reveal FB groups
+        window.open('http://www.facebook.com/home.php?sk=2361831622');
+        return false;
+      });
+    fgButton.css({'margin-left':'5px'});
+
+    fgButton.prependTo(footer).show();
+    flButton.prependTo(footer).show();
+
+    dialogBox.css({
+        top:     getPageScroll()[1] + (getPageHeight() / 10),
+        left:    81
+    });
+
+    // Show confirmation dialog box
+    dialogBox.appendTo('body').fadeIn('slow');
+    //dialogBox.fadeIn();
+}
+
+
+function initExportGroupsToFBDialog(accountType, dialogBox, exportGroupsJSONInfo)
+{
+    var text = "";
+    var groupsArray = new Array();
+    var infoTextCssStyle = "margin-top: 8px; margin-left: 8px; margin-right: 8px;";
+
+    if (exportGroupsJSONInfo.stickerArray == null ||
+        Object.size(exportGroupsJSONInfo.stickerArray) == 0) 
+    {
+        text 
+        = "No social groups can be saved to your "+accountType+" account due to the following issues:<br/>\n" +
+          "<ul style=\"list-style-type: square; padding-left: 20px;\">\n";
+
+        var noSocialGroups = true;
+        if (exportGroupsJSONInfo.numStickersUnnamed > 0) {
+            noSocialGroups = false;
+            text += "<li>"+exportGroupsJSONInfo.numStickersUnnamed+" groups were unnamed</li>\n";
+        }
+        if (exportGroupsJSONInfo.stickerNames != null &&
+            Object.size(exportGroupsJSONInfo.stickerNames) > 0) 
+        {
+            noSocialGroups = false;
+            var numDups = 0;
+            var dupGroupNames = "";
+            var stickerNames = exportGroupsJSONInfo.stickerNames;
+            for (var key in stickerNames) {
+                if (numDups > 0)
+                    dupGroupNames += ", ";
+                var dupGroupName = cnvrt2Upper(key);
+                numDups += stickerNames[key];
+                dupGroupNames += "<b>"+dupGroupName+"</b> ("+stickerNames[key]+" groups)";
+                
+            }
+            
+            text += "<li>"+numDups+" groups had duplicate group names: " +
+                    dupGroupNames + "</li>\n";
+        }
+        if (noSocialGroups)
+            text += "<li>No social groups were created</li>\n";
+        text += "</ul>\n<br/>\n";
+    }
+    else
+    {
+        infoTextCssStyle = "padding-left: 15px; padding-right: 28px;";
+        dialogBox.find('#main_content_height').css({'max-height':'288px'});
+        dialogBox.find('#main_content_container').css({'width':'550px'});
+
+        var stickerArray = exportGroupsJSONInfo.stickerArray;
+        var numStickers  = Object.size(stickerArray);
+
+        // Generate selection grid to save groups as FB Friend Lists, FB Groups
+        var fbGroupsText = "Pick and choose which groups to save to Facebook, or save them all!";
+        if (isDevMode)
+        	fbGroupsText = "Your social groups can be saved to Facebook as Friend Lists and/or Facebook Groups.";
+        text += "<div style=\"padding-top: 10px;\">"+fbGroupsText+"</div>\n";
+        text += "<table cellspacing=\"0\" cellpadding=\"0\" class=\"saveGroupsGrid\" style=\"border-collapse: separate;\">\n"+
+                "<thead>\n"+
+                "<tr>\n"+
+                "   <th></th>\n";
+        if (isDevMode) {
+        	text 
+            +=  "   <th>\n"+
+                "       <div title=\"Save as a Facebook Friend List\" class=\"fbFriendListIcon\"></div><br>Friend List\n"+
+                "   </th> \n";
+        }        
+        text += "   <th class=\"other\"> \n"+
+                "       <img width=\"18px\" title=\"Save as a Facebook Group\" src=\"export/FBGroupsIcon.png\"><br>Group\n"+
+                "   </th> \n"+
+                "</tr>\n"+
+                "</thead>\n"+
+                "<tbody>\n";
+        
+        /* Suggest which social groups should be saved as a FB group */
+        var sizeAscOrderArray = new Array();
+        for (var key in stickerArray) {
+        	sizeAscOrderArray[sizeAscOrderArray.length] 
+        	= stickerArray[key];
+        }
+        sizeAscOrderArray.sort(function(sticker1, sticker2){
+            return sticker2.clique.length - sticker1.clique.length;
+        });
+        var topN = 3; 
+        var topNStickers = new Object();
+        for (var i = 0; i < topN && i < sizeAscOrderArray.length; i++) {
+        	topNStickers[sizeAscOrderArray[i].stickerID] = true;
+        }
+
+        /* Do a for-loop and iterate through the keys */
+        for (var key in stickerArray)
+        {
+            var stickerObj = stickerArray[key];
+            var fbGroupChecked = "checked=\"checked\"";
+            if (isDevMode) {
+            	fbGroupChecked = "";
+            	if (topNStickers[stickerObj.stickerID] != undefined) {
+                    fbGroupChecked = "checked=\"checked\"";
+                }
+            }
+
+            text 
+            += "<tr>\n"+
+               "    <th>"+stickerObj.name+"</th>\n";
+            if (isDevMode) {
+            	text += "    <td><input type=\"checkbox\" checked=\"checked\" value=\""+stickerObj.stickerID+"\" class=\"saveAsFBFriendList\" title=\"Save as a Facebook Friend List\" style=\"margin-left: 0px;\"></td>\n";
+            }
+            text 
+            += "    <td class=\"other\"><input type=\"checkbox\" "+fbGroupChecked+" value=\""+stickerObj.stickerID+"\" class=\"saveAsFBGroup\" title=\"Save as a Facebook Group\" style=\"margin-left: 0px;\"></td>\n"+
+               "</tr>\n";
+
+            groupsArray[groupsArray.length] = stickerObj;
+        }
+
+        text 
+        += "<tr>\n"+
+           "    <th>&nbsp;</th>\n";
+        if (isDevMode) {
+           text +=
+           "    <td><input type=\"checkbox\" style=\"visibility: hidden; margin-left: 0px;\"></td>\n";
+        }
+        text 
+        += "    <td class=\"other\"><input type=\"checkbox\" style=\"visibility: hidden; margin-left: 0px;\"></td>\n"+
+           "</tr>\n"+
+           "</tbody>\n"+
+           "</table>\n";
+
+
+        // Info text
+        if (exportGroupsJSONInfo.numStickersUnnamed > 0 ||
+            Object.size(exportGroupsJSONInfo.stickerNames) > 0)
+        {
+            var numDups = 0;
+            var dupGroupNames = "";
+            var stickerNames = exportGroupsJSONInfo.stickerNames;
+            if (stickerNames != null && Object.size(stickerNames) > 0) 
+            {
+                for (var key in stickerNames) {
+                    if (numDups > 0)
+                        dupGroupNames += ", ";
+                    var dupGroupName = cnvrt2Upper(key);
+                    numDups += stickerNames[key];
+                    dupGroupNames += "<b>"+dupGroupName+"</b> ("+stickerNames[key]+" groups)"; 
+                }
+            }
+
+            var nonExported = numDups + exportGroupsJSONInfo.numStickersUnnamed;
+            
+            //text += "<br/>\n";
+            if (nonExported > 1)
+                text += nonExported+" social groups ";
+            else
+                text += nonExported+" social group ";
+            text += "could not be saved due to the following issues:<br/>\n" +
+                    "<ul style=\"list-style-type: square; padding-left: 20px;\">\n";
+
+            if (exportGroupsJSONInfo.numStickersUnnamed > 0) {
+                if (exportGroupsJSONInfo.numStickersUnnamed > 1)
+                   text += "<li>"+exportGroupsJSONInfo.numStickersUnnamed+" groups were unnamed</li>\n";
+                else
+                   text += "<li>"+exportGroupsJSONInfo.numStickersUnnamed+" group was unnamed</li>\n";
+            }
+            if (numDups > 0) {
+               text += "<li>"+numDups+" groups had duplicate group names: " +
+                       dupGroupNames + "</li>\n";
+            }
+               
+            text += "</ul>\n";
+        }
+
+        var numStickersText = "";
+        if (numStickers > 1)
+            numStickersText = " social groups";  // numStickers+" identified social groups";
+        else
+            numStickersText = " social group";   // " identified social group";
+            
+        text 
+        += "<br/>" +
+           "Click <b>Confirm</b> to save your "+numStickersText +
+           " to your "+accountType+" account or click <b>Close</b>" +
+           " to make further changes.\n";
+    }
+    
+    text += "Please provide a unique group name to each social group " +
+            "that you would like to save to "+accountType+".\n";
+    
+    
+    text = "<div style=\""+infoTextCssStyle+"\">\n"
+           +text+"</div>\n";
+
+
+    // Setup dialog confirmation box
+    var exportGroupsObject = new Object();
+    exportGroupsObject.groupsToExport = groupsArray;
+    exportGroupsObject.accountType    = accountType;
+    if (accountType == 'Gmail')
+       exportGroupsObject.gmailAuthToken = $('#gmailAuthToken').val();
+    else if (accountType == 'Facebook') {
+       exportGroupsObject.fb_postformid = $('#fb_postformid').val();
+       exportGroupsObject.fb_dtsg       = $('#fb_dtsg').val();
+    }
+
+    dialogBox.find('#dialogBoxTitle').text("Save Groups to "+accountType);
+    dialogBox.find('#contentHolder').html(text);
+    dialogBox.find('.close').unbind('click').click(function() {
+        dialogBox.fadeOut(function(){
+            $(this).remove();
+        });
+        return false;
+      });
+    
+    var confirmButton = dialogBox.find('#dialogBoxConfirmButton');
+    if (groupsArray.length == 0) {
+        confirmButton.unbind('click').hide();
+    }
+    else
+    {
+        confirmButton.unbind('click').click(function() {
+            // show progress message exporting groups
+            var loadingMsg = 'Saving Your Groups to '+accountType+'...';
+            $.facebox.settings.loadingMessage = loadingMsg;
+
+            // Using POST method to provide info on groups to export
+            if (accountType == 'Gmail') {
+                var exportGroupsJSON
+                = JSON.stringify(exportGroupsObject, null, 1);
+                jQuery.facebox({
+                    post: 'saveGroupsToGmail.jsp',
+                    progress: 'getStatus.jsp',
+                    postdata: exportGroupsJSON,
+                    postcallback: exportGroupsToGmailResult
+                });
+            }
+            else {
+                processSaveToFBPreferences(exportGroupsObject);
+            }
+            
+            dialogBox.fadeOut(function(){
+                $(this).remove();
+            });
+            return false;
+          });
+        confirmButton.show();
+    }
+
+    dialogBox.css({
+        top:    getPageScroll()[1] + (getPageHeight() / 10),
+        left:   81
+    });
+}
+
+// Filter out groups not being saved to FB as FB Friend List/Group
+function processSaveToFBPreferences(exportGroupsObject)
+{
+    var groupsToSave = new Object();
+
+    // Figure out save preferences
+    $('input.saveAsFBFriendList:checked').each(function(){
+        var groupId = $(this).val();
+        if (groupsToSave[groupId] == undefined) {
+        	groupsToSave[groupId] = new Object();
+        }
+        groupsToSave[groupId].saveAsFBFriendList = true;
+    });
+
+    $('input.saveAsFBGroup:checked').each(function(){
+    	var groupId = $(this).val();
+        if (groupsToSave[groupId] == undefined) {
+            groupsToSave[groupId] = new Object();
+        }
+        groupsToSave[groupId].saveAsFBGroup = true;
+    });
+
+
+    // Filter out social groups that are not saved
+    var stickerArray = exportGroupsObject.groupsToExport;
+    var filteredStickerArray = new Array();
+    for (var i = 0; i < stickerArray.length; i++) {
+        var sticker = stickerArray[i];
+    	var savePref = groupsToSave[sticker.stickerID];
+        if (savePref != undefined) {
+            sticker.savePref = savePref;
+            filteredStickerArray[filteredStickerArray.length] = sticker;
+        }
+    }
+
+
+    exportGroupsObject.groupsToExport = filteredStickerArray;
+    if (filteredStickerArray.length <= 0)
+        return;
+
+    var exportGroupsJSON
+    = JSON.stringify(exportGroupsObject, null, 1);
+	jQuery.facebox({ 
+		post: 'saveGroupsToFB.jsp', 
+        progress: 'getStatus.jsp',
+        postdata: exportGroupsJSON, 
+        postcallback: exportGroupsToFBResult
+    });
+}
+
+</script>
+<div id="fbexport-display" class="fbexport-display hidden" style="position: absolute; z-index: 300; height: 80px; width: 80px;">
+</div>
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="jquery/jquery.popupWindow.js"></script>
+<script language="javascript" type="text/javascript">
+
+jQuery(document).ready(function($) {
+
+	// Do AJAX checks to determine when user has authorized Gmail access
+	$('#beginGmailAuth').click(function() {
+	    // check if gmail token already obtained
+	    var gmailToken = $('#gmailAuthToken').val();
+        if (gmailToken == null || gmailToken == 'null' || gmailToken.trim().length <= 0)
+        	gmailToken = 'null';
+	    
+        if (gmailToken == 'null') 
+        {
+            // show checking if authorized
+            var loadingMsg = 'Waiting for Your Gmail Authorization...'
+                             +'(or <a class="closeProgressMsg" href="#"><b>Cancel</b></a>)';            
+            $.facebox.settings.loadingMessage = loadingMsg;
+
+            // Using POST method but posting no data to getGmailAuth.jsp
+            jQuery.facebox({ post: 'getGmailAuth.jsp', 
+                             progress: 'getStatus.jsp',
+                             postdata: '{}', 
+                             postcallback: checkUserGmailAuthorization });
+            
+            // if not, popup window to get authorization token
+            $(this).popupWindow({
+                height:380, 
+                width:630, 
+                windowName:'Export SocialFlows Groups to Gmail',
+                windowURL :'https://www.google.com/accounts/AuthSubRequest?next=http%3A%2F%2Flimburger.stanford.edu%3A8080%2FSocialFlows%2FprocessGmailAuth.jsp&scope=http%3A%2F%2Fwww.google.com%2Fm8%2Ffeeds%2F&secure=0&session=1',
+                centerBrowser:1
+            });
+        }
+        else
+        {
+        	determineGroupsToExport('Gmail');
+        }
+        
+        return false;
+	});
+
+});
+
+function checkUserGmailAuthorization(response, inputdata)
+{
+    if (response == null)
+        return "An error has occured. No Gmail authorization response was found. "+
+               "Please check that you have authorized SocialFlows to access your Gmail.";
+    
+    response = response.replace(/^\s+|\s+$/g, ''); // remember to strip whitespace, used to be a bug
+    if (response.length > 0) {
+        var resultData = JSON.parse(response);
+        if (!resultData.success) {
+           // hide progress message
+           // Show error message
+           // Reshow button to get Gmail auth
+           return resultData.message;
+        }
+        else {
+           // Set Gmail auth token
+           $('#gmailAuthToken').val(resultData.gmailAuthToken);
+           
+           // reveal "Save Groups to Gmail" dialog window
+           determineGroupsToExport('Gmail');
+        }
+    }
+
+    // Hide progress dialog
+    //$.facebox.close();
+}
+
+function exportGroupsToGmailResult(response, inputdata)
+{
+    if (response == null)
+        return "An error has occured. No results were returned.";
+     
+     var resultData = JSON.parse(response);
+     if (!resultData.success)
+        return resultData.message;
+
+     updateSavedGroups(resultData);
+     return resultData.message;
+}
+
+/* NOT USED */
+function revealGmailDisplay() {
+    $('#gmail-display').css({
+        top:    getPageScroll()[1] + (getPageHeight() / 10),
+        left:   38
+    });
+    
+    $('#GMAIL_IFRAME').attr('src', '...');
+    $('#gmail-display').fadeIn('fast');
+    return false;
+}
+
+</script>
+<div id="gmail-display" class="gmail-display hidden" style="position: absolute; z-index: 300; border: 4px solid rgb(204, 204, 204); height: 380px; width: 630px;">
+<iframe name="GMAIL_WINDOW" id="GMAIL_IFRAME" src ="#" frameborder=0 scrolling="auto" style="width: 100%; height: 100%; border: medium none;">
+  <p>Your browser does not support iframes.</p>
+</iframe>
+</div>
+
+<script type="text/javascript" src="facebox/facebox.js"></script>
+<script type="text/javascript" src="common/statusUpdate.js"></script>
+<script type="text/javascript">
+var socialflowsEnableAccessControl = false;
+</script>
+<script type="text/javascript" src="socialflow/socialflow.js"></script>
+</body></html>

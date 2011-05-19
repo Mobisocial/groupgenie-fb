@@ -1,0 +1,162 @@
+.fg_action_hide:hover {
+  background-color:#3B5998;
+  background-position:-857px -65px;
+  text-decoration:none;
+}
+
+.fg_action_hide {
+  background:transparent url(3ay18ob4.png) no-repeat scroll -869px -65px;
+  display:block;
+  height:13px;
+  margin:1px 3px 0 6px;
+  text-indent:-5000px;
+  width:11px;
+}
+
+h3.editableTitle:hover {
+  outline-color:grey;
+  outline-style:dashed;
+  outline-width:1px;
+}
+
+.friend_grid
+.clique_member {
+  margin-left:0px;
+  margin-right:10px;
+  margin-bottom:10px;
+}
+
+.sticker_icon {
+  width: 60px;
+  height: 60px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+#collection_container {
+  width: 523px;
+  min-height: 38px;
+}
+
+.collection
+#main_album_content {
+  width:auto;
+  overflow:hidden;
+  position:relative;
+}
+
+.collection
+.main_content {
+  background:#F7F7F7 none repeat scroll 0 0;
+  border:1px solid #BBBBBB;
+}
+
+.collection 
+table td {
+  vertical-align:top;
+}
+
+.collection
+td, td.label {
+  font-size:11px;
+  text-align:left;
+}
+
+.collection
+.content_wrapper {
+  width:auto;
+  float:none;
+  margin:0 2px;
+  overflow:hidden;
+  padding:0;
+}
+
+.collection 
+.album_cell {
+  float:left;
+  padding:12px 12px 0;
+  width:150px;
+  height:200px;
+}
+
+.collection
+.album_cell .album_thumb {
+  background-position:center center;
+  background-repeat:no-repeat;
+  margin-bottom:5px;
+  overflow:hidden;
+  position:relative;
+}
+
+.collection 
+.clearfix {
+  display:block;
+}
+
+.collection .UIPhotoGrid_PhotoLink .UIPhotoGrid_Image, 
+#facebox.collectionSelection .UIPhotoGrid_PhotoLink .UIPhotoGrid_Image 
+{
+  background:white none repeat scroll 0 0;
+  border:1px solid #CCCCCC;
+  padding:4px;
+  vertical-align:middle;
+}
+
+.collection .UIPhotoGrid_PhotoLink:hover .UIPhotoGrid_Image,
+#facebox.collectionSelection .UIPhotoGrid_PhotoLink:hover .UIPhotoGrid_Image
+{
+  border:1px solid #3B5998;
+}
+
+.collection
+a {
+  color:#3B5998;
+  cursor:pointer;
+  outline-style:none;
+  text-decoration:none;
+}
+
+.collection
+.album_title {
+  font-weight:bold;
+  max-height:36px;
+  overflow:hidden;
+}
+
+.collection
+a {
+  color:#3B5998;
+  cursor:pointer;
+  outline-style:none;
+  text-decoration:none;
+}
+
+.collection
+a:hover {
+  text-decoration:underline;
+}
+
+.collection
+.album_cell .photo_count, .collection .photos_tab .photos_tab_header span.caption {
+  color:#6F6F6F;
+  font-size:11px;
+  font-weight:normal;
+  /* margin:3px 0; */
+}
+
+.collection_item .item_caption,
+.colItem .colItemCaption {
+  float: left;
+}
+
+.collection_item .remove_collection_item,
+.colItem .selectItem {
+  float:right;
+}
+
+.sticker .collection #collection li {
+  background:#F7F7F7 none repeat scroll 0 0;
+}
+

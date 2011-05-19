@@ -1,0 +1,244 @@
+
+
+
+    /* Brush & linking social contacts and social groups */
+    /*
+    var setOpacityTimer = null;
+    var setOpacityDelay = 1500; // milliseconds
+    var removeOpacityDelay = 500; // milliseconds
+    $('li.contact').live('mouseenter mouseleave', function(event) {
+        var cliqueMemberMetadata = $(this).find('.metadata:first');
+        var cliqueMemberId = cliqueMemberMetadata.children('span').attr('id');
+        if (event.type == 'mouseover')
+        {
+            if (setOpacityTimer) {
+                clearTimeout(setOpacityTimer);
+                setOpacityTimer = null;
+                $('li.contact:visible').each(function() {
+                    var id = $(this).attr('id');
+                    if (id == cliqueMemberId)
+                        $(this).removeClass('opaque');
+                    else
+                        $(this).addClass('opaque');
+                });
+            }
+            else {
+                setOpacityTimer
+                = setTimeout(function() {
+                    setOpacityTimer = null;
+                    $('li.contact:visible').each(function() {
+                        var id = $(this).attr('id');
+                        if (id == cliqueMemberId)
+                            $(this).removeClass('opaque');
+                        else
+                            $(this).addClass('opaque');
+                    });
+                }, setOpacityDelay);
+            }
+        }
+        else if (event.type == 'mouseout')
+        {
+            if (setOpacityTimer) {
+                clearTimeout(setOpacityTimer);
+                setOpacityTimer = null;
+            }
+            setOpacityTimer
+            = setTimeout(function() {
+                setOpacityTimer = null;
+                $('li.contact:visible').each(function() {
+                    $(this).removeClass('opaque');
+                });
+            }, removeOpacityDelay);
+        }
+    });
+    */
+
+
+
+
+
+
+<div style="text-align: center;" class="loading">
+    <div class="row" style="display: inline; margin-left: 1px;">
+    <div style="display: table-cell; vertical-align: middle;" class="col1">
+        <h2 style="margin: 0.05em; line-height: 1; text-align: center;"><img src="http://localhost:38080/InSituNewPrPl/facebox/loading.gif" style="vertical-align: middle; margin-right: 10px;"/></h2>
+    </div>
+    <div class="col2" style="display: table-cell; vertical-align: middle; text-align: justify;">
+Analyzing Social Cliques from your email Analyzing Social Cliques from your email Analyzing Social Cliques from your email Analyzing Social Cliques from your email Analyzing Social Cliques from your email Analyzing Social Cliques from your email Analyzing Social Cliques from your email sssssssss ssssssssss...
+    </div>
+    </div>
+</div>
+
+
+
+
+vertical-align: middle; margin-left: 5px; padding-left: 5px; padding-right: 5px;
+
+
+
+
+
+
+    // Make Sticker selectable by clicking on Sticker
+    $(".sticker").click(function() {
+        var suggestedGroupElem = $(this);
+        if (suggestedGroupElem.hasClass("deleted"))
+            return;
+
+        var selectedCheckbox = $(this).find('input.sticker-selected');
+        if (suggestedGroupElem.hasClass("selected")) {
+            $(this).attr('checked', false);
+            suggestedGroupElem.removeClass("selected");
+        }
+        else {
+            $(this).attr('checked', true);
+            suggestedGroupElem.addClass("selected");
+        }
+    });
+
+    // Make Sticker selectable by clicking on checkbox
+    $(".sticker-selected").click(function(event) {
+        //event.stopPropagation();
+        //event.preventDefault();
+        
+        var suggestedGroupElem = $(this).parents('.sticker');
+        
+        if (suggestedGroupElem.hasClass("deleted"))
+            return;
+        if (suggestedGroupElem.hasClass("selected"))
+            suggestedGroupElem.removeClass("selected");
+        else
+            suggestedGroupElem.addClass("selected");
+    });
+    
+    
+    
+    
+        // Get Create New Subgroup to work
+    $(".create_new_group").live("click", function(event) {
+        event.stopPropagation();
+        event.preventDefault();
+
+        // <img class="create_new_group options options-icon options-left" src="sticker_container_files/plus.png" title="Create New Subgroup"/>
+        
+        // console.log('Trying to merge group...');
+        var targetSticker = $(this).parents('div.sticker');
+        var targetStickerID = targetSticker.attr('id');
+        //var targetStickerMetadata = targetSticker.children('.stickerMetadata');
+        //var mergedStickersList = targetStickerMetadata.children('.merged-stickers-metadata');
+
+        // <li class="socialflow">
+        var stickerLevel = stickerElem.parents('li.socialflow');
+        // <span class="socialflow socialflow-navi collapsed"/>
+        var socialflowNavi = stickerLevel.children("span.socialflow");
+        if (socialflowNavi.length <= 0) 
+        {
+           // Create the expand-collapse navigation
+           // Create span if it doesn't already exist
+           socialflowNavi = $('<span class="socialflow socialflow-navi collapsed"/>');
+           socialflowNavi.appendTo(stickerLevel);
+           socialflowNavi.click(function() {
+               var parentGroup = $(this).parent("li.socialflow");
+               var subList = $(this).siblings('ul.socialflow');
+               
+               if (subList.is(':visible')) {
+                   $(this).removeClass("expanded");
+                   $(this).addClass("collapsed");
+                   subList.slideUp("slow");
+               }
+               else {
+                   $(this).removeClass("collapsed");
+                   $(this).addClass("expanded");
+                   subList.slideDown("slow");
+               }
+           });
+        }
+
+        // <ul class="socialflow" style="display: none;" ></ul>
+        var subList = stickerLevel.children("ul.socialflow");
+        if (subList.length <= 0) 
+        {
+            // Create the sublist of subgroups
+            var subList = $('<ul class="socialflow" style="display: none;" ></ul>');
+            subList.appendTo(stickerLevel);
+        }
+
+        // Add the newly created subgroup
+        var newSubgroupHTML =
+        '<li class="socialflow" style="display: none;"> \n' +
+        '<div style="padding-left: 23px;"> \n' +
+        '    <div class="sticker suggested" id="null"> \n' +
+        '    <div class="stickerMetadata" style="display: none;"> \n' +
+        '        <input type="hidden" id="stickerResourceURI" name="stickerResourceURI" value="null" /> \n' +
+        '        <input type="hidden" id="stickerIconURI" name="stickerIconURI" value="null" /> \n' +
+        '        <span class="merged-stickers-metadata"></span> \n' +
+        '    </div> \n' +
+        '    <div class="sticker-title" style="float:left;"></div> \n' +
+        '        <img class="delete_group options options-icon options-right options-saved options-selected" src="sticker_container_files/cross.gif" title="Delete"/> \n' +
+        '        <img class="save_group   options options-icon options-right options-saved options-selected" src="sticker_container_files/disk.gif" title="Save"/> \n' +
+        '        <img class="add_clique_member options options-icon options-left" src="sticker_container_files/user_32.png" title="Add Another Clique Member"/> \n' +
+        '        <img class="create_new_group options options-icon options-left" src="sticker_container_files/plus.png" title="Create New Subgroup"/> \n' +
+        '        <input title="Merge Cliques" type="button" value="Merge" name="merge-cliques" class="merge_group button-fbstyle options options-button options-right options-selected"/> \n' +
+        '        <input title="Select Clique" type="checkbox" class="sticker-selected options options-right options-selected"/> \n' +
+        '    <br/> \n' +
+        '    <ul id="clique" class="clique"> \n' +
+        '    </ul> \n' +
+        '    </div> \n' +
+        '</div> \n' +
+        '</li>';
+
+        var newSubgroup = $(newSubgroupHTML);
+        newSubgroup.prependTo(subList);
+
+        // Expand if currently collapsed
+        if (!subList.is(':visible')) {
+            socialflowNavi.removeClass("collapsed");
+            socialflowNavi.addClass("expanded");
+        }
+        
+        // Reveal the sublist if it is currently hidden
+        subList.slideDown("slow", function(event) {
+            // Slide down to reveal newly created subgroup
+            newSubgroup.slideDown("slow");
+        });
+
+
+        
+        //            <li class="socialflow">
+        //            <div style="padding-left: 23px;">
+        //                <div class="sticker suggested">
+        //                <div class="sticker-title" style="float:left;"></div>
+        //                    <img class="delete_group options options-icon options-right options-saved options-selected" src="sticker_container_files/cross.gif" title="Delete"/>
+        //                    <img class="save_group   options options-icon options-right options-saved options-selected" src="sticker_container_files/disk.gif" title="Save"/>
+        //                    <img class="add_clique_member options options-icon options-left" src="sticker_container_files/user_32.png" title="Add Another Clique Member"/>
+        //                    <img class="create_new_group options options-icon options-left" src="sticker_container_files/plus.png" title="Create New Subgroup"/>
+        //                    <input title="Merge Cliques" type="button" value="Merge" name="merge-cliques" class="merge_group button-fbstyle options options-button options-right options-selected"/>
+        //                    <input title="Select Clique" type="checkbox" class="sticker-selected options options-right options-selected"/>
+        //                <br/>
+        //                <ul id="clique" class="clique">
+        //                </ul>
+        //           </div>
+        //       </div>
+        //       </li>
+
+    });
+    
+    
+
+// image deletion function
+                var recycle_icon = '<a href="link/to/recycle/script/when/we/have/js/off" title="Recycle this image" class="ui-icon ui-icon-refresh">Recycle image</a>';
+                function deleteImage($item) {
+                        var $list = $('ul',$trash).length ? $('ul',$trash) : $('<ul class="gallery ui-helper-reset"/>').appendTo($trash);
+ 
+                        $item.find('a.ui-icon-trash').remove();
+                        var copy = $item.append(recycle_icon).clone();
+                        copy.appendTo($list).fadeIn(function() {
+                            copy.animate({ width: '48px' }).find('img').animate({ height: '36px' });
+                        });
+                }
+
+
+
+
+
+    

@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-language" content="en">
+
+<title>SocialFlows - Help</title>
+<link type="text/css" rel="stylesheet" media="screen" href="facebox/faceUIBody.css"/>
+<style>
+body {
+    text-align: center;
+}
+
+div#container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 680px;
+    text-align: justify;
+}
+</style>
+</head>
+<body>
+<div id="container">
+<br/>
+<span style="font-weight: bold; font-size:130%;">The SocialFlows User Interface</span>
+<br/><br/>
+<img src="help/SOCIALFLOWS-UI-with-LEGEND.png" width="680"/>
+<p> The SocialFlows user interface, allowing you to explore, browse and edit your Social Topology. 
+Annotated points of interest highlight: (A) hierarchical nesting of subsets, (B) editable group labels, 
+(C) tooltip and delete option on mouse hover, (D) new group creation, (E) group merge tools, 
+(F) additional group editing tools, and (G) option to add a new contact.
+</p>
+<br/>
+<p>
+<span style="font-weight: bold; font-size:110%;">Overview</span>
+<br/>
+The SocialFlows user interface allows you to explore, browse and edit your Social Topology that is
+automatically mined from your email. The initial topology, as deduced by our algorithm, may not 
+necessarily resonate exactly with 
+your own mental model of your social groups. Nonetheless, the mined topology can provide a very helpful 
+starting point from which to refine your own model of personal contacts. To this end, the SocialFlows 
+interface allows you to edit your social topology via group composition and modification.
+</p>
+<br/>
+<p>
+<span style="font-weight: bold; font-size:110%;">Editing Social Group Composition</span>
+<br/>
+You can edit the composition of a social group by dragging and dropping contacts 
+between groups, deleting a contact from a group by hovering over and clicking on the
+revealed X-mark (<b>C</b> in the above figure), or adding a new contact to a group 
+through the <i>Add a Contact</i> icon (<b>G</b> in the above figure).
+</p>
+<br/>
+<p>
+<span style="font-weight: bold; font-size:110%;">Consolidating and Merging Social Groups</span>
+<br/>
+You may also find it useful to consolidate your social groups by merging two or
+more selected groups. SocialFlows facilitates this task by placing strongly 
+similar groups near one another. You can then specify groups to merge by clicking 
+on each respective group's <b>Merge</b> checkbox (<b>E</b> in the above figure), 
+and specify the destination group for the merge result by clicking on that group's 
+<b>Merge</b> button. All merged groups, except the destination group, are then removed.
+</p>
+<br/>
+<p>
+<span style="font-weight: bold; font-size:110%;">Creating and Saving Groups</span>
+<br/>
+In addition, you can create new top-level social groups using the 
+<i>Create Group</i> button (<b>D</b> in the above figure). The per-group
+manipulation options (<b>F</b> in the above figure) provide
+you with the ability to create a new child subset (<img src="help/plus.png"/>) 
+out of an existing social group, save (<img src="help/disk.png"/>) a group, or
+delete (<img src="help/cross.png"/>) a current social group.
+<br/><br/>
+Saved groups are persisted, and redisplayed at the top whenever you rerun the
+algorithm to deduce your social topology.  Finally, users can label their 
+social groups via in-place editing of label text (<b>B</b> in the above figure).
+</p>
+<br/>
+<p>
+<span style="font-weight: bold; font-size:110%;">Maintaining Your Social Landscape</span>
+<br/>
+SocialFlows also enforces invariants on the social landscape. For
+example, a parent in the social topology hierarchy is always a superset of its
+children and descendants and, conversely, children social groups are always
+subsets of their ancestors. This invariant is maintained in the user interface; 
+when adding friends or social contacts to a child social group, the added 
+contacts are then percolated up the SocialFlows tree to maintain each superset.
+Likewise, deleting a social contact from a parent social group results in that 
+same contact being deleted from all subsets.
+</p>
+</div>
+<br/><br/>
+</div>
+</body>
+</html>

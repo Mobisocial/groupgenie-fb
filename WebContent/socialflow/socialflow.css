@@ -1,0 +1,514 @@
+/*
+    CSS file for SocialFlows
+    by Seng Keat Teh [ skteh@cs.stanford.edu ]
+*/
+
+body{
+    margin:0;
+    padding:0;
+    background:#E6E6E6;
+    font:70% Arial, Helvetica, sans-serif; 
+    color:#555;
+    line-height:150%;
+    text-align:left;
+}
+a{
+    text-decoration:none;
+    color:#057fac;
+}
+a:hover{
+    text-decoration:none;
+    color:#999;
+}
+h1{
+    font-size:160%; /* 140% */
+    margin:0 20px;
+    line-height:60px; /* 80px */
+}
+#container{
+    margin:0 auto;
+    width:680px;
+    min-height:300px;
+    background:#fff;
+    padding-bottom:20px;
+}
+#content{margin:0 20px;}
+p{  
+    margin:0 auto;
+    width:680px;
+    padding:1em 0 0 0;
+}
+
+.hidden{
+    display: none;	
+}
+
+.opaque{
+    /* for IE */
+    filter:alpha(opacity=30);
+    /* CSS3 standard */
+    opacity:0.3;
+}
+
+.inline-block {
+    display:inline-block;
+}
+
+
+#socialtree, #socialtree ul, #socialtree li{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+#socialtree{background:url(line1.gif) repeat-y;}
+#socialtree li.socialflow{
+	line-height:20px;
+	margin-top:1px;
+	position:relative;
+	width:100%;
+	background:url(line2.gif) no-repeat 0 0;
+}
+/* IE leaves a blank space where span is added so this is to avoid that */
+* html #socialtree li{
+	float:left;
+	display:inline;
+}
+
+#socialtree li.socialflow a.socialflow{padding-left:28px;}
+#socialtree li span{float:left;position:absolute;top:5px;left:5px;width:13px;height:13px;cursor:auto;font-size:0;}
+#socialtree li span.collapsed{background:url(collapsed.gif) no-repeat 0 0;} 
+#socialtree li span.expanded{background:url(expanded.gif) no-repeat 0 0;}
+
+/* sub levels */
+
+#socialtree li.socialflow ul.socialflow{	
+	margin-left:28px;
+	background:url(line1.gif) repeat-y;
+}
+#socialtree li.socialflow li.socialflow{	
+	background:url(line2.gif) no-repeat 0 0;
+}
+
+/* etc. */
+
+/* float fix */
+
+#socialtree:after, #socialtree ul:after{
+    content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+#socialtree, #socialtree ul{display:block;}
+/*  \*/
+#socialtree, #socialtree ul{min-height:1%;}
+* html #socialtree, * html #socialtree ul{height:1%;}
+ /*  */
+#socialtree ul.socialflow{display:none;}
+
+
+/* Interaction edits */
+#socialtree li.contact .delete:hover {
+    /* background-color:#F2312A; */   /* #3B5998 */
+    background-position:-881px -65px;
+    text-decoration:none;
+}
+
+#socialtree li.contact:hover .delete {
+    display:block;
+}
+
+#socialtree li.contact .delete {
+    background:#F2312A url(../common/3ay18ob4.png) no-repeat scroll -857px -65px; /* #FFFFFF transparent */
+    display:none;
+    margin:0 0 0; /* 1px 3px 0 6px; */
+    text-indent:-5000px;
+}
+
+#socialtree li.contact .deletelink {
+    float:right;
+    height:13px;
+    width:11px;
+}
+
+#socialtree li.contact a {
+    cursor:pointer;
+    outline-style:none;
+    text-decoration:none;
+}
+
+
+/* Navigating UI and social cliques */
+
+#socialtree .socialflow-navi{
+    cursor: pointer;
+}
+
+#socialtree div.sticker:hover, #socialtree div.sticker.selected{
+    /* #DFEFFC(very light blue) #AEC8E1(darker blue) #F3F3E6(papyrus) 
+       #E3E0D1(dark-papyrus) #FFE7BA(peach) #E05A00(orange-border) 
+       #FFFFCC(light-cream) #BDAB45 */
+    background:#FFE7BA none repeat scroll 0 0; /* #FFEFD1 */
+    border:1px solid #E05A00;
+}
+
+#socialtree div.sticker{
+    width:auto;
+    padding-left: 5px;
+    padding-right: 5px;
+    border:1px solid #FFFFFF;
+}
+
+#socialtree div.saved:hover, #socialtree div.saved.selected{
+    background:#C5DBEC none repeat scroll 0 0;
+    border:1px solid #205C98;
+}
+
+#socialtree div.saved{
+    background:#C5DBEC none repeat scroll 0 0;
+}
+
+#socialtree div.deleted:hover{
+    background:#FFB5C5 none repeat scroll 0 0;
+}
+
+#socialtree div.deleted{
+    background:#FFB5C5 none repeat scroll 0 0;
+}
+
+
+/* CSS dealing with group editing options */
+
+#socialtree div.sticker .options{
+    cursor: pointer;
+    display: none;
+}
+
+#socialtree div.sticker .options-display{
+    cursor: pointer;
+    display: block;
+}
+
+#socialtree div.deleted .options, 
+#socialtree div.deleted .options-display{
+    display: none;
+}
+
+#socialtree div.sticker .options-bar{
+    vertical-align: top;
+    margin-top: 3px;
+    margin-left: 0.3em;
+}
+
+#socialtree div.sticker .options-icon{
+    height: 14px;
+}
+
+#socialtree div.sticker .add_clique_member.options-icon{
+    height: 16px;
+}
+
+#socialtree div.sticker .options-right{
+    float: right;
+}
+
+#socialtree div.sticker .options-left{
+    float: left;
+    margin-left: 5px;
+    margin-top: 1px;
+}
+
+#socialtree div.sticker .options-button{
+    height: 18px;
+    margin: 1px 8px 0px 1px;
+}
+
+#socialtree div.suggested:hover .options,
+#socialtree div.saved:hover .options,
+#socialtree div.selected .options-selected,
+#socialtree div.saved .options-saved,
+#socialtree div.sticker.saved:hover .options-saved-hover{
+    display: block;
+}
+
+#socialtree div.suggested:hover .options-saved-hover,
+#socialtree div.saved:hover .options-saved-hover{
+    display: none;
+}
+
+#socialtree li.addContact div.outer-image-overlay{
+    position:absolute;
+    bottom:0.5px; /* in conjunction with left property, decides the text position */
+    right:1px;
+    line-height: 13px;
+}
+
+#socialtree li.addContact div.inner-image-overlay{
+    color: #3B5998;
+    font-size: 11px;
+    font-weight: bold;
+    vertical-align: bottom;
+}
+
+
+/* CSS displaying social cliques */
+
+#socialtree ul.clique{
+    margin-top: 2px;
+    min-height: 35px;
+}
+
+#socialtree li.addContact{
+    height: 35px;
+    width: 35px;
+    border:1px solid #205C98; /* transparent */
+    float: left;
+    position: relative;
+    margin-right: 6px;
+    margin-bottom: 6px;
+    overflow: hidden;
+}
+
+#socialtree li.addContact:hover{
+    border-color:#205C98;
+}
+
+#socialtree li.contact{
+    height: 35px;
+    width: 35px;
+    border:1px solid #E0E0E0; /* transparent */
+    float: left;
+    position: relative;
+    margin-right: 6px;
+    margin-bottom: 6px;
+    overflow: hidden;
+}
+
+#socialtree li.contact:hover{
+    border-color:#205C98;
+}
+
+#socialtree li.contact a.deletelink{
+    position:absolute;
+    top:0px;
+    right:0px;
+}
+
+#socialtree li.contact div.outer-name-overlay{
+    position:absolute;
+    top:0px; /* in conjunction with left property, decides the text position */
+    left:1px;
+    line-height: 13px;
+}
+
+#socialtree li.contact div.inner-name-overlay{
+    color: #3B5998;
+    font-size: 11px;
+    font-weight: bold;
+    vertical-align: bottom;
+}
+
+div.contact{
+    float: left;
+    margin-right: 7px;
+}
+
+img.contact{
+    height: 35px;
+    width: 35px;
+}
+
+div.sticker-title:hover {
+    outline-color:grey;
+    outline-style:dashed;
+    outline-width:1px;
+}
+
+input.options.button-fbstyle {
+    background-color:#3B5998;
+    border-color:#D9DFEA #0E1F5B #0E1F5B #D9DFEA;
+    border-style:solid;
+    border-width:1px;
+    color:#FFFFFF;
+    font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+    font-size:11px;
+    font-weight:bold;
+    padding:0px 8px 0px;
+    text-align:center;
+    outline-color:-moz-use-text-color;
+    outline-style:none;
+    outline-width:medium;
+}
+
+
+/* BUTTONS */
+#header.socialflow{
+    overflow: hidden;
+    width: 100%;
+}
+div.socialflow-title{
+    display: block;
+    float: left;
+}   
+div.buttons.socialflow{
+    display: block;
+    float: right;
+}
+.buttons.socialflow a, .buttons.socialflow button{
+    display:block;
+    float:left;
+    margin:0 7px 0 0;
+    background-color:#f5f5f5;
+    border:1px solid #dedede;
+    border-top:1px solid #eee;
+    border-left:1px solid #eee;
+
+    font-family:"Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
+    font-size:100%;
+    line-height:130%;
+    text-decoration:none;
+    font-weight:bold;
+    color:#565656;
+    cursor:pointer;
+    padding:5px 10px 6px 7px; /* Links */
+}
+.buttons.socialflow button{
+    width:auto;
+    overflow:visible;
+    padding:4px 10px 3px 7px; /* IE6 */
+}
+.buttons.socialflow button[type]{
+    padding:5px 10px 5px 7px; /* Firefox */
+    line-height:17px; /* Safari */
+}
+*:first-child+html button[type]{
+    padding:4px 10px 3px 7px; /* IE7 */
+}
+.buttons.socialflow button img, .buttons.socialflow a img{
+    margin:0 3px -3px 0 !important;
+    padding:0;
+    border:none;
+    width:16px;
+    height:16px;
+}
+
+/* STANDARD */
+.buttons.socialflow button:hover, .buttons.socialflow a:hover{
+    background-color:#dff4ff;
+    border:1px solid #c2e1ef;
+    color:#336699;
+}
+.buttons.socialflow a:active{
+    background-color:#6299c5;
+    border:1px solid #6299c5;
+    color:#fff;
+}
+
+/* POSITIVE */
+.buttons.socialflow button.positive, .buttons.socialflow a.positive{
+    color:#529214;
+}
+.buttons.socialflow button.positive:hover, .buttons.socialflow a.positive:hover{
+    background-color:#E6EFC2;
+    border:1px solid #C6D880;
+    color:#529214;
+}
+.buttons.socialflow a.positive:active{
+    background-color:#529214;
+    border:1px solid #529214;
+    color:#fff;
+}
+
+/* NEGATIVE */
+.buttons.socialflow a.negative, .buttons.socialflow button.negative{
+    color:#d12f19;
+}
+.buttons.socialflow a.negative:hover, .buttons.socialflow button.negative:hover{
+    background:#fbe3e4;
+    border:1px solid #fbc2c4;
+    color:#d12f19;
+}
+.buttons.socialflow a.negative:active{
+    background-color:#d12f19;
+    border:1px solid #d12f19;
+    color:#fff;
+}
+
+/* OVERLAY COVER */
+#overlayCover {
+    background-color:#838A8B; /* #838A8B, #848484 medium-grey, #8B8989 snow, #A9A9A9 darkgray, #696969 dimgray, #CDCDC1 ivory */
+    height:100%;
+    opacity:0.6;
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:280;
+}
+
+/* TABLET BUTTONS */
+.pillbutton {
+    float: left;
+    padding-left:1px;
+    vertical-align:middle;
+    font-weight:normal; 
+    line-height: 12px; 
+    margin-top: 2px; 
+    margin-left: 5px;
+}
+
+.pillbutton-label {
+    font-size:9px;
+    vertical-align: middle;
+    color: rgb(249, 255, 239);
+}
+
+.pillbutton-outer-box-color {
+    border-color: #3B5998;
+}
+
+.sharing .pillbutton-outer-box-color {
+    border-color: rgb(100, 153, 44);
+}
+
+.pillbutton-outer-box-color:hover {
+    border-color: rgb(100, 153, 44);
+}
+
+.pillbutton-inner-box-color {
+    background-color: #3B5998;
+    border-color: #3B5998;
+}
+
+.sharing .pillbutton-inner-box-color {
+    background-color: rgb(100, 153, 44);
+    border-color: rgb(100, 153, 44);
+}
+
+.pillbutton-inner-box-color:hover {
+    background-color: rgb(100, 153, 44);
+    border-color: rgb(100, 153, 44);
+}
+
+.pillbutton-outer-box, 
+.pillbutton-inner-box, 
+.pillbutton-label-outer-box, 
+.pillbutton-label-inner-box {
+    border-style:solid;
+    vertical-align:top;
+}
+
+.pillbutton-outer-box, 
+.pillbutton-label-outer-box {
+    border-width:1px 0;
+    margin:0;
+    padding:0;
+}
+
+.pillbutton-inner-box, 
+.pillbutton-label-inner-box {
+    border-width:0 1px;
+    margin:0 -1px;
+    padding:1px 4px;
+}
+

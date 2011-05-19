@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.5+" codebase="http://limburger.stanford.edu:8080/SocialFlows/muse" href="muse.jnlp">
+  <information>
+    <title>SocialFlows Muse</title>
+    <vendor>Stanford University</vendor>
+    <homepage href="help.html"/>
+    <description>Secure email analysis</description>
+    <description kind="short">Mining and analyzing email archives</description>
+    <icon href="muse-icon.png"/>
+    <icon kind="splash" href="muse-icon.png"/> 
+    <offline-allowed/> 
+    <shortcut online="true">
+      <desktop/>
+      <menu submenu="Stanford University Apps"/>
+    </shortcut>
+  </information>
+  <information os="windows">   
+    <title> SocialFlows Muse </title>
+    <homepage href="windowshelp.html"/>
+  </information>
+  <security>
+      <all-permissions/>
+  </security>
+  <resources>
+    <j2se version="1.5+" java-vm-args="-Xmx1024m"/>
+    <jar href="lib/muse-standalone.jar"/>
+  </resources>
+  <application-desc main-class="edu.stanford.muse.launcher.Main">
+    <argument>-nobrowseropen</argument>
+  </application-desc>
+</jnlp>

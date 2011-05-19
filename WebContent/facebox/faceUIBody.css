@@ -1,0 +1,268 @@
+body {
+    background:none repeat scroll 0 0 #FFFFFF;
+    color:#333333;
+    direction:ltr;
+    font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+    font-size:11px;
+    margin:0;
+    padding:0;
+    text-align:left;
+    unicode-bidi:embed;
+}
+
+#content {
+    margin:0;
+    padding:0;
+    width:auto;
+}
+
+.clearfix {
+    display:block;
+}
+
+.clearfloat {
+    overflow: auto;
+    width: 100%;
+}
+
+.UIStandardFrame_Container {
+    margin:0 auto;
+    padding:5px 0 0 0; /* 22px 0 0 20px; */
+    /* width:960px; */
+}
+
+.UIStandardFrame_Content {
+    float:left;
+    margin:0;
+    padding:0;
+    width:760px;
+}
+
+.UIDashboardHeader_Container {
+    margin:0;
+    padding:0 0 2px;
+}
+
+.UIDashboardHeader_TitleBar {
+    padding:0;
+}
+
+.UIDashboardHeader_Title {
+    color:#444444;
+    float:left;
+    font-size:14px;
+}
+
+.UIDashboardHeader_Icon {
+    float:left;
+    height:16px;
+    width:16px;
+    overflow:hidden;
+    padding:0 6px 0 0;
+}
+
+.UIDashboardHeader_Actions {
+    float:left;
+    padding:3px 5px 0 7px;
+}
+
+.UIDashboardHeader_Actions a {
+    margin:0 3px;
+}
+
+.pipe {
+    color:#808080;
+    padding:0 3px;
+}
+
+.spritemap_icons {
+    background-repeat:no-repeat;
+    display:inline-block;
+    height:16px;
+    width:16px;
+}
+
+h1, h2, h3, h4, h5 {
+    color:#333333;
+    font-size:13px;
+    margin:0;
+    padding:0;
+}
+
+
+/* Tabs */
+.tabs {
+    padding:0;
+}
+
+.tabs .left_tabs {
+    float:left;
+    padding-left:10px;
+}
+
+.toggle_tabs {
+    text-align:center;
+}
+
+.toggle_tabs .hidden {
+    display:none;
+}
+
+.toggle_tabs li {
+    background:none repeat-x scroll left top #F1F1F1;
+    display:inline;
+    padding:2px 0 3px;
+}
+
+.toggle_tabs li.first a {
+    border:1px solid #898989;
+}
+
+.toggle_tabs li.first a.selected {
+    border-left:1px solid #36538F;
+    border-right:1px solid #5973A9;
+    margin:0;
+}
+
+.toggle_tabs li a.selected {
+    background:none repeat scroll 0 0 #6D84B4;
+    border-color:#3B5998 #5973A9;
+    border-style:solid;
+    border-width:1px;
+    color:#FFFFFF;
+}
+
+.toggle_tabs li a.selected:hover {
+    text-decoration: none;
+}
+
+.toggle_tabs li a {
+    border-color:#898989 #898989 #898989 -moz-use-text-color;
+    border-style:solid solid solid none;
+    border-width:1px 1px 1px 0;
+    color:#333333;
+    display:inline-block;
+    font-weight:bold;
+    padding:2px 8px 3px 9px;
+}
+
+
+
+/* Bar title */
+.summary_bar {
+    border-bottom:1px solid #D8DFEA;
+    overflow: auto;
+    color:#000000;
+    font-weight:normal;
+    line-height:normal;
+    padding:11px 20px 0;
+}
+
+#app_bar.summary_bar {
+    background:none repeat scroll 0 0 #F7F7F7;
+    border-color:-moz-use-text-color #CCCCCC #BBBBBB;
+    border-color:#898989 #CCCCCC #BBBBBB;
+    border-style:solid;
+    border-width:1px;
+    padding:14px 19px 0;
+    margin-top: -1px; 
+}
+
+.summary_bar .summary {
+    float:left;
+    padding-bottom:4px;
+    padding-top:3px;
+}
+
+#app_bar.summary_bar .summary {
+    margin-top:-6px;
+}
+
+
+
+.content_container {
+    padding:0 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+a {
+    color:#3B5998;
+    cursor:pointer;
+    text-decoration:none;
+}
+
+a:hover {
+    text-decoration:underline;
+}
+
+ul  {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+}
+
+span.UIFormButton  {
+    padding:0;
+}
+
+span.UIFormButton .UIButton_Text {
+    padding:3px 6px 4px;
+}
+
+.UIButton_Blue  {
+    background-color:#5B74A8;
+    background-position:0 -48px;
+    border-color:#26446E #152F5F #0C2253;
+}
+
+.UIButton_Blue .UIButton_Text {
+    color:#FFFFFF;
+}
+
+.UIButton {
+	cursor: pointer;
+    border-style:solid;
+    border-width:1px;
+    display:inline-block;
+    outline:medium none;
+    padding:3px 6px 4px;
+    vertical-align:bottom;
+}
+
+.UIButton_Text  {
+    background-color:transparent;
+    border:medium none;
+    cursor:pointer;
+    display:block;
+    font-size:11px;
+    font-weight:bold;
+    line-height:14px;
+    margin:0;
+    overflow:visible;
+    padding:0;
+    width:auto;
+}
+
+.DOMControl_placeholder  {
+    color:#777777;
+}
+
+.inputtext, .inputpassword {
+    border:1px solid #BDC7D8;
+    font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+    font-size:11px;
+    padding:3px;
+}
+
+.hidden{
+    display: none;  
+}

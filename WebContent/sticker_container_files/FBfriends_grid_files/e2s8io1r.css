@@ -1,0 +1,63 @@
+/*    HTTP Host:  static.ak.fbcdn.net                                          */
+/*    Generated:  October 21st 2009 8:52:35 PM PDT                             */
+/*      Machine:  10.16.139.108                                                */
+/*       Source:  Global Cache                                                 */
+/*     Location:  css/FriendsPage.css h:e2s8io1r                               */
+/*       Locale:  nu_ll                                                        */
+/*         Path:  css/FriendsPage.css                                          */
+
+.FriendsPage_SearchContainer{padding-top:7px;padding-left:0;padding-right:0;padding-bottom:7px}
+.FriendsPage_SearchContainer #FriendsPage_Search{width:123px;height:14px;margin:0;width:126px}
+.FriendsPage_SettingsLink a.FriendsPage_ConnectionSettings{background:transparent url(/rsrc.php/z6UCP/hash/6vkuk0vc.gif) no-repeat 0 3px;padding:1px 10px 4px 16px}
+.FriendsPage_Typeahead input{width:175px}
+#FriendsPage_ContentContainer{margin-top:10px;padding-left:7px;margin-bottom:10px}
+.FriendsPage_BlankStateContainer{padding:50px 20px;text-align:center}
+.FriendsPage_BlankStateMessage{font-size:13px;text-align:center;padding-bottom:10px}
+.FriendsPage_BlankStateLink{font-size:13px;font-weight:bold}
+.FriendsPage_PhonebookRight{font-size:13px;padding-top:17px;padding-right:20px}
+.FriendsPage_RecentlyUpdated{float:right;text-align:right;padding-top:10px;padding-right:20px}
+.FriendsPage_RecentlyUpdatedTime{color:#999;padding-top:2px}
+.FriendsPage_RecentlyUpdatedContent .updates{margin:0;padding:0 0 1px 0;background:#fff8cc;border-bottom:solid 1px #ffe222}
+.FriendsPage_PhonebookBoth{padding-top:8px}
+.FriendsPage_PhonebookLand,
+.FriendsPage_PhonebookCell{text-align:right}
+.FriendsPage_PhonebookCell{padding-bottom:3px}
+.FriendsPage_PhonebookLabel{font-size:9px;padding-right:5px;color:#999}
+#FriendsPage_Container em{background:#d8dfea;font-style:normal;font-weight:bold}
+#FriendsPage_StatusContainer{margin:10px 3px 0 3px}
+#FriendsPage_Container .UIObjectListing_Title{padding-top:10px}
+.FriendsPage_ToolbarFiltersLabel{padding-right:5px;padding-left:2px;font-weight:bold;color:#666}
+.FriendsPage_EmptyList{color:#808080;font-size:14px;padding:20px 0;text-align:center}
+.FriendsPage_SimpleStatus{background:#fff9d7;border:1px solid #e2c822;padding:3px;font-weight:bold;font-size:11px}
+.FriendsPage_SelectLabel{font-weight:bold;padding-left:3px;padding-right:5px;color:#333}
+.FriendsPage_ToolbarFiltersPrimarySelect{margin-right:3px}
+.FriendsPage_Settings h3{font-size:12px;padding:0 0 3px}
+.FriendsPage_Settings h4{color:#666;font-size:11px;font-weight:normal;line-height:14px;padding:0 0 16px}
+.FriendsPage_Settings .FriendsPage_Settings_Section{overflow:hidden;padding:0 0 24px}
+.FriendsPage_Settings .FriendsPage_Settings_Option{float:left;position:relative;padding:0 12px 0 0}
+.FriendsPage_Settings img.FriendsPage_SettingLoader{display:none;position:absolute;top:2px;left:-3px}
+.FriendsPage_Settings div.isLoading img.FriendsPage_SettingLoader{display:block}
+.FriendsPage_Settings div.isLoading input{visibility:hidden}
+.FriendsPage_Settings .FriendsPage_Settings_Option img.FriendsOption{margin-right:4px;margin-bottom:-2px}
+.FriendsPage_Settings .FriendsPage_Settings_Option img.ConnectBoth{background-image:url(/rsrc.php/z20MP/hash/7m3hsw0j.gif);background-position:1px 0;height:15px;width:16px}
+.FriendsPage_Settings div label{color:#111}
+.FriendsPage_Settings div label b{color:#333}
+.FriendsPage_Settings div label span{color:#666;display:block;font-weight:normal;line-height:14px;padding:2px 0 10px 18px}
+.FriendsPage_InviteFriends{margin-top:15px;padding-left:25px;background:transparent url(/rsrc.php/zEE8D/hash/6oyzh0ri.gif) top left no-repeat;margin-left:3px}
+.FriendsPage_MenuContainer{background:#eee}
+.FriendsPage_MenuBlankState{font-weight:bold;padding:5px 6px 1px;color:#555}
+.FriendsPage_NewListInput{width:142px;margin:5px}
+.FriendsPage .findfriends_pane{padding:15px}
+.ie6 .findfriends_pane{padding:10px}
+.FriendsPage .findfriends_pane .friend_grid .friend_grid_col{width:159px}
+.FriendsPage .findfriends_pane .friend_grid .friend_grid_col .fg_links{width:85px}
+.FriendsPage .findfriends_pane #new_ff .box_row .box{width:272px}
+.FriendsPage .findfriends_pane #new_ff .box_row .full{width:568px}
+.FriendsPage .findfriends_pane #new_ff .box_row #webmail #address_book_login_widget{width:540px}
+.FriendsPage .findfriends_pane .invite_friends .invite_form_holder{padding:20px 0;width:380px}
+.FriendsPage .findfriends_pane .invite .editor_panel{padding:10px 0}
+.FriendsPage .findfriends_pane .invite .editor_panel{margin-right:0;background:transparent}
+.FriendsPage .findfriends_pane .invite .title_header{margin-right:0;background:transparent}
+.FriendsPage .findfriends_pane .invite_friends .callout{margin:20px 0 0}
+
+#bootloader_css_FriendsPage_css { height: 42px; }

@@ -1,0 +1,195 @@
+/*    HTTP Host:  b.static.ak.fbcdn.net                                        */
+/*    Generated:  October 21st 2009 7:37:04 PM PDT                             */
+/*      Machine:  10.16.140.108                                                */
+/*       Source:  Global Cache                                                 */
+/*     Location:  css/73xen30ls8ow00cw.pkg.css h:77icnoa9                      */
+/*       Locale:  nu_ll                                                        */
+/*         Path:  css/73xen30ls8ow00cw.pkg.css                                 */
+
+.UITwoColumnLayout_Container{margin:0}
+.UITwoColumnLayout_Content{float:left}
+.UITwoColumnLayout_NarrowContent{float:right}
+.UITwoColumnLayout_LeftOrientation .UITwoColumnLayout_Content{float:right}
+.UITwoColumnLayout_LeftOrientation .UITwoColumnLayout_NarrowContent{float:left}
+.UITwoColumnLayout_TopMargin{padding:17px 0 0 0}
+.UIEditorTwoColumnLayout .UITwoColumnLayout_Content{padding:19px 0 15px 0}
+.UIEditorTwoColumnLayout .UITwoColumnLayout_NarrowContent{padding:11px 0 11px 0}
+.UIThreeColumnLayout_Container{margin:0}
+.UIThreeColumnLayout_Left{float:left;padding-right:20px}
+.UIThreeColumnLayout_Center{float:left}
+.UIThreeColumnLayout_Right{float:right}
+#attachment_buttons_list{clear:both}
+#attachment_buttons_list label{float:left;display:block;padding:6px 4px;color:#666}
+#attachment_buttons_list .empty_item{padding:6px 0 0 4px}
+#attachment_buttons_list .attachment_link{float:left}
+#attachment_buttons_list .attachment_link a{display:block;margin:2px;white-space:nowrap;cursor:pointer}
+#attachment_buttons_list .attachment_link a span{display:block;padding:4px 6px 4px 24px;background-repeat:no-repeat;background-position:5% 3px}
+#attachment_buttons_list .attachment_link a:hover{color:#444;margin:1px;border:1px solid #a9a9a9;background:#f1f1f1 url(/rsrc.php/z1LTZ/hash/eu9ojh1u.gif) repeat-x top left}
+.attachment_dialog .generic_dialog_popup{width:500px}
+.attachment_view_wrapper{display:none;margin:6px 0 8px 0}
+.attachment_edit_loading,
+.attachment_view_loading{display:none;background:url(/rsrc.php/zBS5C/hash/7hwy7at6.gif) center no-repeat;clear:both;padding:6px 0}
+.attachment_view_container{float:left;padding-bottom:6px}
+.attachment_view_loading{padding-bottom:0}
+.attachment_remove{font-size:9px;text-align:right;padding-bottom:3px}
+.attachment_edit .attachment_stage{background:white;border:0 none}
+.attachment_edit .attachment_stage_area{padding:0}
+.attachment_edit .attachment_stage_area .share_a_link .inputtext{width:300px}
+.attachment_edit .attachment_stage .has_image .summary_wrap{width:334px}
+.attachment_view{width:378px}
+.attachment_view .attachment_stage .has_image .summary_wrap{width:243px}
+.attachment_stage .UIStoryAttachment_MediaSingle{padding-right:5px}
+.attachment_view .attached_item{background:white;border:1px solid #bdc7d8;padding:6px;margin-top:0}
+.attached_item{margin:10px 0 0;padding:0 0 0 7px;border-left:2px solid #e0e0e0;overflow:hidden}
+.attached_item.no_text,
+.attached_item_info.no_text{margin-top:0}
+div.attachment_info{clear:both;color:#666;font-size:9px;padding:8px 0 3px 0}
+div.attachment_info span{padding:3px 0 2px 21px;background-repeat:no-repeat;background-position:center left}
+#attachment_more_menu{float:left;margin-top:3px}
+#attachment_more_menu #attachment_more_link{padding:1px 5px 3px 13px;color:#3b5998;display:inline-block;border:1px solid #fff;background:url(/rsrc.php/z58JV/hash/5pfa3ppg.gif) no-repeat left 1px}
+#attachment_more_menu #attachment_more_link:hover,
+#attachment_more_menu #attachment_more_link.active,
+#attachment_more_menu #attachment_more_link.active:hover{color:#fff;cursor:pointer;background-color:#5c75aa;background-position:left -15px;text-decoration:none}
+#attachment_more_menu #attachment_more_link.active,
+#attachment_more_menu #attachment_more_link.active:hover{border:1px solid #3b5998}
+#attachment_more_menu #wall_attachment_more_menu{padding:5px 0;position:absolute;top:18px;left:0;background:white;border:solid 1px #3b5998}
+#attachment_more_menu #wall_attachment_more_menu a{display:block;color:#3b5998;width:112px;padding:3px 5px 3px 7px}
+#attachment_more_menu #wall_attachment_more_menu a:hover{text-decoration:none;background:#5c75aa;color:#fff;cursor:pointer}
+#wall_attachment_more_menu{width:128px}
+#wall_attachment_more_menu .menu_content{padding:5px 0}
+#wall_attachment_more_menu a:hover
+.attachment_more_menu_option_icon{background-position:top left}
+#wall_attachment_more_menu
+.attachment_more_menu_option_icon{float:left;width:16px;line-height:16px;background-position:-16px 0;background-repeat:no-repeat}
+#wall_attachment_more_menu
+.attachment_more_menu_option_text{float:left;display:block;text-align:left;padding-left:6px}
+.sharebox .set_divider{border-top:1px solid #ccc;margin:0}
+.sharebox #content{padding:0}
+.sharebox .media_header .inputtext{margin:0 7px}
+.tab_bar{padding:12px 10px 0 10px}
+.sharer_bar{text-align:left}
+.sharer_bar .inputtext{margin:0 0 10px 0;width:170px;direction:ltr}
+.sharebox .empty_message{background:white;font-size:13px}
+.sharebox .empty_message .empty_sharer{background:#f7f7f7;padding:10px;text-align:center;border:1px solid #ccc;margin-top:10px}
+.sharebox .empty_message .empty_sharer #u{width:300px;margin-right:5px}
+.sharebox .empty_message .empty_sharer .inputsubmit{height:21px}
+.sharebox .sharebox_dialog{padding:0 0 15px 0}
+.sharebox .sharebox_dialog .status{margin:0}
+.thread .status{margin:10px 10px 0}
+.sharebox .sharebox_dialog #error{margin:0}
+.sharebox .share_help_dialog ul{padding:3px 0 0 0;line-height:16px}
+.sharebox .post_actions{padding:6px 20px 5px;background:#f7f7f7;border-top:solid 1px #b7b7b7;border-bottom:solid 1px #ccc}
+.sharebox .sharebox_item{padding:0 0 20px}
+.sharebox_item{clear:both;padding:10px 20px 30px 20px}
+.share_owner_thumb{float:left;padding:0 0 10px 0;text-align:left;width:58px}
+.share_owner_thumb .user_picture{float:left;margin-right:10px;overflow:hidden;height:40px;width:40px}
+.share_owner_thumb img{display:block}
+.sharebox .share_contents{width:480px}
+.share_contents{float:left;width:365px}
+.no_thumb .share_contents{float:none;width:auto}
+.share_contents .share_header{background-color:#f7f7f7;border-bottom:1px solid #d8dfea;border-top:1px solid #3b5998;padding:4px 5px 2px 5px}
+.share_contents .share_header .shareicon{float:left;padding-right:8px;margin-bottom:8px}
+.share_contents .share_header .main_line{padding:0 0 2px 0}
+.share_contents .share_header .sub_line{font-size:9px;padding:0 0 1px 0}
+.share_contents .share_header a.owner{font-weight:bold}
+.share_contents .share_header .share_and_hide{float:right;margin:1px 0 0 5px}
+.share_contents .share_media{padding:8px 5px}
+.sharebox .summary_bar{border-bottom:0;border-top:1px solid #d8dfea;padding:4px 0 8px 5px}
+.sharebox .posted_side_column{padding:0 10px}
+.sharebox .posted_side_column .sidecolumn_module{padding:10px 0}
+.sharebox .posted_side_column .sidecolumn_module h2{margin:0;padding:0 0 5px 0;font-size:11px}
+.sharebox .posted_side_column .sidecolumn_module .friend_select select{margin-top:5px;width:178px}
+.accessibility_instructions{display:none}
+.sharebox .divider{border-bottom:solid 1px #fff;border-top:solid 1px #ddd;clear:both;height:0;margin:0}
+.sharebox .divider hr{display:none}
+.sharebox #syndication_sidebar{padding-left:0}
+.sharebox #share_button p{margin:5px 0 0 0}
+.sharebox #share_button label{display:block;padding:0 0 4px 0}
+.sharebox #share_button .share_bookmarklet a{background:#999;border:1px solid #999;color:#fff;display:block;float:left;font-weight:bold;padding:2px 4px}
+.sharebox #share_button .share_bookmarklet a:hover{text-decoration:none}
+.sharebox #share_button_dialog{background:white;border:1px solid #ccc;color:#000;padding:8px}
+.sharebox .footer_bar{background:white;clear:both}
+.share_options #content, .share_help #content, .share_partners #content{padding:0}
+.share_options .frame, .share_partners .frame{padding:20px}
+.share_help .frame{padding:0 15px 15px;margin-bottom:10px;background:#fff}
+.share_options #content h2 a, .share_partners #content h2 a, .share_help h2 a{margin-left:8px;font-weight:normal;font-size:11px}
+.share_options .steps{float:left;margin-top:8px;width:390px}
+.share_options .protip{border:1px solid #eee;background:#f7f7f7;padding:5px 8px;margin:12px 0 10px;width:155px;float:right}
+.share_options .paragraphs{float:left;margin:0 0 10px 0}
+.share_options .images{text-align:left;margin-right:8px}
+.share_options p{margin:0 0 10px 0}
+.share_options .step1, .share_options .step2{padding:10px 0 0 0}
+.share_options .step1{border-bottom:1px solid #d8dfea}
+.share_options .step1 .paragraphs{width:250px}
+.share_options .step1 .images{float:left;padding:7px 0 7px 0;width:125px}
+.share_options .step1 .images .arrow{margin:0 5px 0 0;float:right}
+.share_options .step2 .paragraphs{width:155px}
+.share_options .step2 .images{float:left;margin-top:-5px;width:220px}
+.share_help h3, .share_partners h3{padding:20px 0 5px;border-bottom:1px solid #d8dfea;font-size:12px;font-weight:bold;clear:both}
+.share_partners h3{font-size:13px;padding:0 0 5px 0}
+.share_partners h4{margin:0;padding:10px 0 3px 2px;font-size:12px;color:#444;border-bottom:1px solid #d8dfea}
+.share_partners .sample_button{padding:10px 0}
+.share_partners .button_preview{float:left;padding:3px 0 0 5px}
+.share_partners .code_block{float:right;width:510px;padding:2px 3px 3px;font-size:11px;background:#fff;margin-right:7px;border:1px solid #ccc;color:#555}
+.share_partners h5{margin:10px 0 5px;color:#666}
+.share_partners .advanced_code_block{margin-bottom:10px;padding:6px 10px;border:1px solid #dedede;background:#fff}
+.share_partners .share_section{margin-bottom:35px}
+a.share_button_browser_link:hover{text-decoration:none}
+.share_button_browser div{background-repeat:no-repeat;text-align:center;white-space:nowrap}
+.share_button_browser div div{background-position:top right}
+.share_button_browser div div div{background-position:bottom right}
+.share_button_browser div div div div{background-position:bottom left;padding:1px 3px}
+.share_button_safari_mac div,
+.share_button_safari_win div{background-image:url(/rsrc.php/z6IQK/hash/804e16ek.png);color:#fff;font-weight:bold;text-shadow:.1em .1em .2em black
+}
+.share_button_ff_mac div{background-image:url(/rsrc.php/zCWKD/hash/58b7wd8d.png);color:#fff;font-weight:bold}
+.share_button_ie_win div{background-image:url(/rsrc.php/zBHA7/hash/83vornc3.gif);height:1%}
+.share_button_ff_win div{background-image:url(/rsrc.php/z4OZI/hash/big8q7bm.png)}
+.share_button_ie_win div div div div,
+.share_button_ff_win div div div div{color:#000;padding:5px 23px 6px;text-align:left}
+.share_button_ff_linux div div div div{background:#eee;border:1px solid #b0b0b0;border-top:1px solid white;border-left:1px solid white;color:#000;padding:4px}
+.share_button_ff_linux div div div{border:1px solid black;border-top:0;border-left:0}
+.UIObjectListing{border-bottom:1px solid #eee;min-height:50px;padding:2px 0}
+.UIObjectListing_Pic{float:left;width:50px;height:50px;position:relative;overflow:hidden}
+.UIObjectListing_PicPadding .UIObjectListing_Pic{padding-left:5px}
+.UIObjectListing_MetaData{float:left;padding-left:10px;padding-top:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#FriendsPage_Container .UIObjectListing_MetaData{width:300px}
+#FriendsPage_Container .UIObjectListing_RightContent{width:200px}
+.UIObjectListing_MetaDataSecondary{overflow:hidden;text-overflow:ellipsis}
+.UIObjectListing_Title{font-size:13px;font-weight:bold}
+.UIObjectListing_TitleNormal .UIObjectListing_Title{font-weight:normal}
+.UIObjectListing_Subtext{color:#666}
+.UIObjectListing_Padding{padding-right:5px}
+.UIObjectListing_RightContent{float:right}
+.ff2 .UIObjectListing_RightContent{float:none}
+.UIObjectListing_ActionContainer{float:right;white-space:nowrap;padding-top:13px;padding-right:19px}
+.UIObjectListing_HasRemoveControl .UIObjectListing_ActionContainer{padding-right:8px;border-right:1px solid #e7e7e7;height:27px;padding-top:4px;margin-top:10px}
+.UIObjectListing_RemoveContainer{float:right;padding-right:19px;padding-top:16px;padding-left:8px}
+.UIObjectListing_RemoveLink{background:transparent url(/rsrc.php/z3NUO/hash/5up5g102.gif) no-repeat top left;width:18px;height:18px;display:block}
+.UIObjectListing_RemoveLink:hover{text-decoration:none;background-position:top right}
+.tooltip_lock{margin-left:4px}
+.tooltip{position:absolute;z-index:4;overflow:hidden;display:none}
+.tooltip_right_center{background:transparent url(/rsrc.php/zDX0M/hash/5ot5kxah.gif) 0 center no-repeat;padding-left:4px}
+.tooltip_top_center{background:transparent url(/rsrc.php/zDEWE/hash/2vrzx50l.gif) bottom center no-repeat;padding-bottom:4px}
+.tooltip_bottom_center{background:transparent url(/rsrc.php/z713H/hash/b8c5la4e.gif) top center no-repeat;padding-top:4px}
+.tooltip_left_center{background:transparent url(/rsrc.php/z972M/hash/5xk50m1d.gif) right center no-repeat;padding-right:4px}
+.tooltip_inner{margin:0;padding:4px 8px;font-size:11px;color:#fff;background-color:#282828;overflow:hidden;max-width:215px}
+.UIPager_Button{background-image:url(/rsrc.php/z9WEN/hash/6w95fo9x.gif);background-repeat:no-repeat;float:left;height:22px;width:25px}
+.UIPager_ButtonBack{background-position:0 -83px}
+.UIPager_ButtonBack:active{background-position:-100px -83px}
+.UIPager_ButtonForward{background-position:-25px -83px}
+.UIPager_ButtonForward:active{background-position:-125px -83px}
+.UIPager_ButtonDisabled .UIPager_ButtonBack,
+.UIPager_ButtonDisabled .UIPager_ButtonBack:active{background-position:-50px -83px;cursor:default}
+.UIPager_ButtonDisabled .UIPager_ButtonForward,
+.UIPager_ButtonDisabled .UIPager_ButtonForward:active{background-position:-75px -83px;cursor:default}
+.UIPager .UIPager_PageNum{font-size:10px;color:#000;padding-right:10px;line-height:22px;float:left}
+.UIToolbarWell_Content{padding:0;overflow:hidden;padding:0 6px}
+.UIToolbarWell_MainContent{padding:6px 0 5px;height:23px}
+.UIToolbarWell_Left{text-align:left;float:left}
+.UIToolbarWell_Right{text-align:right;float:right}
+.UIToolbarWell_Left .UIToolbarWell_Button .UIButton{margin-right:6px}
+.UIToolbarWell_SecondaryContent{border-top:1px solid #d7d7d7;padding:5px 0}
+.UIWell{border:1px solid #e7e7e7;border-top:1px solid #c0c0c0;background:#f2f2f2;zoom:1}
+
+#bootloader_css_73xen30ls8ow00cw_pkg_css { height: 42px; }

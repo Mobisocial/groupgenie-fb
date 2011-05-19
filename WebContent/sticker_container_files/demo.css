@@ -1,0 +1,18 @@
+body {
+  margin-top: 0;
+  text-align: center;
+  padding: 0;
+  font: normal 12px/1.5em "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: #f7f7f7 url(/images/bg.png) repeat-x;
+  background-position: 0 20px; 
+  color: #333;
+}
+
+#demo {
+  height: 20px;
+  background: #ffc;
+}
+
+#demo a {
+  text-decoration: underline;
+}
